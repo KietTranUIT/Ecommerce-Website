@@ -30,6 +30,22 @@ func (u UserController) InitRouter() {
 	u.router.POST("/signup", SignUp(u))
 	u.router.POST("/verify", SendVerificationCode(u))
 	u.router.POST("/auth", AuthenticateCode(u))
+	u.router.POST("/login", Login(u))
+}
+
+func Login(control UserController) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		reqBody, _ := ioutil.ReadAll(c.Request.Body)
+		var data request.LoginRequest
+		json.Unmarshal(reqBody, &data)
+
+		res := control.service.Login(data)
+		if !res.Status {
+			c.AbortWithStatusJSON(422, res)
+			return
+		}
+		c.AbortWithStatusJSON(200, res)
+	}
 }
 
 func SendVerificationCode(control UserController) gin.HandlerFunc {

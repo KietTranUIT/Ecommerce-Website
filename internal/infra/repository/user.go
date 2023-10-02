@@ -22,6 +22,15 @@ func NewUserRepository(db repository.Database) repository.UserRepository {
 	}
 }
 
+func (repo userRepository) GetUserWithEmail(email string) *dto.UserDTO {
+	var result dto.UserDTO
+	repo.db.GetDB().Table("Users").Select("email", "password").Where("email = ?", email).Scan(&result)
+	if result.Id == 0 && result.Email == "" {
+		return nil
+	}
+	return &result
+}
+
 func (repo userRepository) CreateUser(user *dto.UserDTO) error {
 	result := repo.db.GetDB().Create(user)
 

@@ -16,7 +16,10 @@ const (
 )
 
 type HTTPServer interface {
+	// Run server
 	Start()
+
+	// Stop server
 	Stop()
 }
 
@@ -24,7 +27,9 @@ type httpServer struct {
 	server *http.Server
 }
 
+// Create a httpServer instance
 func NewHTTPServer(router *gin.Engine) HTTPServer {
+	// config server
 	return httpServer{
 		server: &http.Server{
 			Addr:           fmt.Sprintf("%s:%d", host, port),

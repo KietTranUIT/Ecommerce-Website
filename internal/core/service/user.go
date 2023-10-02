@@ -1,7 +1,6 @@
 package service
 
 import (
-	"fmt"
 	"log"
 	"strings"
 	"time"
@@ -36,13 +35,26 @@ func NewUserService(repo repository.UserRepository) service.UserService {
 	}
 }
 
+func (service userService) Login(req request.LoginRequest) *response.Response {
+	user := service.repo.GetUserWithEmail(req.Email)
+
+	if user == nil {
+		return CreateFailResponse(error_code.LoginError, error_code.NotExistUser_msg)
+	}
+
+	if user.Password != req.Password {
+		return CreateFailResponse(error_code.LoginError, error_code.WrongPassword)
+	}
+
+	return CreateSuccessResponse(error_code.LoginSuccess, error_code.LoginSuccess_msg)
+}
+
 // Send code to email user
 func (service userService) SendVerificationCode(email string) *response.Response {
 	code := util.RandomCode()
 
 	// Select verify data from database
 	verify := service.repo.GetVerificationWithEmailAndType(email, "sign up")
-	fmt.Println(verify)
 
 	if verify != nil {
 		if verify.Expire_at.Before(time.Now()) {

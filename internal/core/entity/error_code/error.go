@@ -13,6 +13,8 @@ const (
 	FailedAuthentication       Error_code = "AUTHENTICATE_FAIL"
 	SuccessAuthentication      Error_code = "SUCCESS_AUTHENTICATE"
 	ExpiredCode                Error_code = "EXPIRE_CODE"
+	LoginError                 Error_code = "LOGIN_FAIL"
+	LoginSuccess               Error_code = "LOGIN_SUCCESS"
 )
 
 var (
@@ -26,4 +28,7 @@ var (
 	FailedAuthentication_msg       = "fail authenticate"
 	SuccessAuthentication_msg      = "success authenticate"
 	ExpiredCode_msg                = "expire code"
+	NotExistUser_msg               = "user does not exist"
+	LoginSuccess_msg               = "login success"
+	WrongPassword                  = "incorrected password"
 )

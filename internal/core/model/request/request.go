@@ -10,6 +10,11 @@ type SignUpRequest struct {
 	Address   string `json:"address"`
 }
 
+type LoginRequest struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
 type AuthenticateRequest struct {
 	Email string `json:"email"`
 	Kind  string `json:"type"`
