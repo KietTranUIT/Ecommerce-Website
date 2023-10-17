@@ -1,250 +1,318 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: #fff;
-    background-size: cover;
-    background-position: center;
-}
-
-header{
-    position: fixed;
-    top: 0;
-    left: 0;
+html {
     width: 100%;
-    padding: 20px 100px;
+}
+
+body {
+    font-family: sans-serif;
+    width: 100%;
+    height: 100%;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+}
+
+#shopify-section-header {
+    background-color: white;
+    z-index: 2;
+}
+
+.announcebar-left {
     display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.announcebar-right {
+    width: 100%;
+}
+
+.announce-row {
+    display: flex;
+    padding: 0;
+    height: 50px;
+}
+
+
+p {
+    margin-bottom: 0;
+}
+
+.menu-left {
+    list-style-type: none;
+    display: flex;
+    width: 70%;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+}
+
+.menu-right {
+    width: 100%;
+    height: 100%;
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    align-items: center;
     justify-content: space-between;
     align-items: center;
-    z-index: 99;
 }
 
-.logo{
-    font-size: 2em;
-    color: #64C3F9;
-    user-select: none;
+.navigationbar-row {
+    height: 100px;
 }
 
-.navigation a{
-    position: relative;
-    font-size: 1.1em;
-    color: #000;
-    text-decoration: none;
-    font-weight: 600;
-    margin-left: 40px;
+.logo {
+    display: flex;
+    align-items: center;
 }
 
-.navigation a::after{
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -6px;
+.menu-items {
+    margin: 0;
+    padding: 0;
+}
+
+.menu-right-items {
+    height: 100%;
+    width: 25%;
+}
+
+.menu-right-items:nth-child(odd) {
+    background-color: #f0f0f0;
+}
+
+.menu-right-items:nth-child(4) {
+    background-color: #f16e36;
+}
+
+.menu-right-items-a {
     width: 100%;
-    height: 3px;
-    background: #000;
-    border-radius: 5px;
-    transform-origin: right;
-    transform: scaleX(0);
-    transition: transform .5s;
+    height: 100%;
+    padding: 30px;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.navigation a:hover::after{
-    transform-origin: left;
-    transform: scaleX(1);
 
+.menu-left-items-text {
+    margin: 0;  
 }
 
-.navigation .btnLogin{
-    width: 130px;
+.menu-right-items-text {
+    margin-bottom: 0;
+    margin-left: 5px;
+}
+
+.sticky {
+    display: none;
+}
+
+.back-button {
+    color: black;
+}
+
+.register-form {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.back-toshop {
+    margin-bottom: 15px;
+}
+
+.register-form-title {
+    margin-bottom: 50px;
+}
+
+.register-form-title-text {
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.form-wrapper {
+    border: 1px solid #cdcdcd;
+    height: 550px;;
+}
+
+.form-heading {
+    height: 10%;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #cdcdcd;
+}
+
+.form-section-top {
+    height: 40%;
+    border-bottom: 1px solid #cdcdcd;
+    padding: 20px;
+}
+
+.form-section-bottom {
+    height: 35%;
+    border-bottom: 1px solid #cdcdcd;
+    padding: 20px;
+}
+
+.form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: 15%;
+    padding: 20px;
+}
+
+#create_customer {
+    height: 100%;
+}
+
+.form-control {
+    padding: 15px;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    font-size: 14px;
+}
+
+.submit-button {
+    font-size: 14px;
+    color: white;
+    background-color: #f16e36;
     height: 50px;
-    background: transparent;
-    border: 2px solid #000;
+    width: 200px;
+    border-radius: 50px;
+    border: none;
+    transition: color 0.5s ease-out 100ms;
+}
+
+.submit-button:hover {
+    color: black;
+    svg{
+        fill: black;
+    };
+}
+
+#shopify-section-footer-email {
+    display: flex;
+    align-items: center;
+    background-color: #000000;
+    height: 300px;
+}
+
+.section-title {
+    color: #ffffff;
+}
+
+.form-email-footer {
+    border-radius: 50px;
+    width: 500px;
+    height: 60px;
+    background-color: #000000;
+    border: 2px solid #ffffff;
     outline: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1.1em;
-    color: #000;
-    font-weight: 600;
-    margin-left: 40px;
-    transition: .5s;
+
+    &::placeholder {
+        color: white;
+    }
 }
 
-.navigation .btnLogin:hover{
-    background: #000;
-    color: #fff;
-}
-
-.wrapper{
+.form-subscribe-footer {
     position: relative;
-    width: 400px;
-    height: 400px;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, .5);
-    border-radius: 20px;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    transform: scale(0);
-    transition: transform .5s ease, height .2s ease;
-}
-
-.wrapper.active-popup{
-    transform: scale(1);
-}
-
-.wrapper.active{
-    height: 400px;
-}
-
-.wrapper .form-box{
-    width: 100%;
-    padding: 40px;
-}
-
-.wrapper .form-box.login{
-    transition: transform .18s ease;
-    transform: translateX(0);
-}
-
-.wrapper.active .form-box.login{
-    transition: none;
-    transform: translateX(-400px);
-}
-
-.wrapper .form-box.register{
-    position: absolute;
-    transition: none;
-    transform: translateX(400px);
-}
-
-.wrapper.active .form-box.register{
-    transition: transform .18s ease;
-    transform: translateX(0);
-}
-
-.wrapper .icon-close{
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 45px;
-    height: 45px;
-    background: #162938;
-    font-size: 2em;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom-left-radius: 20px;
-    cursor: pointer;
     z-index: 1;
 }
 
-.form-box h2{
-    font-size: 2em;
-    color: #162938;
-    text-align: center;
-}
-
-.input-box{
-    position: relative;
-    width: 100%;
+.submit-email-footer {
+    position: absolute;
+    background: white;
+    color: black;
+    border-radius: 100%;
+    right: 0;
+    top: 10%;
+    width: 50px;
     height: 50px;
-    border-bottom: 2px solid #162938;
-    margin: 30px 0;
+    transform: translateX(-10%);
+    border:none;
 }
 
-.input-box label{
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    transform: translateY(-50%);
-    font-size: 1em;
-    color: #162938;
-    font-weight: 500;
-    pointer-events: none;
-    transition: .5s;
+
+.form-email-footer:focus {
+    
+    background-color: #000000;
+    color: white;
+    font-size: 14px;
 }
 
-.input-box input:focus~label, 
-.input-box input:valid~label{
-    top: -5px;
+.copyright {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
-.input-box input{
-    width: 100%;
+#shopify-section-footer {
+    height: 350px;
+}
+
+.footer-row {
     height: 100%;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #162938;
-    font-weight: 600;
 }
 
-.input-box .icon{
-    position: absolute;
-    right: 8px;
-    font-size: 1.2em;
-    color: #162938;
-    line-height: 57px;
+
+.sub-left {
+    position: relative;
+    transform: translateY(30%);
 }
 
-.forgot{
-    font-size: .9em;
-    color: #162938;
-    font-weight: 500;
-    margin: -15px 0 15px;
+.sub-right {
+    position: relative;
+    transform: translateY(-30%);
+}
+
+.footer-widget {
+    height: 100%;
+}
+
+.footer-widget-list {
+    list-style-type: none;
+    padding: 0;
     display: flex;
-    justify-content: right;
+    flex-direction: column;
+    gap: 10px 10px;
 }
 
-.forgot a{
-    color: #162938;
-    text-decoration: none;
+.footer-widget-list-a {
+    color: black; 
 }
 
-.forgot a:hover{
-    text-decoration: underline;
+#shopify-section-footer {
+    display: flex;
+    padding-top: 75px;
+    padding-bottom: 75px;
 }
 
-.btn{
-    width: 100%;
-    height: 45px;
-    background: #F86868;
-    border: none;
-    outline: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1em;
-    color: #fff;
-    font-weight: 500;
+.left-wave {
+    height: 300px;
+    position: relative;
+    transform: translateY(-40%);
 }
 
-.login-register{
-    font-size: .9em;
-    color: #162938;
-    text-align: center;
-    font-weight: 500;
-    margin: 25px 0 10px;
+.footer-list-social {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    justify-content: flex-start;
+    margin-top: 15px;
+    column-gap: 15px;
+    height: 100%;
 }
 
-.login-register p a{
-    color: #162938;
-    text-decoration: none;
-    font-weight: 600;
-}
 
-.login-register p a:hover{
-    text-decoration: underline;
-}
 
