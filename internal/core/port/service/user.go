@@ -17,4 +17,6 @@ type UserService interface {
 
 	// authenticate user with code
 	AuthenticateCode(request.AuthenticateRequest) *response.Response
+
+	CheckAccount(string) *response.Response
 }

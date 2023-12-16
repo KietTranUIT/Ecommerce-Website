@@ -35,8 +35,18 @@ func NewUserService(repo repository.UserRepository) service.UserService {
 	}
 }
 
+func (service userService) CheckAccount(email string) *response.Response {
+	user := service.repo.GetUserWithEmail(email)
+
+	if user == nil {
+		return CreateFailResponse(error_code.Empty, error_code.NotExistUser_msg)
+	}
+	return CreateSuccessResponse(error_code.Duplicate_code, error_code.DuplicateUserEmail_msg)
+}
+
 func (service userService) Login(req request.LoginRequest) *response.Response {
 	user := service.repo.GetUserWithEmail(req.Email)
+	log.Println(user)
 
 	if user == nil {
 		return CreateFailResponse(error_code.LoginError, error_code.NotExistUser_msg)
@@ -46,7 +56,7 @@ func (service userService) Login(req request.LoginRequest) *response.Response {
 		return CreateFailResponse(error_code.LoginError, error_code.WrongPassword)
 	}
 
-	return CreateSuccessResponse(error_code.LoginSuccess, error_code.LoginSuccess_msg)
+	return CreateSuccessResponse(error_code.LoginSuccess, error_code.LoginSuccess_msg, user)
 }
 
 // Send code to email user
@@ -108,11 +118,21 @@ func (service userService) AuthenticateCode(req request.AuthenticateRequest) *re
 }
 
 func (service userService) SignUp(req request.SignUpRequest) *response.Response {
-	verify := service.repo.GetVerificationWithEmailAndType(req.Email, "sign up")
+	response := service.AuthenticateCode(request.AuthenticateRequest{
+		Email: req.Email,
+		Kind:  "sign up",
+		Code:  req.Code,
+	})
 
-	if verify.Status == false {
-		return CreateFailResponse(error_code.NotAuthenticatedError_code, error_code.NotAuthenticated_msg)
+	if !response.Status {
+		return response
 	}
+
+	// verify := service.repo.GetVerificationWithEmailAndType(req.Email, "sign up")
+
+	// if verify.Status == false {
+	// 	return CreateFailResponse(error_code.NotAuthenticatedError_code, error_code.NotAuthenticated_msg)
+	// }
 
 	// Create a user object
 	user := dto.UserDTO{
@@ -135,24 +155,25 @@ func (service userService) SignUp(req request.SignUpRequest) *response.Response 
 	}
 
 	//Create a user address object
-	user_address := dto.UserAddress{
-		User_id:   user.Id,
-		Telephone: req.Telephone,
-		Address:   req.Address,
-	}
+	// user_address := dto.UserAddress{
+	// 	User_id:   user.Id,
+	// 	Telephone: req.Telephone,
+	// 	Address:   req.Address,
+	// }
 
-	if err := service.repo.CreateUserAddress(&user_address); err != nil {
-		if strings.Contains(err.Error(), duplicateEntry) {
-			return CreateFailResponse(error_code.Duplicate_code, error_code.DuplicateUserTelephone_msg)
-		}
-		return CreateFailResponse(error_code.InternalError_code, error_code.InternalError_msg)
-	}
+	// if err := service.repo.CreateUserAddress(&user_address); err != nil {
+	// 	if strings.Contains(err.Error(), duplicateEntry) {
+	// 		return CreateFailResponse(error_code.Duplicate_code, error_code.DuplicateUserTelephone_msg)
+	// 	}
+	// 	return CreateFailResponse(error_code.InternalError_code, error_code.InternalError_msg)
+	// }
 
 	return CreateSuccessResponse(error_code.Signup_success, "success")
 }
 
 func CreateFailResponse(err_code error_code.Error_code, err_msg string, data ...any) *response.Response {
 	return &response.Response{
+		Data:       data,
 		Status:     false,
 		Error_code: err_code,
 		Error_msg:  err_msg,
@@ -161,6 +182,7 @@ func CreateFailResponse(err_code error_code.Error_code, err_msg string, data ...
 
 func CreateSuccessResponse(err_code error_code.Error_code, err_msg string, data ...any) *response.Response {
 	return &response.Response{
+		Data:       data,
 		Status:     true,
 		Error_code: err_code,
 		Error_msg:  err_msg,

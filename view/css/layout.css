@@ -14,9 +14,20 @@ a {
     color: white;
 }
 
+/*-----------Header CSS-------------------*/
+
 #shopify-section-header {
     background-color: white;
     z-index: 2;
+    position: sticky; 
+    top: 0;
+}
+
+/* Announce Bar */
+.announce-row {
+    display: flex;
+    padding: 0;
+    height: 50px;
 }
 
 .announcebar-left {
@@ -25,19 +36,28 @@ a {
     width: 100%;
 }
 
+.announcebar-left svg {
+    fill:#ffffff;
+    margin-right:10px;
+}
+
 .announcebar-right {
     width: 100%;
 }
+/* -------------*/
 
-.announce-row {
-    display: flex;
-    padding: 0;
-    height: 50px;
+/* Navigation Bar */
+.navigationbar-row {
+    height: 100px;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+}
 
-p {
-    margin-bottom: 0;
+.logo a {
+    color: black;
 }
 
 .menu-left {
@@ -59,20 +79,6 @@ p {
     align-items: center;
     justify-content: space-between;
     align-items: center;
-}
-
-.navigationbar-row {
-    height: 100px;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-.menu-items {
-    margin: 0;
-    padding: 0;
 }
 
 .menu-right-items {
@@ -108,100 +114,17 @@ p {
     margin-left: 5px;
 }
 
+.dropdown-menu {
+    background-color: #f0f0f0;
+}
+
 .sticky {
     display: none;
 }
 
-.back-button {
-    color: black;
-}
+/* ----------- */
 
-.register-form {
-    padding-top: 80px;
-    padding-bottom: 80px;
-}
-
-.back-toshop {
-    margin-bottom: 15px;
-}
-
-.register-form-title {
-    margin-bottom: 50px;
-}
-
-.register-form-title-text {
-    font-weight: bold;
-    font-size: 50px;
-}
-
-.form-wrapper {
-    border: 1px solid #cdcdcd;
-    height: 550px;;
-}
-
-.form-heading {
-    height: 10%;
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    border-bottom: 1px solid #cdcdcd;
-}
-
-.form-section-top {
-    height: 40%;
-    border-bottom: 1px solid #cdcdcd;
-    padding: 20px;
-}
-
-.form-section-bottom {
-    height: 35%;
-    border-bottom: 1px solid #cdcdcd;
-    padding: 20px;
-}
-
-.form-footer {
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    height: 15%;
-    padding: 20px;
-}
-
-#create_customer {
-    height: 100%;
-}
-
-.form-control {
-    padding: 15px;
-    font-size: 14px;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-label {
-    font-size: 14px;
-}
-
-.submit-button {
-    font-size: 14px;
-    color: white;
-    background-color: #f16e36;
-    height: 50px;
-    width: 200px;
-    border-radius: 50px;
-    border: none;
-    transition: color 0.5s ease-out 100ms;
-}
-
-.submit-button:hover {
-    color: black;
-    svg{
-        fill: black;
-    };
-}
-
+/* Section footer */
 #shopify-section-footer-email {
     display: flex;
     align-items: center;
@@ -210,7 +133,13 @@ p {
 }
 
 .section-title {
+    text-align: center;
     color: #ffffff;
+}
+
+.form-subscribe-footer {
+    position: relative;
+    z-index: 1;
 }
 
 .form-email-footer {
@@ -226,9 +155,14 @@ p {
     }
 }
 
-.form-subscribe-footer {
+.sub-left {
     position: relative;
-    z-index: 1;
+    transform: translateY(30%);
+}
+
+.sub-right {
+    position: relative;
+    transform: translateY(-30%);
 }
 
 .submit-email-footer {
@@ -246,34 +180,28 @@ p {
 
 
 .form-email-footer:focus {
-    
     background-color: #000000;
     color: white;
     font-size: 14px;
+    outline: none;
 }
 
 .copyright {
     margin-top: 15px;
     margin-bottom: 15px;
 }
+/* ----------- */
 
+/* Footer */
 #shopify-section-footer {
     height: 350px;
+    display: flex;
+    padding-top: 75px;
+    padding-bottom: 75px;
 }
 
 .footer-row {
     height: 100%;
-}
-
-
-.sub-left {
-    position: relative;
-    transform: translateY(30%);
-}
-
-.sub-right {
-    position: relative;
-    transform: translateY(-30%);
 }
 
 .footer-widget {
@@ -292,11 +220,6 @@ p {
     color: black; 
 }
 
-#shopify-section-footer {
-    display: flex;
-    padding-top: 75px;
-    padding-bottom: 75px;
-}
 
 .left-wave {
     height: 300px;
@@ -314,5 +237,13 @@ p {
     height: 100%;
 }
 
+.footer-widget h5 {
+    font-size:15px;
+    margin-bottom:20px;
+}
 
-
+.footer-widget p {
+    margin-top: 15px;
+    font-size:14px;
+}
+/* ----------- */

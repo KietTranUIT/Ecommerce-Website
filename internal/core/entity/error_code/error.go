@@ -15,6 +15,7 @@ const (
 	ExpiredCode                Error_code = "EXPIRE_CODE"
 	LoginError                 Error_code = "LOGIN_FAIL"
 	LoginSuccess               Error_code = "LOGIN_SUCCESS"
+	Empty                      Error_code = "EMPTY"
 )
 
 var (
@@ -29,6 +30,7 @@ var (
 	SuccessAuthentication_msg      = "success authenticate"
 	ExpiredCode_msg                = "expire code"
 	NotExistUser_msg               = "user does not exist"
+	ExistUser_msg                  = "user exist"
 	LoginSuccess_msg               = "login success"
 	WrongPassword                  = "incorrected password"
 )

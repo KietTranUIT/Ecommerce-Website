@@ -24,7 +24,7 @@ func NewUserRepository(db repository.Database) repository.UserRepository {
 
 func (repo userRepository) GetUserWithEmail(email string) *dto.UserDTO {
 	var result dto.UserDTO
-	repo.db.GetDB().Table("Users").Select("email", "password").Where("email = ?", email).Scan(&result)
+	repo.db.GetDB().Table("Users").Select("email", "password", "first_name", "last_name").Where("email = ?", email).Scan(&result)
 	if result.Id == 0 && result.Email == "" {
 		return nil
 	}

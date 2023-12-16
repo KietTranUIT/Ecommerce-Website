@@ -8,6 +8,7 @@ type SignUpRequest struct {
 	Gender    string `json:"gender"`
 	Telephone string `json:"telephone"`
 	Address   string `json:"address"`
+	Code      string `json:"code"`
 }
 
 type LoginRequest struct {

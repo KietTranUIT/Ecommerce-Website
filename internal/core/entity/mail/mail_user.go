@@ -64,7 +64,7 @@ func CreateVerificationMail(to []string, code string) MailMessage {
 
 func (mail_service MailService) SendMail(mail MailMessage) error {
 	buffer := new(bytes.Buffer)
-	if tmpl, err := template.ParseFiles("website/verify.html"); err != nil {
+	if tmpl, err := template.ParseFiles("view/verify.html"); err != nil {
 		return err
 	} else {
 		tmpl.Execute(buffer, mail)

@@ -1,0 +1,134 @@
+
+.back-button {
+    color: black;
+}
+
+.login-form {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.back-toshop {
+    margin-bottom: 15px;
+}
+
+.login-form-title {
+    margin-bottom: 50px;
+}
+
+.login-form-title-text {
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.form-wrapper {
+    border: 1px solid #cdcdcd;
+    height: 400px;
+}
+
+.form-heading {
+    height: 5%;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #cdcdcd;
+}
+
+.form-section-top {
+    height: 35%;
+    border-bottom: 1px solid #cdcdcd;
+    padding: 20px;
+}
+
+.form-section-bottom {
+    height: 30%;
+    border-bottom: 1px solid #cdcdcd;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 15px;
+}
+
+.form-section-bottom a {
+    color: #ff0000;
+    text-decoration: underline;
+}
+
+.form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25%;
+    padding: 20px;
+    gap: 10px;
+}
+
+.form-footer p {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#create_customer {
+    height: 100%;
+}
+
+.form-control {
+    padding: 15px;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    font-size: 14px;
+}
+
+.submit-button {
+    font-size: 15px;
+    color: white;
+    background-color: #f16e36;
+    height: 50px;
+    width: 200px;
+    border-radius: 50px;
+    border: none;
+    transition: color 0.5s ease-out 100ms;
+}
+
+.submit-button:hover {
+    color: black;
+}
+
+.submit-button-register {
+    width: 150px;
+}
+
+.submit-button svg {
+    fill: white;
+}
+
+#email-already {
+    display: none;
+}
+
+.alert-announce {
+    position: fixed;
+    top: 200px;
+    right:0;
+}
+
+.alert {
+    display: none;
+}
+
+#invalid-email {
+    display: none;
+    color: red;
+}
+
+#invalid-password {
+    display: none;
+    color: red;
+}

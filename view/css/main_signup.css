@@ -1,0 +1,106 @@
+
+.back-button {
+    color: black;
+}
+
+.register-form {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.back-toshop {
+    margin-bottom: 15px;
+}
+
+.register-form-title {
+    margin-bottom: 50px;
+}
+
+.register-form-title-text {
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.form-wrapper {
+    border: 1px solid #cdcdcd;
+    height: 800px;
+}
+
+.form-heading {
+    height: 5%;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #cdcdcd;
+}
+
+.form-section-top {
+    height: 63%;
+    border-bottom: 1px solid #cdcdcd;
+    padding: 20px;
+}
+
+.form-section-bottom {
+    height: 22%;
+    border-bottom: 1px solid #cdcdcd;
+    padding: 20px;
+}
+
+.form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: 10%;
+    padding: 20px;
+}
+
+#create_customer {
+    height: 100%;
+}
+
+.form-control {
+    padding: 15px;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    font-size: 14px;
+}
+
+.submit-button {
+    font-size: 14px;
+    color: white;
+    background-color: #f16e36;
+    height: 50px;
+    width: 200px;
+    border-radius: 50px;
+    border: none;
+    transition: color 0.5s ease-out 100ms;
+}
+
+.submit-button:hover {
+    color: black;
+}
+
+.submit-button svg {
+    fill: white;
+}
+
+#email-already {
+    display: none;
+}
+
+.alert {
+    position: fixed;
+    right:0;
+}
+
+.annouce-error {
+    color: red;
+    display: none;
+}
+

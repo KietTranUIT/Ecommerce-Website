@@ -3,6 +3,7 @@ package controller
 import (
 	"encoding/json"
 	"io/ioutil"
+	"log"
 	"user-service/internal/core/entity/error_code"
 	"user-service/internal/core/model/request"
 	"user-service/internal/core/model/response"
@@ -24,13 +25,63 @@ func NewUserController(router *gin.Engine, service service.UserService) UserCont
 }
 
 func (u UserController) InitRouter() {
+	u.router.LoadHTMLGlob("view/*.html")
+
+	u.router.Static("/view/", "view")
+
 	u.router.GET("/", func(c *gin.Context) {
-		c.String(200, "Hello World!")
+		c.HTML(200, "index.html", nil)
 	})
-	u.router.POST("/signup", SignUp(u))
-	u.router.POST("/verify", SendVerificationCode(u))
+
+	u.router.GET("/account/check", CheckAccount(u))
+
+	signup_group := u.router.Group("/signup")
+	{
+		signup_group.GET("/", GETSignupPage(u))
+		signup_group.POST("/", SignUp(u))
+	}
+
+	verify_group := u.router.Group("/verify")
+	{
+		verify_group.GET("/", GETVerifyPage(u))
+		verify_group.POST("/", SendVerificationCode(u))
+	}
+
 	u.router.POST("/auth", AuthenticateCode(u))
+	u.router.GET("/login", GetLoginPage(u))
 	u.router.POST("/login", Login(u))
+}
+
+func GetLoginPage(control UserController) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.HTML(200, "signin.html", nil)
+	}
+}
+
+func CheckAccount(control UserController) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		email, _ := c.GetQuery("email")
+
+		response := control.service.CheckAccount(email)
+
+		c.Writer.Header().Set("Content-Type", "application/json")
+
+		c.AbortWithStatusJSON(200, response)
+
+	}
+}
+
+func GETVerifyPage(control UserController) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.HTML(200, "verify_signup.html", nil)
+	}
+}
+
+func GETSignupPage(control UserController) gin.HandlerFunc {
+	log.Println("Loi da xay ra")
+	return func(c *gin.Context) {
+		c.HTML(200, "signup.html", nil)
+	}
 }
 
 func Login(control UserController) gin.HandlerFunc {
@@ -53,11 +104,14 @@ func SendVerificationCode(control UserController) gin.HandlerFunc {
 		email, _ := c.GetQuery("email")
 		res := control.service.SendVerificationCode(email)
 
+		c.Writer.Header().Set("Content-Type", "application/json")
+
 		if res.Status == false {
 			c.AbortWithStatusJSON(500, res)
 			return
 		}
 		c.AbortWithStatusJSON(200, res)
+		c.String(200, "Hello World!")
 	}
 }
 

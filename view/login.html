@@ -7,25 +7,20 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script>
-            window.addEventListener("scroll", function() {
-                var announcebar = document.querySelector(".announcebar")
-                var navigationbar = document.querySelector(".main-navigationbar")
-                announcebar.classList.toggle("sticky", window.scrollY > 0)
-                navigationbar.classList.toggle("test", window.scrollY > 0)
-            })
-        </script>
+        <script src="/view/js/bug.js"></script>
+        <script src="/view/js/effect.js"></script>
+        <link rel="stylesheet" href="/view/css/layout.css">
+        <link rel="stylesheet" href="/view/css/main_login.css">
     </head>
-    <body>
-        <header id="shopify-section-header" style="position: sticky; top: 0;">
-        <link rel="stylesheet" href="style.css">
+    <body style="position: relative;">
+        <header id="shopify-section-header">
             <div class="announcebar">
                 <div class="container">
                     <div class="announce-row no-gutters row">
                         <div class="col-6 bg-dark text-white d-flex align-items-center">
                             <div class="announcebar-left justify-content-between">
-                                <p class="my-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" style="fill:#ffffff;margin-right:10px;">
+                                <p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                         <path d="M16.1 260.2c-22.6 12.9-20.5 47.3 3.6 57.3L160 376V479.3c0 18.1 14.6 32.7 32.7 32.7c9.7 0 18.9-4.3 25.1-11.8l62-74.3 123.9 51.6c18.9 7.9 40.8-4.5 43.9-24.7l64-416c1.9-12.1-3.4-24.3-13.5-31.2s-23.3-7.5-34-1.4l-448 256zm52.1 25.5L409.7 90.6 190.1 336l1.2 1L68.2 285.7zM403.3 425.4L236.7 355.9 450.8 116.6 403.3 425.4z"/></svg>
                                     <b>7 Days A Week</b>
                                     From 9:00 Am To 7:00 Pm
@@ -34,7 +29,7 @@
                                     <span>
                                         Call Us:
                                         <b>0963863742</b>
-                                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" style="fill:#ffffff;margin-left:10px;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
                                             <path d="M16 64C16 28.7 44.7 0 80 0H304c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H80c-35.3 0-64-28.7-64-64V64zM144 448c0 8.8 7.2 16 16 16h64c8.8 0 16-7.2 16-16s-7.2-16-16-16H160c-8.8 0-16 7.2-16 16zM304 64H80V384H304V64z"/></svg>
                                     </span>
                                 </a>
@@ -64,16 +59,16 @@
                                 </h1>
                             </div>
                             <ul class="menu-left d-flex justify-content-between">
-                                <li class="menu-items">
+                                <li>
                                     <h6 class="menu-left-items-text">FASHION</h6>
                                 </li>
-                                <li class="menu-items">
+                                <li>
                                     <h6 class="menu-left-items-text">OUTDOOR</h6>
                                 </li>
-                                <li class="menu-items">
+                                <li>
                                     <h6 class="menu-left-items-text">PAGES</h6>
                                 </li>
-                                <li class="menu-items">
+                                <li>
                                     <h6 class="menu-left-items-text">BLOGS</h6>
                                 </li>
                             </ul>
@@ -91,12 +86,12 @@
                                     <a href="#" class="menu-right-items-a" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                         <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 448 512">
                                             <path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"/></svg>
-                                            <h6 class="menu-right-items-text">My profile</h6>
+                                            <h6 class="menu-right-items-text" id="#user">My profile</h6>
                                     </a>
                                     <div class="dropdown">
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color: #f0f0f0;">
-                                            <li><a class="dropdown-item" href="#">Log In</a></li>
-                                            <li><a class="dropdown-item" href="#">Create Account</a></li>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <li><a class="dropdown-item" href="/view/login.html">Log In</a></li>
+                                            <li><a class="dropdown-item" href="/view/signup.html">Create Account</a></li>
                                           </ul>
                                     </div>
                                 </li>
@@ -119,74 +114,71 @@
                 </div>
             </div>
         </header>
+        <div class="alert-announce">
+            <div class="alert alert-danger" role="alert" id="fail-login">
+                Login failed. Username or password incorrect
+            </div>
+            <div class="alert alert-danger" role="alert" id="server-error">
+                Server Error!
+            </div>
+        </div>
         <main id="main-content">
-            <section class="register-form">
+            <section class="login-form">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-12" style="width:60%;">
                             <div class="back-toshop d-flex justify-content-center">
-                                <a href="#" class="back-button">
+                                <a class="back-button" id="back-to-home" href="/view/index.html"> 
                                     <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 512 512">
                                         <path d="M48 256a208 208 0 1 1 416 0A208 208 0 1 1 48 256zm464 0A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM217.4 376.9c4.2 4.5 10.1 7.1 16.3 7.1c12.3 0 22.3-10 22.3-22.3V304h96c17.7 0 32-14.3 32-32V240c0-17.7-14.3-32-32-32H256V150.3c0-12.3-10-22.3-22.3-22.3c-6.2 0-12.1 2.6-16.3 7.1L117.5 242.2c-3.5 3.8-5.5 8.7-5.5 13.8s2 10.1 5.5 13.8l99.9 107.1z"/></svg>
                                     <span>Back to home</span>
                                 </a>
                             </div>
-                            <div class="register-form-title d-flex justify-content-center">
-                                <h1 class="register-form-title-text">Create account</h1>
+                            <div class="login-form-title d-flex justify-content-center">
+                                <h1 class="login-form-title-text">Already Registered?</h1>
                             </div>
                             <div class="form-wrapper">
-                                <form id="create_customer" method="post" action="/account" accept-charset="UTF-16">
+                                <form id="create_customer" accept-charset="UTF-16">
                                     <div class="form-heading">
                                         <h5 style="margin-bottom: 0;">
-                                            Your
-                                            <b>Personal Details</b>
+                                            <b>Already Registered?</b>
                                         </h5>
                                     </div>
                                     <div class="form-section-top">
                                         <div class="row gx-5">
                                             <div class="col-6 form-group">
-                                                <label for="formControlInput" class="form-label">
-                                                    <b>First name 
+                                                <label for="email" class="form-label">
+                                                    <b>E-mail 
                                                         <span style="color:red">*</span>:
                                                     </b> 
                                                 </label>
-                                                <input type="text" class="form-control" id="formControlInput" placeholder="First name">
+                                                <input type="text" class="form-control" id="email" placeholder="Email" required >
                                             </div>
                                             <div class="col-6 form-group">
-                                                <label for="formControlInput" class="form-label">
-                                                    <b>Last name
+                                                <label for="password" class="form-label">
+                                                    <b>Password
                                                         <span style="color:red">*</span>:
                                                     </b>
                                                 </label>
-                                                <input type="text" class="form-control" id="formControlInput" placeholder="Last name">
-                                            </div>
-                                            <div class="col-12 form-group">
-                                                <label for="formControlInput" class="form-label">
-                                                    <b>E-mail
-                                                        <span style="color:red;">*</span>:
-                                                    </b>
-                                                </label>
-                                                <input type="email" class="form-control" id="formControlInput" placeholder="Email">
+                                                <input type="password" class="form-control" id="password" placeholder="Password" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-section-bottom">
-                                        <h5 style="margin-bottom: 15px;">
-                                            Your
-                                            <b>Password</b>
-                                        </h5>
-                                        <div class="col-12 form-group">
-                                            <label for="formControlInput" class="form-label">
-                                                <b>Password
-                                                    <span style="color:red;">*</span>:
-                                                </b>
-                                            </label>
-                                            <input type="password" class="form-control" id="formControlInput" placeholder="Password">
-                                        </div>
+                                        <a href="#">Forgot Password?</a>
+                                            <button class="submit-button" type="submit" id="submit-login" onclick="SendVerificationEmail()">
+                                                <b>Login</b>
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                                                    <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
+                                            </button>
                                     </div>
                                     <div class="form-footer">
-                                        <button class="submit-button" type="submit">
-                                            <b>Send Message</b>
+                                        <p>If you don't have account</p>
+                                        <button class="submit-button submit-button-register" type="submit">
+                                            <b>Sign up</b>
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                                                <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
+                                        </button>   
                                     </div>
                                 </form>
                             </div>
@@ -196,8 +188,8 @@
             </section>
         </main>
         <section id="shopify-section-footer-email">
-            <img src="assets/sub-left.avif" alt="Error!" class="sub-left">
-            <div class="container" style="width:50%;">
+            <img src="/view/assets/sub-left.avif" alt="Error!" class="sub-left">
+            <div class="container" >
                 <div class="row">
                     <div class="col-6">
                         <div class="section-title">
@@ -219,21 +211,21 @@
                     </div>
                 </div>
             </div>
-            <img src="assets/sub-right.avif" alt="Error!" class="sub-right">
+            <img src="/view/assets/sub-right.avif" alt="Error!" class="sub-right">
         </section>
         <footer id="shopify-section-footer">
-            <img src="assets/left-wave.avif" alt="Error!" class="left-wave">
+            <img src="/view/assets/left-wave.avif" alt="Error!" class="left-wave">
             <div class="container">
                 <div class="row justify-content-between">
                     <div class="col-4 d-flex flex-column justify-content-between">
                         <div class="footer-widget">
                             <div class="footer-logo">
-                                <h1 style="margin-top:0;">
-                                    <a href="#" style="color:black;">TK</a>
+                                <h1>
+                                    <a>TK</a>
                                 </h1>
                             </div>
                             <span class="copyright">STEP 2023 EDITION</span>
-                            <p style="margin-top: 15px;font-size:14px;">Step into the forefront of fashion with our latest <br> collection of shoes. From sleek heels to trendy sneakers.</p>
+                            <p>Step into the forefront of fashion with our latest <br> collection of shoes. From sleek heels to trendy sneakers.</p>
                             <ul class="footer-list-social">
                                 <li>
                                     <a href="#">
@@ -264,7 +256,7 @@
                     </div>
                     <div class="col-2">
                         <div class="footer-widget">
-                            <h5 style="font-size:15px;margin-bottom:20px;"><b>NAVIGATION:</b></h5>
+                            <h5><b>NAVIGATION:</b></h5>
                             <ul class="footer-widget-list">
                                 <li><a href="#" class="footer-widget-list-a">Search</a></li>
                                 <li><a href="#" class="footer-widget-list-a">All collections</a></li>
@@ -275,7 +267,7 @@
                     </div>
                     <div class="col-2">
                         <div class="footer-widget">
-                            <h5 style="font-size:15px;margin-bottom:20px;"><b>EXTRA:</b></h5>
+                            <h5><b>EXTRA:</b></h5>
                             <ul class="footer-widget-list">
                                 <li><a href="#" class="footer-widget-list-a">about us</a></li>
                                 <li><a href="#" class="footer-widget-list-a">Contact Us</a></li>
@@ -287,7 +279,7 @@
                     </div>
                     <div class="col-2">
                         <div class="footer-widget">
-                            <h5 style="font-size:15px;margin-bottom:20px;"><b>CATEGORIES:</b></h5>
+                            <h5><b>CATEGORIES:</b></h5>
                             <ul class="footer-widget-list">
                                 <li><a href="#" class="footer-widget-list-a">Women</a></li>
                                 <li><a href="#" class="footer-widget-list-a">Kids</a></li>
@@ -300,7 +292,7 @@
                     </div>
                     <div class="col-2">
                         <div class="footer-widget">
-                            <h5 style="font-size:15px;margin-bottom:20px;"><b>QUICK LINKS:</b></h5>
+                            <h5><b>QUICK LINKS:</b></h5>
                             <ul class="footer-widget-list">
                                 <li><a href="#" class="footer-widget-list-a">Sneakers</a></li>
                                 <li><a href="#" class="footer-widget-list-a">Brogue boots</a></li>
