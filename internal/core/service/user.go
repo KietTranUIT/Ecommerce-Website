@@ -188,3 +188,154 @@ func CreateSuccessResponse(err_code error_code.Error_code, err_msg string, data 
 		Error_msg:  err_msg,
 	}
 }
+
+// Logic service for Admin ----------------------------------------------------------
+func (service userService) LoginAdmin(req request.LoginRequest) *response.Response {
+	admin := service.repo.GetAdmin(req.Email)
+
+	if admin == nil {
+		return CreateFailResponse(error_code.LoginError, error_code.LoginAdminFail_msg1)
+	}
+
+	if req.Password != admin.Password {
+		return CreateFailResponse(error_code.LoginError, error_code.LoginAdminFail_msg2)
+	}
+
+	return CreateSuccessResponse(error_code.LoginSuccess, error_code.LoginSuccess_msg)
+}
+
+func (service userService) GetCategories() []dto.ProductCategory {
+	return service.repo.GetProductCategories()
+}
+
+func (service userService) GetLastIDCategories() int {
+	return service.repo.GetLastIDCategories()
+}
+
+func (service userService) CreateCategory(category dto.ProductCategory) bool {
+	result := service.repo.InsertCategory(category)
+	if result != nil {
+		return false
+	}
+	return true
+}
+
+func (service userService) DeleteCategory(id int) bool {
+	result := service.repo.DeleteCategory(id)
+	if result != nil {
+		return false
+	}
+	return true
+}
+
+func (service userService) GetCategoryWithId(id string) *dto.ProductCategory {
+	return service.repo.GetCategoryWithId(id)
+
+}
+
+func (service userService) UpdateCategory(category *dto.ProductCategory) bool {
+	result := service.repo.UpdateCategory(category)
+	if result != nil {
+		return false
+	}
+	return true
+}
+
+func (service userService) GetProductsForAdmin() []dto.Product {
+	return service.repo.GetProductForAdmin()
+}
+
+func (service userService) CreateProduct(product *dto.Product) bool {
+	result := service.repo.InsertProduct(product)
+
+	if result != nil {
+		return false
+	}
+	return true
+}
+
+func (service userService) GetProductWithId(id string) *dto.Product {
+	return service.repo.GetProductWithId(id)
+}
+
+func (service userService) UpdateProduct(product *dto.Product) bool {
+	result := service.repo.UpdateProduct(product)
+
+	if result != nil {
+		return false
+	}
+	return true
+}
+
+func (service userService) GetProductVersion(id string) []dto.ProductVersion {
+	var product []dto.ProductVersion
+	product = service.repo.GetProductVersion(id)
+	return product
+}
+
+func (service userService) GetLastIdProductVersion() int {
+	return service.repo.GetLastIdProductVersion()
+}
+
+func (service userService) CreateProductVersion(product *dto.ProductVersion) bool {
+	result := service.repo.CreateProductVersion(product)
+
+	if result != nil {
+		return false
+	}
+	return true
+}
+
+func (service userService) CreateProductInventory(inventory *dto.ProductInventory) bool {
+	result := service.repo.CreateProductInventory(inventory)
+
+	if result != nil {
+		return false
+	}
+	return true
+}
+
+func (service userService) UpdateProductInventory(id int, quantity int) bool {
+	result := service.repo.UpdateProductInventory(id, quantity)
+
+	if result != nil {
+		return false
+	}
+	return true
+}
+
+func (service userService) UpdateProductVersion(product *dto.ProductVersion) bool {
+	result := service.repo.UpdateProductVersion(product)
+
+	if result != nil {
+		return false
+	}
+	return true
+}
+
+func (service userService) GetProductVersionWithId(id int) *dto.ProductVersion {
+	return service.repo.GetProductVersionWithId(id)
+}
+
+func (service userService) DeleteProductVersion(id int) bool {
+	if result := service.repo.DeleteProductInventory(id); result != nil {
+		return false
+	}
+
+	if result := service.repo.DeleteProductVersion(id); result != nil {
+		return false
+	}
+	return true
+}
+
+func (service userService) GetOrderAdminPage() []dto.Order {
+	return service.repo.GetOrderAdminPage()
+}
+
+func (service userService) GetOrderDetail(id int) []dto.OrderDetail {
+	return service.repo.GetOrderDetail(id)
+}
+
+func (service userService) GetOrderWithId(id int) *dto.Order {
+	return service.repo.GetOrderWithId(id)
+}

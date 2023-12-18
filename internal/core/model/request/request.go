@@ -21,3 +21,5 @@ type AuthenticateRequest struct {
 	Kind  string `json:"type"`
 	Code  string `json:"code"`
 }
+
+// Request for admin

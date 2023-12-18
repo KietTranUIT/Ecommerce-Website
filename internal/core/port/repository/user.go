@@ -25,4 +25,30 @@ type UserRepository interface {
 	UpdateStatusVerificationEmail(string, string) error
 
 	GetUserWithEmail(string) *dto.UserDTO
+
+	// For Admin -----------------------------------
+	GetAdmin(string) *dto.AdminDTO
+	GetProductCategories() []dto.ProductCategory
+	GetLastIDCategories() int
+	InsertCategory(dto.ProductCategory) error
+	DeleteCategory(id int) error
+	GetCategoryWithId(id string) *dto.ProductCategory
+	UpdateCategory(*dto.ProductCategory) error
+
+	GetProductForAdmin() []dto.Product
+	InsertProduct(*dto.Product) error
+	GetProductWithId(string) *dto.Product
+	UpdateProduct(*dto.Product) error
+	GetProductVersion(string) []dto.ProductVersion
+	GetLastIdProductVersion() int
+	CreateProductVersion(*dto.ProductVersion) error
+	CreateProductInventory(*dto.ProductInventory) error
+	UpdateProductVersion(*dto.ProductVersion) error
+	UpdateProductInventory(int, int) error
+	GetProductVersionWithId(int) *dto.ProductVersion
+	DeleteProductInventory(int) error
+	DeleteProductVersion(int) error
+	GetOrderAdminPage() []dto.Order
+	GetOrderDetail(int) []dto.OrderDetail
+	GetOrderWithId(int) *dto.Order
 }

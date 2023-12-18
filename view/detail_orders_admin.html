@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Admin Dashboard</title>
+        <link rel="stylesheet" href="/view/css/admin/products.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="/view/js/admin/detail_product.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="navbar-header">
+                <ul>
+                    <li>
+                        <div>
+                            <a>IT SHOP</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <a>Home</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <a>About</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <a>Product</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <a>Product2</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <a>Contact</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <section id="section-top">
+            <h1>Order Information</h1>
+            <table>
+                <tr class="section-title">
+                    <th>Id</th>
+                    <th>User email</th>
+                    <th>Total</th>
+                    <th>Created date</th>
+                    <th>Payment method</th>
+                    <th>Status</th>
+                </tr>
+                
+                <tr class="section-row">
+                    <td class="infor-products">{{ .Order.Id }}</td>
+                    <td class="infor-products">
+                        {{ .Order.User_email }}
+                    </td>
+                    <td class="infor-products">
+                        {{ .Order.Total }}
+                    </td>
+                    <td class="infor-products">
+                        <p>{{ .Order.Created_at }}</p>
+                    </td>
+                    <td class="infor-products">
+                        <p>{{ .Order.Payment_name }}</p>
+                    </td>
+                    <td class="infor-products">
+                        <p>{{ .Order.Status }}</p>
+                    </td>
+                </tr>
+            </table>
+        </section>
+        <section>
+            <div class="section-title">
+                <h2> List Product version</h2>
+            </div>
+            <div class="section-body">
+                <table>
+                    <tr class="section-title">
+                        <th>Id</th>
+                        <th>Order Id</th>
+                        <th>Product name</th>
+                        <th>Quantity</th>
+                    </tr>
+                    
+                    {{ range .OrderDetail}}
+                    <tr class="section-row">
+                        <td class="infor-products">{{ .Id }}</td>
+                        <td class="infor-products">
+                            {{ .Order_id }}
+                        </td>
+                        <td class="infor-products">
+                            {{ .Product_name }}
+                        </td>
+                        <td class="infor-products">
+                            {{ .Quantity }}
+                        </td>
+                    </tr>
+                    {{ end }}
+                </table>
+            </div>
+        </section>
+    </body>
+</html>

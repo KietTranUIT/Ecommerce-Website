@@ -33,4 +33,6 @@ var (
 	ExistUser_msg                  = "user exist"
 	LoginSuccess_msg               = "login success"
 	WrongPassword                  = "incorrected password"
+	LoginAdminFail_msg1            = "admin not exist"
+	LoginAdminFail_msg2            = "password wrong"
 )
