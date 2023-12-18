@@ -24,13 +24,6 @@ func (U *UserDTO) TableName() string {
 	return "Users"
 }
 
-type UserAddress struct {
-	Id        uint
-	User_id   uint
-	Telephone string
-	Address   string
-}
-
 func (U *UserAddress) TableName() string {
 	return "User_address"
 }

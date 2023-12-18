@@ -16,6 +16,8 @@ const (
 	LoginError                 Error_code = "LOGIN_FAIL"
 	LoginSuccess               Error_code = "LOGIN_SUCCESS"
 	Empty                      Error_code = "EMPTY"
+	Success                    Error_code = "SUCCESS"
+	CreateUserAddressFail      Error_code = "CREATE_USER_ADDRESS_FAIL"
 )
 
 var (

@@ -46,19 +46,19 @@ func (repo userRepository) CreateUser(user *dto.UserDTO) error {
 	return nil
 }
 
-func (repo userRepository) CreateUserAddress(user_address *dto.UserAddress) error {
-	result := repo.db.GetDB().Create(user_address)
+// func (repo userRepository) CreateUserAddress(user_address *dto.UserAddress) error {
+// 	result := repo.db.GetDB().Create(user_address)
 
-	if result.Error != nil {
-		return result.Error
-	}
+// 	if result.Error != nil {
+// 		return result.Error
+// 	}
 
-	if result.RowsAffected != 1 {
-		return rowAffectedError
-	}
+// 	if result.RowsAffected != 1 {
+// 		return rowAffectedError
+// 	}
 
-	return nil
-}
+// 	return nil
+// }
 
 func (repo userRepository) CreateVerificationMail(verify *dto.VerificationEmail) error {
 	result := repo.db.GetDB().Create(verify)

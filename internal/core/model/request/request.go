@@ -23,3 +23,10 @@ type AuthenticateRequest struct {
 }
 
 // Request for admin
+
+type CreateUserAddressRequest struct {
+	User_email string `json:"user_email"`
+	Address    string `json:"address"`
+	City       string `json:"city"`
+	Phone      string `json:"phone"`
+}

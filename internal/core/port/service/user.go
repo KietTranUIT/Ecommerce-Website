@@ -46,4 +46,7 @@ type UserService interface {
 	GetOrderAdminPage() []dto.Order
 	GetOrderDetail(int) []dto.OrderDetail
 	GetOrderWithId(int) *dto.Order
+
+	// Address user
+	CreateUserAddress(request.CreateUserAddressRequest) *response.Response
 }

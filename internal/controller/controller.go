@@ -77,4 +77,9 @@ func (u UserController) InitRouter() {
 		admin_login.GET("/", GetLoginAdminPage(u))
 		admin_login.POST("/", HandleLoginAdmin(u))
 	}
+
+	user_group := u.router.Group("/account")
+	{
+		user_group.POST("/addresses", HandleCreateUserAddress(u))
+	}
 }
