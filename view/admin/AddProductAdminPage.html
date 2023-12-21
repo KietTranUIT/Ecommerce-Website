@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="pragma" content="no-cache">
+        <meta http-equiv="expires" content="0">
+        <title>Admin Dashboard</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="/view/admin/css/admin.css">
+        <link rel="stylesheet" href="/view/admin/css/category.css">
+        <script src="/view/admin/js/product.js"></script>
+    </head>
+    <body>
+        <header>
+            <h3>Admin Area</h3>
+            <div class="log-out">
+                <h5>Log out</h5>
+                <svg xmlns="http://www.w3.org/2000/svg" height="25" width="25" viewBox="0 0 512 512" style="fill:white;">
+                    <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/>
+                </svg>
+            </div>
+        </header>
+        <div class="full-page">
+            <div class="admin-bar">
+                <ul>
+                    <li id="dashboard">
+                        <div class="admin-bar-items">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512" style="fill:white"> 
+                                <path d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm320 96c0-26.9-16.5-49.9-40-59.3V88c0-13.3-10.7-24-24-24s-24 10.7-24 24V292.7c-23.5 9.5-40 32.5-40 59.3c0 35.3 28.7 64 64 64s64-28.7 64-64zM144 176a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm-16 80a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm288 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM400 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/>
+                            </svg>
+                            <span>Dashboard</span>
+                        </div>
+                    </li>
+                    <li id="categories">
+                        <div class="admin-bar-items">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="22" viewBox="0 0 576 512" style="fill:white"><
+                                <path d="M264.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 149.8C37.4 145.8 32 137.3 32 128s5.4-17.9 13.9-21.8L264.5 5.2zM476.9 209.6l53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 277.8C37.4 273.8 32 265.3 32 256s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0l152-70.2zm-152 198.2l152-70.2 53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 405.8C37.4 401.8 32 393.3 32 384s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0z"/>
+                            </svg>
+                            <span>Categories</span>
+                        </div>
+                    </li>
+                    <li id="products">
+                        <div class="admin-bar-items">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512" style="fill:white">
+                                <path d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/>
+                            </svg>
+                            <span>Products</span>
+                        </div>
+                    </li>
+                    <li id="view-orders">
+                        <div class="admin-bar-items">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="18" viewBox="0 0 448 512" style="fill:white">
+                                <path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/>
+                            </svg>
+                            <span>View Orders</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <section>
+                <div class="section-sub">
+                    <div class="section-title">
+                        <h4>Dashboard/ Insert Product</h4>
+                    </div>
+                    <div class="section-view">
+                        <div class="section-view-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512">
+                                <path d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/>
+                            </svg>
+                            <h4>Insert Product</h4>
+                        </div>
+                        <div class="section-view-content">
+                            <div class="section-view-edit">
+                                
+                                <div class="section-form">
+                                    <form id="form-insert" enctype="multipart/form-data">
+                                        <ul>
+                                            <li>
+                                                <label for="id">Id</label>
+                                                <input type="text" id="id" name="id" readonly>
+                                            </li>
+                                            <li style="position:relative">
+                                                <label for="name">Category Name</label>
+                                                <input type="text" id="name" name="name">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512" style="position:absolute; right:0">
+                                                    <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/>
+                                                </svg>
+                                            </li>
+                                            <li>
+                                                <label for="list">Choose Category</label>
+                                                <select id="list" name="list" style="width:500px; height:45px;">
+                                                    {{ range .}}
+                                                    <option value="{{ .Id }}">{{ .Person }}'s {{ .Name }}</option>
+                                                    {{ end }}
+                                                </select>
+                                            </li>
+                                            <li>
+                                                <label for="image">Choose Image</label>
+                                                <input type="file" id="image" name="image">
+                                            </li>
+                                            <li>
+                                                <label for="image1">Choose Image1</label>
+                                                <input type="file" id="image1" name="image1">
+                                            </li>
+                                            <li>
+                                                <label for="image2">Choose Image2</label>
+                                                <input type="file" id="image2" name="image2">
+                                            </li>
+                                            <li style="position:relative">
+                                                <label for="Price">Price</label>
+                                                <input type="text" id="price" name="price">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512" style="position:absolute; right:0">
+                                                    <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/>
+                                                </svg>
+                                            </li>
+                                            <li style="position:relative">
+                                                <label for="description">Description</label>
+                                                <textarea type="text" id="description" rows="7" name="description"></textarea>
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512" style="position: absolute; right:0">
+                                                    <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/>
+                                                </svg>
+                                            </li>
+                                        </ul>
+                                        <input type="submit" value="Insert Category" id="btn-submit">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <script>
+            $(document).ready(function() {
+    $('#form-insert').submit(function(event) {
+        event.preventDefault()
+        const fileInput = document.getElementById('image')
+        const fileInput1 = document.getElementById('image1')
+        const fileInput2 = document.getElementById('image2')
+        const file = fileInput.files[0]
+        const file1 = fileInput1.files[0]
+        const file2 = fileInput2.files[0]
+    
+        let title = $('#name').val()
+        let summary = $('#description').val()
+        let category_id = $('#list').val()
+        let price = $('#price').val()
+
+        if (category_id == '') {
+            alert("Please select a category!")
+            return
+        }
+    
+        let jsonData = {
+            name: title,
+            description: summary,
+            category_id: parseInt(category_id),
+            price: parseInt(price)
+        }
+        let datajs = JSON.stringify(jsonData)
+    
+        const formData = new FormData();
+        formData.append('file', file)
+        formData.append('file1', file1)
+        formData.append('file2', file2)
+        formData.append('jsonData', datajs)
+        fetch('/admin/products', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if(response.status === 200) {
+                alert('Add product successfull')
+            } else {
+                alert('Add product fail')
+            }
+        })
+    })
+})
+        </script>
+    </body>
+</html>

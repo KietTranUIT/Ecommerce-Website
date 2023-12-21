@@ -113,3 +113,11 @@ func AuthenticateCode(control UserController) gin.HandlerFunc {
 		c.AbortWithStatusJSON(200, res)
 	}
 }
+
+func HandleHomePage(control UserController) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		products := control.service.GetProductForHomePage()
+
+		c.AbortWithStatusJSON(200, products)
+	}
+}

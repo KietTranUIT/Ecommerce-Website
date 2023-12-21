@@ -37,6 +37,11 @@ type VerificationEmail struct {
 	Expire_at time.Time
 }
 
+type DataSales struct {
+	Sales   int `json:"sales"`
+	Revenue int `json:"revenue"`
+}
+
 func (v *VerificationEmail) TableName() string {
 	return "Email_verification"
 }

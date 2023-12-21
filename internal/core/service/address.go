@@ -21,3 +21,26 @@ func (service userService) CreateUserAddress(req request.CreateUserAddressReques
 	}
 	return CreateSuccessResponse(error_code.Success, "")
 }
+
+func (service userService) DeleteUserAddress(req request.DeleteUserAddressRequest) *response.Response {
+	result := service.repo.DeleteUserAddress(req.Id)
+	if result != nil {
+		return CreateFailResponse(error_code.DeleteUserAddressFail, result.Error())
+	}
+	return CreateSuccessResponse(error_code.Success, "")
+}
+
+func (service userService) EditUserAddress(req request.EditUserAddressRequest) *response.Response {
+	data := &dto.UserAddress{
+		Id:      req.Id,
+		Address: req.Address,
+		City:    req.City,
+		Phone:   req.Phone,
+	}
+
+	result := service.repo.UpdateUserAddress(data)
+	if result != nil {
+		return CreateFailResponse(error_code.UpdateUserAddressFail, result.Error())
+	}
+	return CreateSuccessResponse(error_code.Success, "")
+}

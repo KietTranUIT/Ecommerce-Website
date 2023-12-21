@@ -10,6 +10,8 @@ $(document).ready(function() {
     })
     $('#create_product').submit(function(event) {
         event.preventDefault()
+        const fileInput = document.getElementById('imageurl')
+        const file = fileInput.files[0]
 
         let title = $('#title').val()
         let summary = $('#summary').val()
@@ -24,16 +26,15 @@ $(document).ready(function() {
             name: title,
             description: summary,
             category_id: parseInt(category_id),
-            description: summary,
             price: price
         }
         let datajs = JSON.stringify(jsonData)
-        console.log(jsonData)
-
+        const formData = new FormData();
+        formData.append('file', file)
+        formData.append('jsonData', datajs)
         fetch('/admin/products', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: datajs
+            body: formData
         })
         .then(response => {
             $('.success').show()

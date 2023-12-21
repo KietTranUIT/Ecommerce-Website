@@ -5,14 +5,14 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"strings"
 
 	"user-service/internal/core/dto"
 	"user-service/internal/core/model/request"
-
-	"path/filepath"
+	"user-service/internal/core/model/response"
 
 	"strconv"
+
+	"user-service/internal/core/common/util"
 
 	"github.com/gin-gonic/gin"
 )
@@ -24,17 +24,14 @@ import (
 //xu li yeu cau truy cap trang admin
 func HandleAdmin(control UserController) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		log.Println("oki ban nho")
-		c.String(200, "OK")
-
-		c.HTML(http.StatusOK, "categories_admin.html", nil)
+		c.HTML(http.StatusOK, "AdminPage.html", nil)
 	}
 }
 
 // Tra ve trang dang nhap cho admin
 func GetLoginAdminPage(control UserController) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.HTML(200, "login_admin.html", nil)
+		c.HTML(200, "LoginAdminPage.html", nil)
 	}
 }
 
@@ -52,63 +49,58 @@ func HandleLoginAdmin(control UserController) gin.HandlerFunc {
 			return
 		}
 
-		token, _ := CreateToken(data.Email)
-		c.SetCookie("bear", token, 3600, "/", "localhost", false, true)
+		token, _ := util.CreateToken(data.Email)
+		c.SetCookie("bear", token, 3600, "/admin", "https://42d1-113-22-113-136.ngrok-free.app/", false, true)
+		c.AbortWithStatusJSON(200, res)
 	}
 }
 
 // Lay trang hien thi danh sach san pham
-func GetCategoryAdminPage(control UserController) gin.HandlerFunc {
-	return func(c *gin.Context) {
-		categories := control.service.GetCategories()
-		log.Println(categories)
-		c.HTML(http.StatusOK, "categories_admin.html", categories)
-	}
-}
+// func GetCategoryAdminPage(control UserController) gin.HandlerFunc {
+// 	return func(c *gin.Context) {
+// 		categories := control.service.GetCategories()
+// 		c.HTML(http.StatusOK, "CategoriesAdminPage.html", categories)
+// 	}
+// }
 
 //
-func GetAddCategoryAdminPage(control UserController) gin.HandlerFunc {
-	return func(c *gin.Context) {
-		c.HTML(http.StatusOK, "add_categories_admin.html", nil)
-	}
-}
 
 // Them categories
-func InsertCategoryAdmin(control UserController) gin.HandlerFunc {
-	return func(c *gin.Context) {
-		file, err := c.FormFile("file")
-		if err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
-		}
+// func InsertCategoryAdmin(control UserController) gin.HandlerFunc {
+// 	return func(c *gin.Context) {
+// 		file, err := c.FormFile("file")
+// 		if err != nil {
+// 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+// 			return
+// 		}
 
-		// lay du lieu json
-		jsonData := c.PostForm("jsonData")
-		var category dto.ProductCategory
-		json.Unmarshal([]byte(jsonData), &category)
+// 		// lay du lieu json
+// 		jsonData := c.PostForm("jsonData")
+// 		var category dto.ProductCategory
+// 		json.Unmarshal([]byte(jsonData), &category)
 
-		category.Id = strconv.Itoa(control.service.GetLastIDCategories() + 1)
-		name_image := category.Id + "_" + category.Name + "." + strings.Split(file.Filename, ".")[1]
+// 		category.Id = strconv.Itoa(control.service.GetLastIDCategories() + 1)
+// 		name_image := category.Id + "_" + category.Name + "." + strings.Split(file.Filename, ".")[1]
 
-		// luu file vao folder chi dinh
-		uploadFolder := "/view/assets/image/categories"
-		filePath := filepath.Join(uploadFolder, name_image)
-		if err := c.SaveUploadedFile(file, filePath); err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-			return
-		}
-		category.Image = filePath
+// 		// luu file vao folder chi dinh
+// 		uploadFolder := "view/assets/image/categories"
+// 		filePath := filepath.Join(uploadFolder, name_image)
+// 		if err := c.SaveUploadedFile(file, filePath); err != nil {
+// 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+// 			return
+// 		}
+// 		category.Image = "/" + filePath
 
-		result := control.service.CreateCategory(category)
-		if !result {
-			c.JSON(http.StatusInternalServerError, gin.H{"message": "Loi he thong"})
-			return
-		}
-		c.JSON(http.StatusOK, gin.H{
-			"message": "Them du lieu thanh cong",
-		})
-	}
-}
+// 		result := control.service.CreateCategory(category)
+// 		if !result {
+// 			c.JSON(http.StatusInternalServerError, gin.H{"message": "Loi he thong"})
+// 			return
+// 		}
+// 		c.JSON(http.StatusOK, gin.H{
+// 			"message": "Them du lieu thanh cong",
+// 		})
+// 	}
+// }
 
 func DeleteCategoryAdmin(control UserController) gin.HandlerFunc {
 	return func(c *gin.Context) {
@@ -116,14 +108,13 @@ func DeleteCategoryAdmin(control UserController) gin.HandlerFunc {
 		id, _ := strconv.Atoi(str)
 
 		result := control.service.DeleteCategory(id)
+		log.Println(result)
 
-		if !result {
-			c.JSON(http.StatusInternalServerError, gin.H{"message": "Loi he thong"})
+		if !result.Status {
+			c.AbortWithStatusJSON(500, result)
 			return
 		}
-		c.JSON(http.StatusOK, gin.H{
-			"message": "Xoa du lieu thanh cong",
-		})
+		c.AbortWithStatusJSON(500, result)
 	}
 }
 
@@ -133,114 +124,61 @@ func GetUpdateCategoryAdminPage(control UserController) gin.HandlerFunc {
 
 		category := control.service.GetCategoryWithId(id)
 
-		c.HTML(http.StatusOK, "update_categories_admin.html", category)
+		c.HTML(http.StatusOK, "UpdateCategoryAdminPage.html", category)
 	}
 }
 
-func UpdateCategoryAdmin(control UserController) gin.HandlerFunc {
-	return func(c *gin.Context) {
-		file, err := c.FormFile("file")
-		if err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
-		}
+// func UpdateCategoryAdmin(control UserController) gin.HandlerFunc {
+// 	return func(c *gin.Context) {
+// 		file, _ := c.FormFile("file")
+// 		// if err != nil {
+// 		// 	c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+// 		// 	return
+// 		// }
 
-		// lay du lieu json
-		jsonData := c.PostForm("jsonData")
-		var category dto.ProductCategory
-		json.Unmarshal([]byte(jsonData), &category)
+// 		// lay du lieu json
+// 		jsonData := c.PostForm("jsonData")
+// 		var category dto.ProductCategory
+// 		json.Unmarshal([]byte(jsonData), &category)
 
-		if file != nil {
-			name_image := category.Id + "_" + category.Name + "." + strings.Split(file.Filename, ".")[1]
+// 		if file != nil {
+// 			name_image := category.Id + "_" + category.Name + "." + strings.Split(file.Filename, ".")[1]
 
-			// luu file vao folder chi dinh
-			uploadFolder := "view/assets/image/categories"
-			filePath := filepath.Join(uploadFolder, name_image)
-			if err := c.SaveUploadedFile(file, filePath); err != nil {
-				c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-				return
-			}
-			category.Image = "/" + filePath
-		}
-		log.Println(category)
+// 			// luu file vao folder chi dinh
+// 			uploadFolder := "view/assets/image/categories"
+// 			filePath := filepath.Join(uploadFolder, name_image)
+// 			if err := c.SaveUploadedFile(file, filePath); err != nil {
+// 				c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+// 				return
+// 			}
+// 			category.Image = "/" + filePath
+// 		}
 
-		result := control.service.UpdateCategory(&category)
-		if !result {
-			c.JSON(http.StatusInternalServerError, gin.H{"message": "Loi he thong"})
-			return
-		}
-		c.JSON(http.StatusOK, gin.H{
-			"message": "Cap nhat du lieu thanh cong",
-		})
-	}
-}
+// 		result := control.service.UpdateCategory(&category)
+// 		if !result {
+// 			c.JSON(http.StatusInternalServerError, gin.H{"message": "Loi he thong"})
+// 			return
+// 		}
+// 		c.JSON(http.StatusOK, gin.H{
+// 			"message": "Cap nhat du lieu thanh cong",
+// 		})
+// 	}
+// }
 
 // ----------------- Products----------------------------------
-func GetProductAdminPage(control UserController) gin.HandlerFunc {
+
+func DeleteProduct(control UserController) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		products := control.service.GetProductsForAdmin()
-		log.Println(products)
+		str := c.Param("id")
+		id, _ := strconv.Atoi(str)
 
-		c.HTML(200, "products_admin.html", products)
-	}
-}
+		result := control.service.DeleteProduct(id)
 
-func GetAddProductAdminPage(control UserController) gin.HandlerFunc {
-	return func(c *gin.Context) {
-		categories := control.service.GetCategories()
-
-		c.HTML(200, "add_products_admin.html", categories)
-	}
-}
-
-func CreateProduct(control UserController) gin.HandlerFunc {
-	return func(c *gin.Context) {
-		reqBody, _ := ioutil.ReadAll(c.Request.Body)
-		var data dto.Product
-		json.Unmarshal(reqBody, &data)
-
-		result := control.service.CreateProduct(&data)
-
-		if !result {
-			c.JSON(http.StatusInternalServerError, gin.H{"message": "Loi he thong"})
+		if !result.Status {
+			c.AbortWithStatusJSON(500, result)
 			return
 		}
-		c.JSON(http.StatusOK, gin.H{
-			"message": "Them du lieu thanh cong",
-		})
-	}
-}
-
-func GetUpdateProductAdminPage(control UserController) gin.HandlerFunc {
-	return func(c *gin.Context) {
-		id := c.Param("id")
-
-		product := control.service.GetProductWithId(id)
-
-		categories := control.service.GetCategories()
-
-		c.HTML(200, "update_products_admin.html", struct {
-			Product  *dto.Product
-			Category []dto.ProductCategory
-		}{product, categories})
-	}
-}
-
-func UpdateProductAdmin(control UserController) gin.HandlerFunc {
-	return func(c *gin.Context) {
-		reqBody, _ := ioutil.ReadAll(c.Request.Body)
-		var data dto.Product
-		json.Unmarshal(reqBody, &data)
-
-		result := control.service.UpdateProduct(&data)
-
-		if !result {
-			c.JSON(http.StatusInternalServerError, gin.H{"message": "Loi he thong"})
-			return
-		}
-		c.JSON(http.StatusOK, gin.H{
-			"message": "Cap nhat du lieu thanh cong",
-		})
+		c.AbortWithStatusJSON(200, result)
 	}
 }
 
@@ -255,36 +193,17 @@ func GetProductDetailAdminPage(control UserController) gin.HandlerFunc {
 			Product         *dto.Product
 			Product_version []dto.ProductVersion
 		}{products, products_version}
-		c.HTML(200, "detail_products_admin.html", template)
+		c.HTML(200, "DetailProductAdminPage.html", template)
 	}
 }
 
 func CreateProductVersionAdmin(control UserController) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		file, err := c.FormFile("file")
-		if err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
-		}
-
-		// lay du lieu json
-		jsonData := c.PostForm("jsonData")
-
+		reqBody, _ := ioutil.ReadAll(c.Request.Body)
 		var product dto.ProductVersion
-		json.Unmarshal([]byte(jsonData), &product)
+		json.Unmarshal(reqBody, &product)
 
 		product.Id = control.service.GetLastIdProductVersion() + 1
-		log.Println(product)
-		name_image := strconv.Itoa(product.Id) + "." + strings.Split(file.Filename, ".")[1]
-
-		// luu file vao folder chi dinh
-		uploadFolder := "view/assets/image/products"
-		filePath := filepath.Join(uploadFolder, name_image)
-		if err := c.SaveUploadedFile(file, filePath); err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-			return
-		}
-		product.Image = "/" + filePath
 
 		result := control.service.CreateProductVersion(&product)
 		if !result {
@@ -321,8 +240,9 @@ func CreateProductVersionAdmin(control UserController) gin.HandlerFunc {
 func GetAddProductVersionAdminPage(control UserController) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		id := c.Param("id")
+		log.Println("OK")
 
-		c.HTML(200, "add_productversion_admin.html", gin.H{"Id": id})
+		c.HTML(200, "AddProductVersionAdminPage.html", gin.H{"Id": id})
 	}
 }
 
@@ -332,35 +252,16 @@ func GetUpdateProductVersionAdminPage(control UserController) gin.HandlerFunc {
 		id, _ := strconv.Atoi(str)
 		product := control.service.GetProductVersionWithId(id)
 
-		c.HTML(200, "update_productversion_admin.html", product)
+		c.HTML(200, "UpdateProductVersionAdminPage.html", product)
 	}
 }
 
 func UpdateProductVersionAdmin(control UserController) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		file, err := c.FormFile("file")
-		if err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
-		}
-
-		// lay du lieu json
-		jsonData := c.PostForm("jsonData")
+		reqBody, _ := ioutil.ReadAll(c.Request.Body)
 		var product dto.ProductVersion
-		json.Unmarshal([]byte(jsonData), &product)
-
-		if file != nil {
-			name_image := strconv.Itoa(product.Id) + "." + strings.Split(file.Filename, ".")[1]
-
-			// luu file vao folder chi dinh
-			uploadFolder := "view/assets/image/products"
-			filePath := filepath.Join(uploadFolder, name_image)
-			if err := c.SaveUploadedFile(file, filePath); err != nil {
-				c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-				return
-			}
-			product.Image = "/" + filePath
-		}
+		json.Unmarshal(reqBody, &product)
+		log.Println(product)
 
 		result := control.service.UpdateProductVersion(&product)
 		if !result {
@@ -399,8 +300,7 @@ func DeleteProductVersion(control UserController) gin.HandlerFunc {
 func GetOrderAdminPage(control UserController) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		orders := control.service.GetOrderAdminPage()
-
-		c.HTML(200, "orders_admin.html", orders)
+		c.HTML(200, "OrdersAdminPage.html", orders)
 	}
 }
 
@@ -412,9 +312,59 @@ func GetOrderDetailAdminPage(control UserController) gin.HandlerFunc {
 		order := control.service.GetOrderWithId(id)
 		orders_detail := control.service.GetOrderDetail(id)
 
-		c.HTML(200, "detail_orders_admin.html", struct {
+		c.HTML(200, "OrderDetailAdminPage.html", struct {
 			Order       *dto.Order
 			OrderDetail []dto.OrderDetail
 		}{order, orders_detail})
+	}
+}
+
+func HandleLogoutAdmin(control UserController) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.SetCookie("bear", "", -1, "/admin", "https://42d1-113-22-113-136.ngrok-free.app/", false, true)
+		c.String(200, "")
+	}
+}
+
+func GetTotalSales(control UserController) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		type_query := c.Query("type")
+
+		var response *response.Response
+
+		if type_query == "day" {
+			response = control.service.GetTotalSalesDayNow()
+		} else if type_query == "week" {
+			response = control.service.GetTotalSalesWeekNow()
+		} else {
+			response = control.service.GetTotalSalesMonthNow()
+		}
+
+		if !response.Status {
+			c.AbortWithStatusJSON(500, response)
+		}
+		c.AbortWithStatusJSON(200, response)
+	}
+}
+
+func GetOrdersRecently(control UserController) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		response := control.service.GetOrdersRecently()
+
+		if !response.Status {
+			c.AbortWithStatusJSON(500, response)
+		}
+		c.AbortWithStatusJSON(200, response)
+	}
+}
+
+func GetTopProducts(control UserController) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		response := control.service.GetTopProducts()
+
+		if !response.Status {
+			c.AbortWithStatusJSON(500, response)
+		}
+		c.AbortWithStatusJSON(200, response)
 	}
 }

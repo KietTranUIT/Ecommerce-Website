@@ -1,7 +1,8 @@
 
 $(document).ready(function() {
     // Gui yeu cau xac thuc dang nhap
-    $('#btn-login').click(function() {
+    $('#btn-submit').click(function(event) {
+        event.preventDefault();
         var email = $('#email').val()
     var password = $('#password').val()
 
@@ -11,7 +12,6 @@ $(document).ready(function() {
     }
 
     let dataJson = JSON.stringify(credential)
-        console.log(dataJson)
         fetch("/admin/login", {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -19,16 +19,18 @@ $(document).ready(function() {
         })
         .then(response => {
             if (response.status === 200) {
+                alert("log in success!")
                 GotoAdminHome()
             } else {
-                console.log("no")
+                alert("Log in failed!")
             }
         })
     })
 })
 
 function GotoAdminHome() {
-    fetch("/admin/products", {
+    console.log("OK")
+    fetch("/admin", {
         method: 'GET'
     })
     .then(response => {

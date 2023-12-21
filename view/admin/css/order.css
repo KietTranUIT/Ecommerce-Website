@@ -1,0 +1,165 @@
+html {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+header {
+    position: sticky;
+    background-color: #222222;
+    height: 9.96%;
+    display: flex;
+    align-items: center;
+    border-bottom: 3px solid black;
+}
+
+header h3 {
+    display: inline;
+    color: white;
+    margin-left: 50px;
+}
+
+.admin-bar {
+    position: sticky;
+    background-color: #222222;
+    width: 15%;
+    height: 100%;
+}
+
+.admin-bar ul {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    color: white;
+    font-size: 20px;
+    padding-left: 0;
+}
+
+.admin-bar ul li {
+    height: 80px;
+    display: flex;
+
+}
+
+.admin-bar ul li:hover {
+    background-color: black;
+}
+
+.admin-bar-items {
+    display: inline-block;
+    margin-left: 20px;
+    display:flex;
+    gap: 15px;
+}
+
+.admin-bar-items span, .admin-bar-items {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+section {
+    padding-left: 100px;
+    padding-top: 50px;
+    width: 80%;
+    float: right;
+}
+
+.full-page {
+    display: flex;
+    height: 90.01%;
+    width: 100%;
+}
+
+.section-sub {
+    height: 90%;
+}
+
+.section-view {
+    border: 2px solid #c3c3c3;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.section-view-header {
+    background-color: red;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+    background-color: #f5f5f5;
+    font-weight: bolder;
+    gap: 20px;
+}
+
+.section-view-header h4 {
+    margin: 0;
+}
+
+.section-view-table {
+    margin: 15px auto auto auto;
+    width: 98%;
+    overflow-y: auto;
+    height: 900px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+img {
+    height: 150px;
+    width: 150px;
+}
+
+thead th:nth-child(1) {
+    width: 5%;
+}
+
+thead th:nth-child(2) {
+    width: 10%;
+}
+
+thead th:nth-child(3) {
+    width: 15%;
+}
+
+thead th:nth-child(4) {
+    width: 15%;
+}
+
+thead th:nth-child(5) {
+    width: 15%;
+}
+
+thead th:nth-child(6) {
+    width: 15%;
+}
+
+thead th:nth-child(7) {
+    width: 10%;
+}
+
+tr:nth-child(even) {
+    background-color: #f1f1f1
+}
+
+td {
+    padding-left: 10px;
+    height: 150px;
+    border: 1px solid #c3c3c3;
+}
+
+th {
+    padding-left: 10px;
+    height: 50px;
+    border: 1px solid #c3c3c3;
+}
