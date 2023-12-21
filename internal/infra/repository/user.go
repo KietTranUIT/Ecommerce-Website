@@ -104,8 +104,11 @@ func (repo userRepository) UpdateStatusVerificationEmail(email string, kind stri
 // Get email and password of admin wiht mail primary key
 func (repo userRepository) GetAdmin(email string) *dto.AdminDTO {
 	var admin *dto.AdminDTO
-	repo.db.GetDB().Table("admin").First(&admin, "email = ?", email)
-	log.Println(email)
+	result := repo.db.GetDB().Table("admin").First(&admin, "email = ?", email)
+	if result.Error != nil {
+		return nil
+	}
+
 	return admin
 }
 
@@ -146,45 +149,37 @@ func (repo userRepository) GetCategoryWithId(id string) *dto.ProductCategory {
 	return category
 }
 
-func (repo userRepository) UpdateCategory(category *dto.ProductCategory) error {
-	result := repo.db.GetDB().Table("category").Where("id = ?", category.Id).Updates(
-		map[string]interface{}{
-			"name":        category.Name,
-			"description": category.Description,
-			"image":       category.Image,
-		})
-	if result.Error != nil {
-		return result.Error
-	}
-	return nil
-}
+// func (repo userRepository) UpdateCategory(category *dto.ProductCategory) error {
+// 	result := repo.db.GetDB().Table("category").Where("id = ?", category.Id).Updates(
+// 		map[string]interface{}{
+// 			"name":        category.Name,
+// 			"description": category.Description,
+// 			"image":       category.Image,
+// 		})
+// 	if result.Error != nil {
+// 		return result.Error
+// 	}
+// 	return nil
+// }
 
 func (repo userRepository) GetProductForAdmin() []dto.Product {
 	var products []dto.Product
 	repo.db.GetDB().Table("product").
 		Select(
-			"product.id as id,product.name as name, product.category_id as category_id, category.name as category_name, product.description as description, product.price as price").
+			"product.id as id,product.name as name, product.category_id as category_id, category.name as category_name, product.description as description, product.price as price, product.image").
 		Joins("inner join category on category.id = product.category_id").Scan(&products)
 	return products
 }
 
 func (repo userRepository) InsertProduct(product *dto.Product) error {
-	result := repo.db.GetDB().Table("product").Select("name", "category_id", "description", "price").Create(&product)
+	result := repo.db.GetDB().Table("product").
+		Select("name", "category_id", "description", "price", "image", "image1", "image2").
+		Create(&product)
 
 	if result.Error != nil {
 		return result.Error
 	}
 	return nil
-}
-
-func (repo userRepository) GetProductWithId(id string) *dto.Product {
-	var product *dto.Product
-	repo.db.GetDB().Table("product").
-		Select(
-			"product.id as id,product.name as name, product.category_id as category_id, category.name as category_name, product.description as description, product.price as price").
-		Joins("inner join category on category.id = product.category_id").
-		Where("product.id = ?", id).Find(&product)
-	return product
 }
 
 func (repo userRepository) UpdateProduct(product *dto.Product) error {
@@ -194,7 +189,28 @@ func (repo userRepository) UpdateProduct(product *dto.Product) error {
 			"description": product.Description,
 			"category_id": product.Category_id,
 			"price":       product.Price,
+			"image":       product.Image,
+			"image1":      product.Image1,
+			"image2":      product.Image2,
 		})
+	if result.Error != nil {
+		return result.Error
+	}
+	return nil
+}
+
+func (repo userRepository) DeleteProduct(id int) error {
+	result := repo.db.GetDB().Table("product").Where("id = ?", id).Delete(1)
+
+	if result.Error != nil {
+		return result.Error
+	}
+	return nil
+}
+
+func (repo userRepository) DeleteAllProductVersion(id int) error {
+	result := repo.db.GetDB().Table("product_version").Where("p_id = ?", id).Delete(nil)
+
 	if result.Error != nil {
 		return result.Error
 	}
@@ -205,25 +221,31 @@ func (repo userRepository) GetProductVersion(id string) []dto.ProductVersion {
 	var products []dto.ProductVersion
 	repo.db.GetDB().Table("product_version").
 		Select(
-			"product_version.id as id, product_version.size_product as size_product, product_version.color as color, product_version.image as image, product_inventory.quantity as inventory").
+			"product_version.id as id, product_version.size_product as size_product, product_inventory.quantity as inventory").
 		Joins("inner join product_inventory on product_inventory.product_id = product_version.id").
 		Where("product_version.p_id = ?", id).Scan(&products)
 	return products
+}
+
+func (repo userRepository) GetLastIdProduct() int {
+	var last_id int
+	repo.db.GetDB().Table("product").Select("id").Order("id desc").Limit(1).Find(&last_id)
+	return last_id
+}
+
+func (repo userRepository) CreateProductVersion(product *dto.ProductVersion) error {
+	result := repo.db.GetDB().Table("product_version").Select("id", "p_id", "size_product").Create(&product)
+
+	if result.Error != nil {
+		return result.Error
+	}
+	return nil
 }
 
 func (repo userRepository) GetLastIdProductVersion() int {
 	var last_id int
 	repo.db.GetDB().Table("product_version").Select("id").Order("id desc").Limit(1).Find(&last_id)
 	return last_id
-}
-
-func (repo userRepository) CreateProductVersion(product *dto.ProductVersion) error {
-	result := repo.db.GetDB().Table("product_version").Select("id", "p_id", "size_product", "color", "image").Create(&product)
-
-	if result.Error != nil {
-		return result.Error
-	}
-	return nil
 }
 
 func (repo userRepository) CreateProductInventory(inventory *dto.ProductInventory) error {
@@ -250,8 +272,6 @@ func (repo userRepository) UpdateProductVersion(product *dto.ProductVersion) err
 	result := repo.db.GetDB().Table("product_version").Where("id = ?", product.Id).Updates(
 		map[string]interface{}{
 			"size_product": product.Size_product,
-			"color":        product.Color,
-			"image":        product.Image,
 		})
 	if result.Error != nil {
 		return result.Error
@@ -263,7 +283,7 @@ func (repo userRepository) GetProductVersionWithId(id int) *dto.ProductVersion {
 	var product *dto.ProductVersion
 	repo.db.GetDB().Table("product_version").
 		Select(
-			"product_version.id as id,product_version.p_id as p_id, product_version.size_product as size_product, product_version.color as color, product_inventory.quantity as inventory, product_version.image as image").
+			"product_version.id as id,product_version.p_id as p_id, product_version.size_product as size_product, product_inventory.quantity as inventory").
 		Joins("inner join product_inventory on product_inventory.product_id = product_version.id").
 		Where("product_version.id = ?", id).Find(&product)
 	return product
@@ -279,7 +299,7 @@ func (repo userRepository) DeleteProductVersion(id int) error {
 }
 
 func (repo userRepository) DeleteProductInventory(id int) error {
-	result := repo.db.GetDB().Table("product_inventory").Where("id = ?", id).Delete(1)
+	result := repo.db.GetDB().Table("product_inventory").Where("product_id = ?", id).Delete(1)
 
 	if result.Error != nil {
 		return result.Error
@@ -299,11 +319,12 @@ func (repo userRepository) GetOrderAdminPage() []dto.Order {
 func (repo userRepository) GetOrderDetail(id int) []dto.OrderDetail {
 	var orders []dto.OrderDetail
 	repo.db.GetDB().Table("order_detail").
-		Select("order_detail.id as id, order_detail.order_id as order_id, product.name as product_name, order_detail.quantity as quantity").
+		Select("order_detail.id as id, order_detail.order_id as order_id, product.name as product_name, order_detail.quantity as quantity, product_version.size_product as size_product").
 		Joins("inner join product_version on product_version.id = order_detail.product_id").
 		Joins("inner join product on product_version.p_id = product.id").
 		Where("order_detail.order_id = ?", id).
 		Scan(&orders)
+	log.Println(orders)
 	return orders
 }
 
@@ -315,4 +336,93 @@ func (repo userRepository) GetOrderWithId(id int) *dto.Order {
 		Where("orders.id = ?", id).
 		Find(&order)
 	return order
+}
+
+func (repo userRepository) GetTotalSalesDayNow() (int, error) {
+	var total int
+	sql := "SELECT COUNT(*) AS total FROM orders WHERE DATE(created_at) = CURDATE()"
+	result := repo.db.GetDB().Raw(sql).Scan(&total)
+
+	if result.Error != nil {
+		return -1, result.Error
+	}
+	return total, nil
+}
+
+func (repo userRepository) GetTotalRevenueDayNow() (int, error) {
+	var total int
+	sql := "SELECT SUM(total) AS total FROM orders WHERE DATE(created_at) = CURDATE()"
+	result := repo.db.GetDB().Raw(sql).Scan(&total)
+
+	if result.Error != nil {
+		return -1, result.Error
+	}
+	return total, nil
+}
+
+func (repo userRepository) GetTotalSalesWeekNow() (int, error) {
+	var total int
+	sql := "SELECT COUNT(*) AS total FROM orders WHERE WEEK(created_at) = WEEK(CURDATE()) AND YEAR(created_at) = YEAR(CURDATE())"
+	result := repo.db.GetDB().Raw(sql).Scan(&total)
+
+	if result.Error != nil {
+		return -1, result.Error
+	}
+	return total, nil
+}
+
+func (repo userRepository) GetTotalRevenueWeekNow() (int, error) {
+	var total int
+	sql := "SELECT SUM(total) AS total FROM orders WHERE WEEK(created_at) = WEEK(CURDATE()) AND YEAR(created_at) = YEAR(CURDATE())"
+	result := repo.db.GetDB().Raw(sql).Scan(&total)
+
+	if result.Error != nil {
+		return -1, result.Error
+	}
+	return total, nil
+}
+
+func (repo userRepository) GetTotalSalesMonthNow() (int, error) {
+	var total int
+	sql := "SELECT COUNT(*) AS total FROM orders WHERE MONTH(created_at) = MONTH(CURDATE()) AND YEAR(created_at) = YEAR(CURDATE())"
+	result := repo.db.GetDB().Raw(sql).Scan(&total)
+
+	if result.Error != nil {
+		return -1, result.Error
+	}
+	return total, nil
+}
+
+func (repo userRepository) GetTotalRevenueMonthNow() (int, error) {
+	var total int
+	sql := "SELECT SUM(total) AS total FROM orders WHERE MONTH(created_at) = MONTH(CURDATE()) AND YEAR(created_at) = YEAR(CURDATE())"
+	result := repo.db.GetDB().Raw(sql).Scan(&total)
+
+	if result.Error != nil {
+		return -1, result.Error
+	}
+	return total, nil
+}
+
+func (repo userRepository) GetOrdersRecently() ([]dto.Order, error) {
+	var orders []dto.Order
+	sql := "SELECT orders.id as id, orders.user_email as email, orders.total as total, ( SELECT SUM(quantity) FROM order_detail WHERE order_detail.order_id = orders.id) as items FROM orders ORDER BY orders.created_at desc LIMIT 10;"
+	result := repo.db.GetDB().Raw(sql).Scan(&orders)
+
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return orders, nil
+}
+
+func (repo userRepository) GetTopProducts() ([]dto.Product, error) {
+	var products []dto.Product
+
+	sql := "SELECT product.name as name, category.name as category_name, product.price as price  FROM product inner join category on category.id = product.category_id inner join (SELECT product_version.p_id as p_id, SUM(quantity) as quantity FROM product_version inner join order_detail on product_version.id = order_detail.product_id GROUP BY product_version.p_id ORDER BY quantity DESC LIMIT 10) as A on A.p_id = product.id"
+	result := repo.db.GetDB().Raw(sql).Scan(&products)
+
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return products, nil
 }

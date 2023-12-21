@@ -1,0 +1,47 @@
+.section-view-edit {
+    height: 900px;
+    padding-top: 50px;
+    padding-left: 150px;
+}
+
+.section-form {
+    width: 65%;
+}
+
+form ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+form label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+form ul li {
+    display: flex;
+    justify-content: space-between;
+}
+
+form textarea {
+    width: 500px;
+}
+
+form input {
+    width: 500px;
+    height: 45px;
+}
+
+form select {
+    width: 500px;
+    height: 45px;
+}
+
+#btn-submit {
+    color: white;
+    background-color: #337ab7;
+    margin-top: 30px;
+    float: right;
+}

@@ -7,9 +7,18 @@ $(document).ready(function() {
     fetch(url, {
         method: 'DELETE'
     })
-    .then(response => {
-        console.log(response)
-        })
+    .then(response => response.json())
+    .then(resJson => {
+        if (resJson.status != true) {
+            if(resJson.error_msg.includes('a foreign key constraint fails')) {
+                alert('The category cannot be deleted because there are related products')
+            } else {
+                alert('Server Error!')
+            }
+        } else {
+            alert('The category is deleted!')
+        }
+    })
     })
 
     $('.btn-edit').click(function() {

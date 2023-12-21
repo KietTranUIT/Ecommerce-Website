@@ -2,7 +2,6 @@ package controller
 
 import (
 	"user-service/internal/core/port/service"
-	"user-service/internal/middleware"
 
 	"github.com/gin-gonic/gin"
 )
@@ -21,11 +20,14 @@ func NewUserController(router *gin.Engine, service service.UserService) UserCont
 
 func (u UserController) InitRouter() {
 	u.router.LoadHTMLGlob("view/*.html")
+	u.router.LoadHTMLGlob("view/admin/*.html")
 
 	u.router.Static("/view/", "view")
 
+	u.router.Use(gin.Logger())
+
 	u.router.GET("/", func(c *gin.Context) {
-		c.HTML(200, "index.html", nil)
+		c.HTML(200, "HomePage.html", nil)
 	})
 
 	u.router.GET("/account/check", CheckAccount(u))
@@ -47,21 +49,34 @@ func (u UserController) InitRouter() {
 	u.router.POST("/login", Login(u))
 
 	// For Admin API
-	admin_group := u.router.Group("/admin", middleware.AuthenticateAdmin())
+	admin_group := u.router.Group("/admin")
 	{
-		admin_group.GET("/home", HandleAdmin(u))
-		admin_group.GET("/categories", GetCategoryAdminPage(u))
-		admin_group.GET("/categories/new", GetAddCategoryAdminPage(u))
-		admin_group.POST("/categories", InsertCategoryAdmin(u))
-		admin_group.DELETE("/categories/:id", DeleteCategoryAdmin(u))
-		admin_group.GET("/categories/update/:id", GetUpdateCategoryAdminPage(u))
-		admin_group.PUT("/categories/update/:id", UpdateCategoryAdmin(u))
+		admin_group.GET("/", HandleAdmin(u))
+		admin_group.GET("/sales/filter", GetTotalSales(u))
+		admin_group.GET("/ordersrecently", GetOrdersRecently(u))
+		admin_group.GET("/topproducts", GetTopProducts(u))
 
-		admin_group.GET("/products", GetProductAdminPage(u))
-		admin_group.GET("/products/new", GetAddProductAdminPage(u))
-		admin_group.POST("/products", CreateProduct(u))
+		// route category
+		admin_group.GET("/categories", GetCategories(u))
+		admin_group.POST("/categories", CreateCategory(u))
+		admin_group.GET("/categories/update/:id", GetCategory(u))
+		admin_group.GET("/categories/new", GetNewCategory(u))
+		admin_group.PUT("/categories/:id", UpdateCategory(u))
+		admin_group.DELETE("/categories/:id", DeleteCategoryAdmin(u))
+		admin_group.GET("/categories/:id/products", GetProductsCategory(u))
+		admin_group.GET("/products/new", GetNewProduct(u))
 		admin_group.GET("/products/update/:id", GetUpdateProductAdminPage(u))
 		admin_group.PUT("/products/update/:id", UpdateProductAdmin(u))
+
+		//admin_group.GET("/categories/update/:id", GetUpdateCategoryAdminPage(u))
+		//admin_group.PUT("/categories/update/:id", UpdateCategoryAdmin(u))
+
+		// route product
+		admin_group.GET("/products", GetProductAdminPage(u))
+		admin_group.GET("/products/filter", GetProductsCategory(u))
+		admin_group.POST("/products", CreateProduct(u))
+
+		admin_group.DELETE("/products/:id", DeleteProduct(u))
 		admin_group.GET("/products/:id", GetProductDetailAdminPage(u))
 		admin_group.GET("/products/:id/new", GetAddProductVersionAdminPage(u))
 		admin_group.POST("/products/:id/products_version", CreateProductVersionAdmin(u))
@@ -70,16 +85,22 @@ func (u UserController) InitRouter() {
 		admin_group.DELETE("/products_version/:id", DeleteProductVersion(u))
 		admin_group.GET("/orders", GetOrderAdminPage(u))
 		admin_group.GET("/orders/:id", GetOrderDetailAdminPage(u))
+		admin_group.DELETE("/logout", HandleLogoutAdmin(u))
 	}
-
-	admin_login := u.router.Group("/admin/login")
-	{
-		admin_login.GET("/", GetLoginAdminPage(u))
-		admin_login.POST("/", HandleLoginAdmin(u))
-	}
+	u.router.GET("/admin/login", GetLoginAdminPage(u))
+	u.router.POST("/admin/login", HandleLoginAdmin(u))
 
 	user_group := u.router.Group("/account")
 	{
 		user_group.POST("/addresses", HandleCreateUserAddress(u))
+		user_group.DELETE("/addresses/:id", HandleDeleteUserAddress(u))
+		user_group.PUT("/addresses/:id", HandleUpdateUserAddress(u))
 	}
+
+	u.router.POST("/orders", HandleOrder(u))
+	u.router.GET("/home", HandleHomePage(u))
+	u.router.GET("/products/:id", GetProductDetail(u))
+
+	u.router.GET("/products", GetProducts(u))
+
 }

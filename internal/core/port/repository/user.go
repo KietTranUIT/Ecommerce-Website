@@ -33,17 +33,19 @@ type UserRepository interface {
 	InsertCategory(dto.ProductCategory) error
 	DeleteCategory(id int) error
 	GetCategoryWithId(id string) *dto.ProductCategory
-	UpdateCategory(*dto.ProductCategory) error
 
 	GetProductForAdmin() []dto.Product
 	InsertProduct(*dto.Product) error
 	GetProductWithId(string) *dto.Product
 	UpdateProduct(*dto.Product) error
 	GetProductVersion(string) []dto.ProductVersion
-	GetLastIdProductVersion() int
+	GetLastIdProduct() int
 	CreateProductVersion(*dto.ProductVersion) error
+	DeleteProduct(int) error
+	DeleteAllProductVersion(int) error
 	CreateProductInventory(*dto.ProductInventory) error
 	UpdateProductVersion(*dto.ProductVersion) error
+	GetLastIdProductVersion() int
 	UpdateProductInventory(int, int) error
 	GetProductVersionWithId(int) *dto.ProductVersion
 	DeleteProductInventory(int) error
@@ -51,4 +53,32 @@ type UserRepository interface {
 	GetOrderAdminPage() []dto.Order
 	GetOrderDetail(int) []dto.OrderDetail
 	GetOrderWithId(int) *dto.Order
+
+	DeleteUserAddress(int) error
+	UpdateUserAddress(*dto.UserAddress) error
+	CreateOrder(*dto.Order) error
+	CreateOrderDetails([]dto.OrderDetail) error
+
+	// Get products inforamtion
+	GetProductForHomePage() ([]dto.Product, error)
+	GetProductData(int) []dto.ProductDTO
+
+	// Category
+	GetAllCategory() ([]dto.Category, error)
+	CreateCategory(*dto.Category) error
+	GetCategory(int) (*dto.Category, error)
+	UpdateCategory(*dto.Category) error
+
+	// Product
+	GetProductsWithCategoryId(id int) ([]dto.Product, error)
+
+	GetTotalSalesDayNow() (int, error)
+	GetTotalSalesWeekNow() (int, error)
+	GetTotalSalesMonthNow() (int, error)
+
+	GetTotalRevenueDayNow() (int, error)
+	GetTotalRevenueWeekNow() (int, error)
+	GetTotalRevenueMonthNow() (int, error)
+	GetOrdersRecently() ([]dto.Order, error)
+	GetTopProducts() ([]dto.Product, error)
 }

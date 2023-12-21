@@ -23,12 +23,10 @@ type UserService interface {
 
 	// Interface for Admin
 	LoginAdmin(request.LoginRequest) *response.Response
-	GetCategories() []dto.ProductCategory
+	//GetCategories() []dto.ProductCategory
 	GetLastIDCategories() int
-	CreateCategory(dto.ProductCategory) bool
-	DeleteCategory(id int) bool
+	DeleteCategory(id int) *response.Response
 	GetCategoryWithId(id string) *dto.ProductCategory
-	UpdateCategory(*dto.ProductCategory) bool
 
 	// Products Admin
 	CreateProduct(*dto.Product) bool
@@ -36,10 +34,12 @@ type UserService interface {
 	GetProductWithId(string) *dto.Product
 	UpdateProduct(*dto.Product) bool
 	GetProductVersion(string) []dto.ProductVersion
-	GetLastIdProductVersion() int
+	GetLastIdProduct() int
+	DeleteProduct(int) *response.Response
 	CreateProductVersion(*dto.ProductVersion) bool
 	CreateProductInventory(*dto.ProductInventory) bool
 	UpdateProductInventory(int, int) bool
+	GetLastIdProductVersion() int
 	UpdateProductVersion(*dto.ProductVersion) bool
 	GetProductVersionWithId(int) *dto.ProductVersion
 	DeleteProductVersion(int) bool
@@ -49,4 +49,24 @@ type UserService interface {
 
 	// Address user
 	CreateUserAddress(request.CreateUserAddressRequest) *response.Response
+	DeleteUserAddress(request.DeleteUserAddressRequest) *response.Response
+	EditUserAddress(request.EditUserAddressRequest) *response.Response
+	CreateOrder(request.CreateOrderRequest) *response.Response
+	GetProductForHomePage() *response.Response
+	GetProductData(int) []dto.ProductDTO
+
+	// Category
+	GetCategories() ([]dto.Category, error)
+	CreateCategory(request.CreateCategoryRequest) *response.Response
+	GetCategory(int) (*dto.Category, error)
+	UpdateCategory(*dto.Category) *response.Response
+
+	// Product
+	GetProductsWithCategoryId(id int) *response.Response
+
+	GetTotalSalesDayNow() *response.Response
+	GetTotalSalesWeekNow() *response.Response
+	GetTotalSalesMonthNow() *response.Response
+	GetOrdersRecently() *response.Response
+	GetTopProducts() *response.Response
 }

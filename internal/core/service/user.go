@@ -204,28 +204,28 @@ func (service userService) LoginAdmin(req request.LoginRequest) *response.Respon
 	return CreateSuccessResponse(error_code.LoginSuccess, error_code.LoginSuccess_msg)
 }
 
-func (service userService) GetCategories() []dto.ProductCategory {
-	return service.repo.GetProductCategories()
-}
+// func (service userService) GetCategories() []dto.ProductCategory {
+// 	return service.repo.GetProductCategories()
+// }
 
 func (service userService) GetLastIDCategories() int {
 	return service.repo.GetLastIDCategories()
 }
 
-func (service userService) CreateCategory(category dto.ProductCategory) bool {
-	result := service.repo.InsertCategory(category)
-	if result != nil {
-		return false
-	}
-	return true
-}
+// func (service userService) CreateCategory(category dto.ProductCategory) bool {
+// 	result := service.repo.InsertCategory(category)
+// 	if result != nil {
+// 		return false
+// 	}
+// 	return true
+// }
 
-func (service userService) DeleteCategory(id int) bool {
+func (service userService) DeleteCategory(id int) *response.Response {
 	result := service.repo.DeleteCategory(id)
 	if result != nil {
-		return false
+		return CreateFailResponse(error_code.DeleteCategoryFail, result.Error())
 	}
-	return true
+	return CreateSuccessResponse(error_code.Success, "")
 }
 
 func (service userService) GetCategoryWithId(id string) *dto.ProductCategory {
@@ -233,25 +233,8 @@ func (service userService) GetCategoryWithId(id string) *dto.ProductCategory {
 
 }
 
-func (service userService) UpdateCategory(category *dto.ProductCategory) bool {
-	result := service.repo.UpdateCategory(category)
-	if result != nil {
-		return false
-	}
-	return true
-}
-
 func (service userService) GetProductsForAdmin() []dto.Product {
 	return service.repo.GetProductForAdmin()
-}
-
-func (service userService) CreateProduct(product *dto.Product) bool {
-	result := service.repo.InsertProduct(product)
-
-	if result != nil {
-		return false
-	}
-	return true
 }
 
 func (service userService) GetProductWithId(id string) *dto.Product {
@@ -273,8 +256,23 @@ func (service userService) GetProductVersion(id string) []dto.ProductVersion {
 	return product
 }
 
+func (service userService) GetLastIdProduct() int {
+	return service.repo.GetLastIdProduct()
+}
+
 func (service userService) GetLastIdProductVersion() int {
 	return service.repo.GetLastIdProductVersion()
+}
+
+func (service userService) DeleteProduct(id int) *response.Response {
+	if result := service.repo.DeleteAllProductVersion(id); result != nil {
+		return CreateFailResponse(error_code.DeleteProductFail, result.Error())
+	}
+
+	if result := service.repo.DeleteProduct(id); result != nil {
+		return CreateFailResponse(error_code.DeleteProductFail, result.Error())
+	}
+	return CreateSuccessResponse(error_code.Success, "")
 }
 
 func (service userService) CreateProductVersion(product *dto.ProductVersion) bool {
@@ -338,4 +336,79 @@ func (service userService) GetOrderDetail(id int) []dto.OrderDetail {
 
 func (service userService) GetOrderWithId(id int) *dto.Order {
 	return service.repo.GetOrderWithId(id)
+}
+
+func (service userService) GetTotalSalesDayNow() *response.Response {
+	total_sales, err := service.repo.GetTotalSalesDayNow()
+
+	if err != nil {
+		return CreateFailResponse(error_code.GetTotalSalesDayFail, err.Error())
+	}
+
+	total_revenue, err := service.repo.GetTotalRevenueDayNow()
+
+	if err != nil {
+		return CreateFailResponse(error_code.GetTotalSalesDayFail, err.Error())
+	}
+
+	return CreateSuccessResponse(error_code.Success, "", dto.DataSales{
+		Sales:   total_sales,
+		Revenue: total_revenue,
+	})
+}
+
+func (service userService) GetTotalSalesWeekNow() *response.Response {
+	total_sales, err := service.repo.GetTotalSalesWeekNow()
+
+	if err != nil {
+		return CreateFailResponse(error_code.GetTotalSalesDayFail, err.Error())
+	}
+
+	total_revenue, err := service.repo.GetTotalRevenueWeekNow()
+
+	if err != nil {
+		return CreateFailResponse(error_code.GetTotalSalesDayFail, err.Error())
+	}
+
+	return CreateSuccessResponse(error_code.Success, "", dto.DataSales{
+		Sales:   total_sales,
+		Revenue: total_revenue,
+	})
+}
+
+func (service userService) GetTotalSalesMonthNow() *response.Response {
+	total_sales, err := service.repo.GetTotalSalesMonthNow()
+
+	if err != nil {
+		return CreateFailResponse(error_code.GetTotalSalesDayFail, err.Error())
+	}
+
+	total_revenue, err := service.repo.GetTotalRevenueMonthNow()
+
+	if err != nil {
+		return CreateFailResponse(error_code.GetTotalSalesDayFail, err.Error())
+	}
+
+	return CreateSuccessResponse(error_code.Success, "", dto.DataSales{
+		Sales:   total_sales,
+		Revenue: total_revenue,
+	})
+}
+
+func (service userService) GetOrdersRecently() *response.Response {
+	orders, err := service.repo.GetOrdersRecently()
+
+	if err != nil {
+		return CreateFailResponse(error_code.GetOrdersRecentlyFail, err.Error())
+	}
+	return CreateSuccessResponse(error_code.Success, "", orders)
+}
+
+func (service userService) GetTopProducts() *response.Response {
+	products, err := service.repo.GetTopProducts()
+
+	if err != nil {
+		return CreateFailResponse(error_code.GetTopProductsFail, err.Error())
+	}
+	return CreateSuccessResponse(error_code.Success, "", products)
 }

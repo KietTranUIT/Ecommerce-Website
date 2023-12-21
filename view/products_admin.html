@@ -55,6 +55,7 @@
                     <tr class="section-title">
                         <th>Id</th>
                         <th>Name</th>
+                        <th>Image</th>
                         <th>Description</th>
                         <th>Category</th>
                         <th>Price</th>
@@ -66,6 +67,11 @@
                         <td class="infor-products">{{ .Id }}</td>
                         <td class="infor-products">
                             {{ .Name }}
+                        </td>
+                        <td>
+                            <div>
+                                <img src="{{ .Image }}" alt="">
+                            </div>
                         </td>
                         <td class="infor-products">
                             {{ .Description }}

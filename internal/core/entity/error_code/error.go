@@ -18,6 +18,26 @@ const (
 	Empty                      Error_code = "EMPTY"
 	Success                    Error_code = "SUCCESS"
 	CreateUserAddressFail      Error_code = "CREATE_USER_ADDRESS_FAIL"
+	DeleteUserAddressFail      Error_code = "DELETE_USER_ADDRESS_FAIL"
+	UpdateUserAddressFail      Error_code = "UPDATE_USER_ADDRESS_FAIL"
+	CreateOrderFail            Error_code = "CREATE_ORDER_FAIL"
+	DeleteCategoryFail         Error_code = "DELETE_CATEGORY_FAIL"
+	DeleteProductFail          Error_code = "DELETE_PRODUCT_FAIL"
+	GetAllProductsFail         Error_code = "GET_ALL_PRODUCTS_FAIL"
+
+	// Category Error code
+	GetAllCategoryFail Error_code = "GET_ALL_CATEGORY_FAIL"
+	CreateCategoryFail Error_code = "CREATE_CATEGORY_FAIL"
+	GetCategoryFail    Error_code = "GET_CATEGORY_FAIL"
+	UpdateCategoryFail Error_code = "UPDATE_CATEGORY_FAIL"
+
+	// Product
+	GetProductsWithCategoryId Error_code = "GET_PRODUCT_FAIL"
+	GetTotalSalesDayFail      Error_code = "GET_TOTAL_SALES_DAY_FAIL"
+	GetTotalSalesWeekFail     Error_code = "GET_TOTAL_SALES_WEEK_FAIL"
+	GetTotalSalesMonthFail    Error_code = "GET_TOTAL_SALES_MONTH_FAIL"
+	GetOrdersRecentlyFail     Error_code = "GET_ORDERS_RECENTLY_FAIL"
+	GetTopProductsFail        Error_code = "GET_TOP_PRODUCTS_FAIL"
 )
 
 var (

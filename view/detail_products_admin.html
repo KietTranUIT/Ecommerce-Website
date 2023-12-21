@@ -51,6 +51,7 @@
                 <tr class="section-title">
                     <th>Id</th>
                     <th>Name</th>
+                    <th>Image</th>
                     <th>Description</th>
                     <th>Category</th>
                     <th>Price</th>
@@ -60,6 +61,11 @@
                     <td class="infor-products">{{ .Product.Id }}</td>
                     <td class="infor-products">
                         {{ .Product.Name }}
+                    </td>
+                    <td>
+                        <div>
+                            <img src="{{ .Product.Image }}" alt="">
+                        </div>
                     </td>
                     <td class="infor-products">
                         {{ .Product.Description }}
@@ -83,8 +89,6 @@
                     <tr class="section-title">
                         <th>Id</th>
                         <th>Size</th>
-                        <th>Color</th>
-                        <th>Image</th>
                         <th>Inventory</th>
                         <th>Edit</th>
                     </tr>
@@ -94,12 +98,6 @@
                         <td class="infor-products">{{ .Id }}</td>
                         <td class="infor-products">
                             {{ .Size_product }}
-                        </td>
-                        <td class="infor-products">
-                            {{ .Color }}
-                        </td>
-                        <td class="name-products">
-                            <img src="{{ .Image }}" alt="Error!"> 
                         </td>
                         <td class="infor-products">
                             {{ .Inventory }}

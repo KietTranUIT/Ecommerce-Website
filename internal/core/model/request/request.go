@@ -30,3 +30,34 @@ type CreateUserAddressRequest struct {
 	City       string `json:"city"`
 	Phone      string `json:"phone"`
 }
+
+type DeleteUserAddressRequest struct {
+	Id int `json:"id"`
+}
+
+type EditUserAddressRequest struct {
+	Id      int    `json:"id"`
+	Address string `json:"address"`
+	City    string `json:"city"`
+	Phone   string `json:"phone"`
+}
+
+type Detail struct {
+	Id       int `json:"product_id"`
+	Quantity int `json:"quantity"`
+}
+
+type CreateOrderRequest struct {
+	User_email string   `json:"user_email"`
+	Address_id int      `json:"address_id"`
+	Payment_id int      `json:"payment_id"`
+	Total      int      `json:"total"`
+	Products   []Detail `json:"products"`
+}
+
+// Category
+type CreateCategoryRequest struct {
+	Name        string `json:"name"`
+	Person      string `json:"person"`
+	Description string `json:"description"`
+}

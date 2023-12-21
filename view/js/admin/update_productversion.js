@@ -15,33 +15,23 @@ $(document).ready(function() {
         let id = $('#id').val()
         let pid = $('#p_id').val()
         let size = $('#size').val()
-        let color = $('#color').val()
-        let quantity = $('#quantity').val()
+        let quantity = $('#inventory').val()
 
         let data = {
             id: parseInt(id),
-            p_id: pid,
+            p_id: parseInt(pid),
             size_product: parseInt(size),
-            color: color,
-            quantiry: parseInt(quantity)
+            inventory: quantity
         }
         let dataJson = JSON.stringify(data)
-        
-        const fileInput = document.getElementById('imageurl')
-        const file = fileInput.files[0]
-
-        const formData = new FormData();
-
-        if(fileInput.files && fileInput.files.length > 0) {
-            formData.append('file', file)
-        }
-        formData.append('jsonData', dataJson)
+        console.log(dataJson)
 
         let url = '/admin/products_version/update/' + id
 
         fetch(url, {
             method: 'PUT',
-            body: formData
+            headers: {"Content-Type": "application/json"},
+            body: dataJson
         })
         .then(response => {
             if (response.status === 200) {

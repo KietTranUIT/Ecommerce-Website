@@ -1,0 +1,72 @@
+#section-content {
+    width: 82%;
+}
+
+.dashboard {
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    position: relative;
+}
+
+.dashboard-top {
+    position: absolute;
+    top: 0;
+    height: 50%;
+    width: 100%;
+    border: 1px solid blue;
+}
+
+.dashboard-bottom {
+    position: absolute;
+    bottom: 0;
+    height: 50%;
+    width: 100%;
+    border: 1px solid red;
+}
+
+.total {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.total-button {
+    display: flex;
+    gap: 30px;
+}
+
+.total-button button {
+    width: 120px;
+}
+
+.total h3 {
+    display: inline-block;
+}
+
+.total-sale {
+    height: 200px;
+    background-color: #d1d2f8;
+    border-radius: 20px;
+}
+
+.total-revenue {
+    background-color: #ded2fc;
+    border-radius: 20px;
+}
+
+.total-sale-content {
+    margin-top: 15px;
+    margin-left: 30px;
+}
+
+.total-title {
+    font-size: 30px;
+}
+
+.total-value {
+    font-size: 50px;
+}
+
+
+
