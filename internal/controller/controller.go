@@ -26,9 +26,7 @@ func (u UserController) InitRouter() {
 
 	u.router.Use(gin.Logger())
 
-	u.router.GET("/", func(c *gin.Context) {
-		c.HTML(200, "homeies.html", nil)
-	})
+	u.router.GET("/", HomePage(u))
 
 	u.router.GET("/account/check", CheckAccount(u))
 
@@ -102,5 +100,7 @@ func (u UserController) InitRouter() {
 	u.router.GET("/products/:id", GetProductDetail(u))
 
 	u.router.GET("/products", GetProducts(u))
+	u.router.POST("/checkout", HandleCheckout(u))
 
+	u.router.GET("/categories/:id", GetProductsOfCategory(u))
 }

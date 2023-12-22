@@ -204,3 +204,13 @@ func UpdateProductAdmin(control UserController) gin.HandlerFunc {
 		})
 	}
 }
+
+func GetProductsOfCategory(control UserController) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		id, _ := strconv.Atoi(c.Param("id"))
+
+		products := control.service.GetProductsWithCategoryIdV1(id)
+
+		c.HTML(200, "ProductsCategory.html", products)
+	}
+}

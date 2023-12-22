@@ -2079,6 +2079,8 @@ header.head-sticky .announcebar {
     -o-transform: rotate(-180deg);
     transform: rotate(-180deg);
 }
+
+/* hiệu ứng khi để chuột vào danh mục */
 .header-style-one .main-navigationbar .menu-items-col .main-nav>li>a:before {
     content: '';
     position: absolute;

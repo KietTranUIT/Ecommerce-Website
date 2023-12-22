@@ -10,4 +10,6 @@ type ProductDTO struct {
 	Price         int    `json:"price"`
 	Category_name string `json:"category_name"`
 	Description   string `json:"description"`
+	Image1        string `json:"image1"`
+	Image2        string `json:"image2"`
 }

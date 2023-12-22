@@ -1,10 +1,5 @@
-import { GetProductsRequest } from "./test.js";
 
 $(document).ready(function() {
-
-    // Code user
-    GetProductsRequest()
-    
     /********* On scroll heder Sticky *********/
     $(window).scroll(function() {
         var scroll = $(window).scrollTop();
@@ -15,33 +10,9 @@ $(document).ready(function() {
         }
     });   
     /********* Mobile Menu ********/  
-    $('#menu').on('click',function(e){
-        e.preventDefault();
-        setTimeout(function(){
-            $('body').addClass('no-scroll active-menu');
-            $(".mobile-menu-wrapper").toggleClass("active-menu");
-            $('.overlay').addClass('menu-overlay');
-        }, 50);
-    }); 
-    $('body').on('click','.overlay.menu-overlay, .menu-close-icon svg', function(e){
-        e.preventDefault(); 
-        $('body').removeClass('no-scroll active-menu');
-        $(".mobile-menu-wrapper").removeClass("active-menu");
-        $('.overlay').removeClass('menu-overlay');
-    });
+   
     /********* Cart Popup ********/
-    $('.cart-header').on('click',function(e){
-        e.preventDefault();
-        setTimeout(function(){
-            $('body').addClass('no-scroll cartOpen');
-            $('.overlay').addClass('cart-overlay');
-        }, 50);
-    }); 
-    $('body').on('click','.overlay.cart-overlay, .closecart', function(e){
-        e.preventDefault(); 
-        $('.overlay').removeClass('cart-overlay');
-        $('body').removeClass('no-scroll cartOpen');
-    });
+    
     /********* Mobile Filter Popup ********/
     $('.filter-title').on('click',function(e){
         e.preventDefault();
@@ -55,7 +26,7 @@ $(document).ready(function() {
         $('.overlay').removeClass('active');
         $('body').removeClass('no-scroll filter-open');
     });
-    /*********  Header Search Popup  ********/ 
+    /* hiện thanh tìm kiếm SEARCH */ 
     $(".search-header a").click(function() { 
         $(".search-popup").toggleClass("active"); 
         $("body").toggleClass("no-scroll");
@@ -360,6 +331,8 @@ $(document).ready(function() {
             }
         ]
     });   
+
+    // chỉnh phần Realted Products
     $('.related-product-slider').slick({
         autoplay: false, 
         slidesToShow: 6,

@@ -69,4 +69,5 @@ type UserService interface {
 	GetTotalSalesMonthNow() *response.Response
 	GetOrdersRecently() *response.Response
 	GetTopProducts() *response.Response
+	GetProductsWithCategoryIdV1(id int) []dto.Product
 }

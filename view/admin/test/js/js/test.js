@@ -1,5 +1,3 @@
-export {GetProductsRequest}
-
 
 function GetProductsRequest() {
     let productsHTML = ''
@@ -12,7 +10,7 @@ function GetProductsRequest() {
                     const html = `<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 product-card">
                     <div class="product-card-inner">
                         <div class="product-card-img">
-                            <a href="#" class="pro-img">
+                            <a href="/products/${product.id}" class="pro-img">
                                 <img src="${product.image}">
                             </a>
                             <a class="wishlist" href="#" title="Wishlist" tabindex="0"><svg><use xlink:href="#wish"></use></svg></a>

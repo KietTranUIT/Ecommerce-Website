@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"log"
 	"user-service/internal/core/dto"
 )
 
@@ -19,12 +20,13 @@ func (repo userRepository) GetProductForHomePage() ([]dto.Product, error) {
 func (repo userRepository) GetProductData(id int) []dto.ProductDTO {
 	var products []dto.ProductDTO
 	repo.db.GetDB().Table("product").
-		Select("product.name as name, product_version.id as id, category.name as category_name, product.description as description, product_version.size_product as size_product, product.price as price, product.image as image").
+		Select("product.name as name, product_version.id as id, category.name as category_name, product.description as description, product_version.size_product as size_product, product.price as price, product.image as image, product.image1 as image1, product.image2 as image2").
 		Joins("inner join category on category.id = product.category_id").
 		Joins("inner join product_version on product.id = product_version.p_id").
 		Where("product.id = ?", id).
 		Scan(&products)
 
+	log.Println(products)
 	return products
 }
 

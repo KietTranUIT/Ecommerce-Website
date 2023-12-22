@@ -47,17 +47,31 @@ type Detail struct {
 	Quantity int `json:"quantity"`
 }
 
-type CreateOrderRequest struct {
-	User_email string   `json:"user_email"`
-	Address_id int      `json:"address_id"`
-	Payment_id int      `json:"payment_id"`
-	Total      int      `json:"total"`
-	Products   []Detail `json:"products"`
-}
+// type CreateOrderRequest struct {
+// 	User_email string   `json:"user_email"`
+// 	Address_id int      `json:"address_id"`
+// 	Payment_id int      `json:"payment_id"`
+// 	Total      int      `json:"total"`
+// 	Products   []Detail `json:"products"`
+
+// }
 
 // Category
 type CreateCategoryRequest struct {
 	Name        string `json:"name"`
 	Person      string `json:"person"`
 	Description string `json:"description"`
+}
+
+type Item struct {
+	Product_id int `json:"product_id"`
+	Quantity   int `json:"quantity"`
+}
+
+type CreateOrderRequest struct {
+	User_email string `json:"user_email"`
+	Address_id int    `json:"address_id"`
+	Payment_id int    `json:"payment_id"`
+	Subtotal   int    `json:"subtotal"`
+	Cart       []Item `json:"cart"`
 }

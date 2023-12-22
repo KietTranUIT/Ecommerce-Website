@@ -11,6 +11,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+func HomePage(control UserController) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.HTML(200, "HomePage_v1.html", nil)
+	}
+}
+
 func GetLoginPage(control UserController) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		c.HTML(200, "signin.html", nil)
@@ -119,5 +125,28 @@ func HandleHomePage(control UserController) gin.HandlerFunc {
 		products := control.service.GetProductForHomePage()
 
 		c.AbortWithStatusJSON(200, products)
+	}
+}
+
+func HandleCheckout(control UserController) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		//user_email, err := c.Get("user_email")
+
+		// if !err {
+		// 	c.AbortWithStatus(401)
+		// }
+		log.Println("OK")
+		reqBody, _ := ioutil.ReadAll(c.Request.Body)
+		var req request.CreateOrderRequest
+		json.Unmarshal(reqBody, &req)
+		req.User_email = "kiettranuit@gmail.com"
+
+		response := control.service.CreateOrder(req)
+
+		if !response.Status {
+			c.AbortWithStatusJSON(500, response)
+		}
+		c.AbortWithStatusJSON(200, response)
+
 	}
 }

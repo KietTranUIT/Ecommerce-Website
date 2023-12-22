@@ -1,7 +1,6 @@
 package service
 
 import (
-	"log"
 	"time"
 	"user-service/internal/core/dto"
 	"user-service/internal/core/entity/error_code"
@@ -10,12 +9,20 @@ import (
 )
 
 func (service userService) CreateOrder(req request.CreateOrderRequest) *response.Response {
+	var status string
+	if req.Payment_id == 4 {
+		status = "Thanh toan khi nhan hang"
+	} else {
+		status = "Da thanh toan"
+	}
+
 	now := time.Now()
 	order := &dto.Order{
 		User_email: req.User_email,
 		Address_id: req.Address_id,
 		Payment_id: req.Payment_id,
-		Status:     "Da thanh toan",
+		Total:      req.Subtotal,
+		Status:     status,
 		Created_at: &now,
 	}
 
@@ -25,11 +32,10 @@ func (service userService) CreateOrder(req request.CreateOrderRequest) *response
 
 	var order_details []dto.OrderDetail
 
-	for _, p := range req.Products {
-		log.Println(p)
+	for _, p := range req.Cart {
 		detail := dto.OrderDetail{
 			Order_id:   order.Id,
-			Product_id: p.Id,
+			Product_id: p.Product_id,
 			Quantity:   p.Quantity,
 		}
 		order_details = append(order_details, detail)
