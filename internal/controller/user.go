@@ -150,3 +150,9 @@ func HandleCheckout(control UserController) gin.HandlerFunc {
 
 	}
 }
+
+func GetCart(control UserController) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.HTML(200, "Cart.html", nil)
+	}
+}

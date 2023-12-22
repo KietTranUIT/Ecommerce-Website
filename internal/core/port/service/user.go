@@ -53,7 +53,7 @@ type UserService interface {
 	EditUserAddress(request.EditUserAddressRequest) *response.Response
 	CreateOrder(request.CreateOrderRequest) *response.Response
 	GetProductForHomePage() *response.Response
-	GetProductData(int) []dto.ProductDTO
+	GetProductData(int) *dto.Item
 
 	// Category
 	GetCategories() ([]dto.Category, error)

@@ -103,4 +103,6 @@ func (u UserController) InitRouter() {
 	u.router.POST("/checkout", HandleCheckout(u))
 
 	u.router.GET("/categories/:id", GetProductsOfCategory(u))
+
+	u.router.GET("/cart", GetCart(u))
 }

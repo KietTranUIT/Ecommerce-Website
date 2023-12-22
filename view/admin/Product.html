@@ -288,14 +288,14 @@
                                     </a>
                                 </li>
                                 <li class="cart-header">
-                                    <a href="giohang.html">
+                                    <a href="/cart">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="19" height="17" viewBox="0 0 19 17"
                                             fill="none">
                                             <path fill-rule="evenodd" clip-rule="evenodd"
                                                 d="M15.5698 10.627H6.97178C5.80842 10.6273 4.81015 9.79822 4.59686 8.65459L3.47784 2.59252C3.40702 2.20522 3.06646 1.92595 2.67278 1.93238H0.805055C0.360435 1.93238 0 1.57194 0 1.12732C0 0.682701 0.360435 0.322266 0.805055 0.322266H2.68888C3.85224 0.321937 4.85051 1.15101 5.0638 2.29465L6.18282 8.35672C6.25364 8.74402 6.5942 9.02328 6.98788 9.01686H15.5778C15.9715 9.02328 16.3121 8.74402 16.3829 8.35672L17.3972 2.88234C17.4407 2.64509 17.3755 2.40085 17.2195 2.21684C17.0636 2.03283 16.8334 1.92843 16.5922 1.93238H7.2455C6.80088 1.93238 6.44044 1.57194 6.44044 1.12732C6.44044 0.682701 6.80088 0.322266 7.2455 0.322266H16.5841C17.3023 0.322063 17.9833 0.641494 18.4423 1.19385C18.9013 1.74622 19.0907 2.4742 18.959 3.18021L17.9447 8.65459C17.7314 9.79822 16.7331 10.6273 15.5698 10.627ZM10.466 13.8478C10.466 12.5139 9.38464 11.4326 8.05079 11.4326C7.60617 11.4326 7.24573 11.7931 7.24573 12.2377C7.24573 12.6823 7.60617 13.0427 8.05079 13.0427C8.49541 13.0427 8.85584 13.4032 8.85584 13.8478C8.85584 14.2924 8.49541 14.6528 8.05079 14.6528C7.60617 14.6528 7.24573 14.2924 7.24573 13.8478C7.24573 13.4032 6.88529 13.0427 6.44068 13.0427C5.99606 13.0427 5.63562 13.4032 5.63562 13.8478C5.63562 15.1816 6.71693 16.2629 8.05079 16.2629C9.38464 16.2629 10.466 15.1816 10.466 13.8478ZM15.2963 15.4579C15.2963 15.0133 14.9358 14.6528 14.4912 14.6528C14.0466 14.6528 13.6862 14.2924 13.6862 13.8478C13.6862 13.4032 14.0466 13.0427 14.4912 13.0427C14.9358 13.0427 15.2963 13.4032 15.2963 13.8478C15.2963 14.2924 15.6567 14.6528 16.1013 14.6528C16.5459 14.6528 16.9064 14.2924 16.9064 13.8478C16.9064 12.5139 15.8251 11.4326 14.4912 11.4326C13.1574 11.4326 12.076 12.5139 12.076 13.8478C12.076 15.1816 13.1574 16.2629 14.4912 16.2629C14.9358 16.2629 15.2963 15.9025 15.2963 15.4579Z"
                                                 fill="white" />
                                         </svg>
-                                        <span class="desk-only icon-lable">Cart(2)</span>
+                                        <span class="desk-only icon-lable" id="cart-count">Cart(2)</span>
                                         <span class="count mobile-only">2</span>
                                     </a>
                                 </li>
@@ -342,7 +342,7 @@
     <!--wrapper start here-->
     <div class="wrapper">   
         <section class="product-page-main-section">
-            <div class="container">
+            <div class="container" style="margin-bottom: 200px;">
                 <div class="row no-gutters">
                     <div class="col-md-6 col-12">
                         <div class="product-main-left">
@@ -350,7 +350,7 @@
                                 <div class="pro-main-itm">
                                     <div class="pro-main-itm-inner">
                                         <div class="pro-main-img">
-                                            <img src="assets/images/pro1.png">
+                                            <img src="{{ .Image }}">
                                         </div>
                                     </div>
                                 </div>
@@ -358,35 +358,14 @@
                                 <div class="pro-main-itm">
                                     <div class="pro-main-itm-inner">
                                         <div class="pro-main-img">
-                                            <img src="assets/images/pro2.png">
+                                            <img src="{{ .Image1 }}">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="pro-main-itm">
                                     <div class="pro-main-itm-inner">
                                         <div class="pro-main-img">
-                                            <img src="assets/images/pro3.png">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="pro-main-itm">
-                                    <div class="pro-main-itm-inner">
-                                        <div class="pro-main-img">
-                                            <img src="assets/images/pro4.png">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="pro-main-itm">
-                                    <div class="pro-main-itm-inner">
-                                        <div class="pro-main-img">
-                                            <img src="assets/images/pro2.png">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="pro-main-itm">
-                                    <div class="pro-main-itm-inner">
-                                        <div class="pro-main-img">
-                                            <img src="assets/images/pro3.png">
+                                            <img src="{{ .Image2 }}">
                                         </div>
                                     </div>
                                 </div>
@@ -394,32 +373,17 @@
                             <div class="pdp-thumb-slider">
                                 <div class="pdp-thumb-slider-itm">
                                     <div class="pdp-thumb-img">
-                                        <img src="assets/images/pro1.png">
+                                        <img src="{{ .Image }}">
                                     </div>
                                 </div>
                                 <div class="pdp-thumb-slider-itm">
                                     <div class="pdp-thumb-img">
-                                        <img src="assets/images/pro2.png">
+                                        <img src="{{ .Image1 }}">
                                     </div>
                                 </div>
                                 <div class="pdp-thumb-slider-itm">
                                     <div class="pdp-thumb-img">
-                                        <img src="assets/images/pro3.png">
-                                    </div>
-                                </div>
-                                <div class="pdp-thumb-slider-itm">
-                                    <div class="pdp-thumb-img">
-                                        <img src="assets/images/pro4.png">
-                                    </div>
-                                </div> 
-                                <div class="pdp-thumb-slider-itm">
-                                    <div class="pdp-thumb-img">
-                                        <img src="assets/images/pro2.png">
-                                    </div>
-                                </div>
-                                <div class="pdp-thumb-slider-itm">
-                                    <div class="pdp-thumb-img">
-                                        <img src="assets/images/pro3.png">
+                                        <img src="{{ .Image2 }}">
                                     </div>
                                 </div>
                             </div>
@@ -453,41 +417,45 @@
                                     </svg>
                                 </a>
                             </div>
-                            <h2>Trendmark</h2>
-                            <h4>Sneakers 2022 <b> Limited Edition</b></h4>
+                            <h2>{{ .Name }}</h2>
+                            <h4>Category: <b> {{ .Category_name }}</b></h4>
                             
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.</p>
+                            <p>{{ .Description }}</p>
                             
                             <div class="size-variant-swatch">
                                 <span class="size-lbl">AVAILABLE  SIZES: </span>
                                 <div class="size-list d-flex"> 
-                                    <div class="pro-size active">  
-                                        <input type="radio" name="size" id="34" checked="" tabindex="0">
-                                        <label for="34">34</label>  
+                                    {{ range .Value}}
+                                    <div class="pro-size"> 
+                                        <input type="radio" name="size" id="{{ .Size_product }}" tabindex="0" value="{{ .Id }}" data-size="{{ .Size_product }}">
+                                        <label for="{{ .Size_product }}">{{ .Size_product }}</label>
                                     </div>
-                                    <div class="pro-size"> 
-                                        <input type="radio" name="size" id="35" tabindex="0">
-                                        <label for="35">35</label>  
-                                    </div> 
-                                    <div class="pro-size"> 
-                                        <input type="radio" name="size" id="36" tabindex="0">
-                                        <label for="36">36</label>  
-                                    </div>
-                                    <div class="pro-size"> 
-                                        <input type="radio" name="size" id="37" tabindex="0">
-                                        <label for="37">37</label>  
-                                    </div> 
-                                    <div class="pro-size"> 
-                                        <input type="radio" name="size" id="38" tabindex="0">
-                                        <label for="38">38</label>  
-                                    </div>
+                                    {{ end }}
+                                    
                                 </div>
                             </div>
+                            <div class="wrapper-quantity" style="display: flex; gap:10px;align-items: center;">
+                                <label for="quantity" style="font-weight: bold;">Quantity</label>
+                            <div class="qty-spinner">
+                                <button type="button" class="quantity-decrement ">
+                                    <svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0 0.251343V1.74871H12V0.251343H0Z" fill="#61AFB3"></path>
+                                    </svg>
+                                </button>
+                                <input type="text" class="quantity" data-cke-saved-name="quantity" name="quantity" value="01" min="01" max="100">
+                                <button type="button" class="quantity-increment ">
+                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6.74868 5.25132V0H5.25132V5.25132H0V6.74868H5.25132V12H6.74868V6.74868H12V5.25132H6.74868Z" fill="#61AFB3"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            </div>
                             <div class="d-flex price-wrap-flex align-items-center">
+                                
                                 <div class="price"> 
-                                    <ins>149.99<sub>USD</sub></ins>
+                                    <ins class="price-format" style="font-size: 20px;">{{ .Price }}<sub>VNĐ</sub></ins>
                                 </div>
-                                <a href="#" class="add-cart-btn">
+                                <a class="add-cart-btn" id="cart-click" data-product-image="{{ .Image }}", data-product-name="{{ .Name }}", data-product-price="{{ .Price }}">
                                     <span>ADD TO CART</span>
                                     <span class="atc-ic">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="9" height="8" viewBox="0 0 9 8" fill="none">
@@ -502,210 +470,6 @@
             </div>
         </section>
         
-        </section>
-        <section class="related-product-section padding-bottom padding-top"> 
-            <img src="assets/images/all-right-shape.png" class="all-shes-right">
-            <div class="container">
-                <div class="section-title d-flex align-items-center justify-content-between">
-                    <div class="section-title-left">
-                        <div class="subtitle">ALL  PRODUCTS</div>
-                        <h2><b> Related </b> products</h2>
-                    </div>
-                    <a href="#" class="btn-secondary">
-                        <span class="btn-txt">SHOW MORE</span>
-                        <span class="btn-ic"> 
-                            <svg viewBox="0 0 10 5">
-                                <path d="M2.37755e-08 2.57132C-3.38931e-06 2.7911 0.178166 2.96928 0.397953 2.96928L8.17233 2.9694L7.23718 3.87785C7.07954 4.031 7.07589 4.28295 7.22903 4.44059C7.38218 4.59824 7.63413 4.60189 7.79177 4.44874L9.43039 2.85691C9.50753 2.78197 9.55105 2.679 9.55105 2.57146C9.55105 2.46392 9.50753 2.36095 9.43039 2.28602L7.79177 0.69418C7.63413 0.541034 7.38218 0.544682 7.22903 0.702329C7.07589 0.859976 7.07954 1.11192 7.23718 1.26507L8.1723 2.17349L0.397965 2.17336C0.178179 2.17336 3.46059e-06 2.35153 2.37755e-08 2.57132Z"></path>
-                            </svg>
-                        </span>
-                    </a>
-                </div>   
-                <div class="related-product-slider common-arrow">
-                    <div class="product-card-itm product-card">
-                        <div class="product-card-inner">
-                            <div class="product-card-img">
-                                <a href="#" class="pro-img">
-                                    <img src="assets/images/pr1.png">
-                                </a>
-                                <a class="wishlist" href="#" title="Wishlist" tabindex="0"><svg><use xlink:href="#wish"></use></svg></a>
-                            </div>
-                            <div class="product-card-content">
-                                <h4><a href="#" tabindex="0">Trendmark  </a></h4>
-                                <p>Sneakers 2022 Limited Edition</p>
-                                <div class="price"> 
-                                    <ins>149.99<sub>USD</sub></ins>
-                                    <del>229.00 USD</del>
-                                </div>
-                                <a href="#" class="add-cart-btn" tabindex="0">
-                                    <span>ADD TO CART</span>
-                                    <span class="atc-ic">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="9" height="8" viewBox="0 0 9 8" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.35342 5.2252H3.43344C2.90305 5.22535 2.44792 4.84736 2.35068 4.32595L1.84049 1.56215C1.8082 1.38557 1.65294 1.25825 1.47345 1.26118H0.621922C0.419212 1.26118 0.254883 1.09685 0.254883 0.894139C0.254883 0.691429 0.419212 0.5271 0.621922 0.5271H1.48079C2.01119 0.52695 2.46632 0.904941 2.56356 1.42635L3.07374 4.19015C3.10603 4.36673 3.2613 4.49405 3.44078 4.49112H7.35709C7.53657 4.49405 7.69184 4.36673 7.72413 4.19015L8.1866 1.69428C8.20641 1.58612 8.17667 1.47476 8.10558 1.39087C8.03448 1.30698 7.92951 1.25938 7.81956 1.26118H3.55824C3.35553 1.26118 3.1912 1.09685 3.1912 0.894139C3.1912 0.691429 3.35553 0.5271 3.55824 0.5271H7.81589C8.14332 0.527007 8.45381 0.672642 8.66308 0.924473C8.87235 1.1763 8.95868 1.50821 8.89865 1.83009L8.43619 4.32595C8.33895 4.84736 7.88381 5.22535 7.35342 5.2252ZM5.02645 6.69462C5.02645 6.08649 4.53347 5.59351 3.92534 5.59351C3.72263 5.59351 3.5583 5.75783 3.5583 5.96055C3.5583 6.16326 3.72263 6.32758 3.92534 6.32758C4.12805 6.32758 4.29238 6.49191 4.29238 6.69462C4.29238 6.89733 4.12805 7.06166 3.92534 7.06166C3.72263 7.06166 3.5583 6.89733 3.5583 6.69462C3.5583 6.49191 3.39397 6.32758 3.19126 6.32758C2.98855 6.32758 2.82422 6.49191 2.82422 6.69462C2.82422 7.30275 3.31721 7.79574 3.92534 7.79574C4.53347 7.79574 5.02645 7.30275 5.02645 6.69462ZM7.22865 7.4287C7.22865 7.22599 7.06433 7.06166 6.86162 7.06166C6.65891 7.06166 6.49458 6.89733 6.49458 6.69462C6.49458 6.49191 6.65891 6.32758 6.86162 6.32758C7.06433 6.32758 7.22865 6.49191 7.22865 6.69462C7.22865 6.89733 7.39298 7.06166 7.59569 7.06166C7.7984 7.06166 7.96273 6.89733 7.96273 6.69462C7.96273 6.08649 7.46975 5.59351 6.86162 5.59351C6.25349 5.59351 5.7605 6.08649 5.7605 6.69462C5.7605 7.30275 6.25349 7.79574 6.86162 7.79574C7.06433 7.79574 7.22865 7.63141 7.22865 7.4287Z" fill="white"></path>
-                                        </svg>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-card-itm product-card">
-                        <div class="product-card-inner">
-                            <div class="product-card-img">
-                                <a href="#" class="pro-img">
-                                    <img src="assets/images/pr2.png">
-                                </a>
-                                <a class="wishlist" href="#" title="Wishlist" tabindex="0"><svg><use xlink:href="#wish"></use></svg></a>
-                            </div>
-                            <div class="product-card-content">
-                                <h4><a href="#" tabindex="0">Trendmark  </a></h4>
-                                <p>Sneakers 2022 Limited Edition</p>
-                                <div class="price"> 
-                                    <ins>149.99<sub>USD</sub></ins>
-                                    <del>229.00 USD</del>
-                                </div>
-                                <a href="#" class="add-cart-btn" tabindex="0">
-                                    <span>ADD TO CART</span>
-                                    <span class="atc-ic">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="9" height="8" viewBox="0 0 9 8" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.35342 5.2252H3.43344C2.90305 5.22535 2.44792 4.84736 2.35068 4.32595L1.84049 1.56215C1.8082 1.38557 1.65294 1.25825 1.47345 1.26118H0.621922C0.419212 1.26118 0.254883 1.09685 0.254883 0.894139C0.254883 0.691429 0.419212 0.5271 0.621922 0.5271H1.48079C2.01119 0.52695 2.46632 0.904941 2.56356 1.42635L3.07374 4.19015C3.10603 4.36673 3.2613 4.49405 3.44078 4.49112H7.35709C7.53657 4.49405 7.69184 4.36673 7.72413 4.19015L8.1866 1.69428C8.20641 1.58612 8.17667 1.47476 8.10558 1.39087C8.03448 1.30698 7.92951 1.25938 7.81956 1.26118H3.55824C3.35553 1.26118 3.1912 1.09685 3.1912 0.894139C3.1912 0.691429 3.35553 0.5271 3.55824 0.5271H7.81589C8.14332 0.527007 8.45381 0.672642 8.66308 0.924473C8.87235 1.1763 8.95868 1.50821 8.89865 1.83009L8.43619 4.32595C8.33895 4.84736 7.88381 5.22535 7.35342 5.2252ZM5.02645 6.69462C5.02645 6.08649 4.53347 5.59351 3.92534 5.59351C3.72263 5.59351 3.5583 5.75783 3.5583 5.96055C3.5583 6.16326 3.72263 6.32758 3.92534 6.32758C4.12805 6.32758 4.29238 6.49191 4.29238 6.69462C4.29238 6.89733 4.12805 7.06166 3.92534 7.06166C3.72263 7.06166 3.5583 6.89733 3.5583 6.69462C3.5583 6.49191 3.39397 6.32758 3.19126 6.32758C2.98855 6.32758 2.82422 6.49191 2.82422 6.69462C2.82422 7.30275 3.31721 7.79574 3.92534 7.79574C4.53347 7.79574 5.02645 7.30275 5.02645 6.69462ZM7.22865 7.4287C7.22865 7.22599 7.06433 7.06166 6.86162 7.06166C6.65891 7.06166 6.49458 6.89733 6.49458 6.69462C6.49458 6.49191 6.65891 6.32758 6.86162 6.32758C7.06433 6.32758 7.22865 6.49191 7.22865 6.69462C7.22865 6.89733 7.39298 7.06166 7.59569 7.06166C7.7984 7.06166 7.96273 6.89733 7.96273 6.69462C7.96273 6.08649 7.46975 5.59351 6.86162 5.59351C6.25349 5.59351 5.7605 6.08649 5.7605 6.69462C5.7605 7.30275 6.25349 7.79574 6.86162 7.79574C7.06433 7.79574 7.22865 7.63141 7.22865 7.4287Z" fill="white"></path>
-                                        </svg>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-card-itm product-card">
-                        <div class="product-card-inner">
-                            <div class="product-card-img">
-                                <a href="#" class="pro-img">
-                                    <img src="assets/images/pr3.png">
-                                </a>
-                                <a class="wishlist" href="#" title="Wishlist" tabindex="0"><svg><use xlink:href="#wish"></use></svg></a>
-                            </div>
-                            <div class="product-card-content">
-                                <h4><a href="#" tabindex="0">Trendmark  </a></h4>
-                                <p>Sneakers 2022 Limited Edition</p>
-                                <div class="price"> 
-                                    <ins>149.99<sub>USD</sub></ins>
-                                    <del>229.00 USD</del>
-                                </div>
-                                <a href="#" class="add-cart-btn" tabindex="0">
-                                    <span>ADD TO CART</span>
-                                    <span class="atc-ic">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="9" height="8" viewBox="0 0 9 8" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.35342 5.2252H3.43344C2.90305 5.22535 2.44792 4.84736 2.35068 4.32595L1.84049 1.56215C1.8082 1.38557 1.65294 1.25825 1.47345 1.26118H0.621922C0.419212 1.26118 0.254883 1.09685 0.254883 0.894139C0.254883 0.691429 0.419212 0.5271 0.621922 0.5271H1.48079C2.01119 0.52695 2.46632 0.904941 2.56356 1.42635L3.07374 4.19015C3.10603 4.36673 3.2613 4.49405 3.44078 4.49112H7.35709C7.53657 4.49405 7.69184 4.36673 7.72413 4.19015L8.1866 1.69428C8.20641 1.58612 8.17667 1.47476 8.10558 1.39087C8.03448 1.30698 7.92951 1.25938 7.81956 1.26118H3.55824C3.35553 1.26118 3.1912 1.09685 3.1912 0.894139C3.1912 0.691429 3.35553 0.5271 3.55824 0.5271H7.81589C8.14332 0.527007 8.45381 0.672642 8.66308 0.924473C8.87235 1.1763 8.95868 1.50821 8.89865 1.83009L8.43619 4.32595C8.33895 4.84736 7.88381 5.22535 7.35342 5.2252ZM5.02645 6.69462C5.02645 6.08649 4.53347 5.59351 3.92534 5.59351C3.72263 5.59351 3.5583 5.75783 3.5583 5.96055C3.5583 6.16326 3.72263 6.32758 3.92534 6.32758C4.12805 6.32758 4.29238 6.49191 4.29238 6.69462C4.29238 6.89733 4.12805 7.06166 3.92534 7.06166C3.72263 7.06166 3.5583 6.89733 3.5583 6.69462C3.5583 6.49191 3.39397 6.32758 3.19126 6.32758C2.98855 6.32758 2.82422 6.49191 2.82422 6.69462C2.82422 7.30275 3.31721 7.79574 3.92534 7.79574C4.53347 7.79574 5.02645 7.30275 5.02645 6.69462ZM7.22865 7.4287C7.22865 7.22599 7.06433 7.06166 6.86162 7.06166C6.65891 7.06166 6.49458 6.89733 6.49458 6.69462C6.49458 6.49191 6.65891 6.32758 6.86162 6.32758C7.06433 6.32758 7.22865 6.49191 7.22865 6.69462C7.22865 6.89733 7.39298 7.06166 7.59569 7.06166C7.7984 7.06166 7.96273 6.89733 7.96273 6.69462C7.96273 6.08649 7.46975 5.59351 6.86162 5.59351C6.25349 5.59351 5.7605 6.08649 5.7605 6.69462C5.7605 7.30275 6.25349 7.79574 6.86162 7.79574C7.06433 7.79574 7.22865 7.63141 7.22865 7.4287Z" fill="white"></path>
-                                        </svg>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-card-itm product-card">
-                        <div class="product-card-inner">
-                            <div class="product-card-img">
-                                <a href="#" class="pro-img">
-                                    <img src="assets/images/pr4.png">
-                                </a>
-                                <a class="wishlist" href="#" title="Wishlist" tabindex="0"><svg><use xlink:href="#wish"></use></svg></a>
-                            </div>
-                            <div class="product-card-content">
-                                <h4><a href="#" tabindex="0">Trendmark  </a></h4>
-                                <p>Sneakers 2022 Limited Edition</p>
-                                <div class="price"> 
-                                    <ins>149.99<sub>USD</sub></ins>
-                                    <del>229.00 USD</del>
-                                </div>
-                                <a href="#" class="add-cart-btn" tabindex="0">
-                                    <span>ADD TO CART</span>
-                                    <span class="atc-ic">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="9" height="8" viewBox="0 0 9 8" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.35342 5.2252H3.43344C2.90305 5.22535 2.44792 4.84736 2.35068 4.32595L1.84049 1.56215C1.8082 1.38557 1.65294 1.25825 1.47345 1.26118H0.621922C0.419212 1.26118 0.254883 1.09685 0.254883 0.894139C0.254883 0.691429 0.419212 0.5271 0.621922 0.5271H1.48079C2.01119 0.52695 2.46632 0.904941 2.56356 1.42635L3.07374 4.19015C3.10603 4.36673 3.2613 4.49405 3.44078 4.49112H7.35709C7.53657 4.49405 7.69184 4.36673 7.72413 4.19015L8.1866 1.69428C8.20641 1.58612 8.17667 1.47476 8.10558 1.39087C8.03448 1.30698 7.92951 1.25938 7.81956 1.26118H3.55824C3.35553 1.26118 3.1912 1.09685 3.1912 0.894139C3.1912 0.691429 3.35553 0.5271 3.55824 0.5271H7.81589C8.14332 0.527007 8.45381 0.672642 8.66308 0.924473C8.87235 1.1763 8.95868 1.50821 8.89865 1.83009L8.43619 4.32595C8.33895 4.84736 7.88381 5.22535 7.35342 5.2252ZM5.02645 6.69462C5.02645 6.08649 4.53347 5.59351 3.92534 5.59351C3.72263 5.59351 3.5583 5.75783 3.5583 5.96055C3.5583 6.16326 3.72263 6.32758 3.92534 6.32758C4.12805 6.32758 4.29238 6.49191 4.29238 6.69462C4.29238 6.89733 4.12805 7.06166 3.92534 7.06166C3.72263 7.06166 3.5583 6.89733 3.5583 6.69462C3.5583 6.49191 3.39397 6.32758 3.19126 6.32758C2.98855 6.32758 2.82422 6.49191 2.82422 6.69462C2.82422 7.30275 3.31721 7.79574 3.92534 7.79574C4.53347 7.79574 5.02645 7.30275 5.02645 6.69462ZM7.22865 7.4287C7.22865 7.22599 7.06433 7.06166 6.86162 7.06166C6.65891 7.06166 6.49458 6.89733 6.49458 6.69462C6.49458 6.49191 6.65891 6.32758 6.86162 6.32758C7.06433 6.32758 7.22865 6.49191 7.22865 6.69462C7.22865 6.89733 7.39298 7.06166 7.59569 7.06166C7.7984 7.06166 7.96273 6.89733 7.96273 6.69462C7.96273 6.08649 7.46975 5.59351 6.86162 5.59351C6.25349 5.59351 5.7605 6.08649 5.7605 6.69462C5.7605 7.30275 6.25349 7.79574 6.86162 7.79574C7.06433 7.79574 7.22865 7.63141 7.22865 7.4287Z" fill="white"></path>
-                                        </svg>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-card-itm product-card">
-                        <div class="product-card-inner">
-                            <div class="product-card-img">
-                                <a href="#" class="pro-img">
-                                    <img src="assets/images/pr5.png">
-                                </a>
-                                <a class="wishlist" href="#" title="Wishlist" tabindex="0"><svg><use xlink:href="#wish"></use></svg></a>
-                            </div>
-                            <div class="product-card-content">
-                                <h4><a href="#" tabindex="0">Trendmark  </a></h4>
-                                <p>Sneakers 2022 Limited Edition</p>
-                                <div class="price"> 
-                                    <ins>149.99<sub>USD</sub></ins>
-                                    <del>229.00 USD</del>
-                                </div>
-                                <a href="#" class="add-cart-btn" tabindex="0">
-                                    <span>ADD TO CART</span>
-                                    <span class="atc-ic">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="9" height="8" viewBox="0 0 9 8" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.35342 5.2252H3.43344C2.90305 5.22535 2.44792 4.84736 2.35068 4.32595L1.84049 1.56215C1.8082 1.38557 1.65294 1.25825 1.47345 1.26118H0.621922C0.419212 1.26118 0.254883 1.09685 0.254883 0.894139C0.254883 0.691429 0.419212 0.5271 0.621922 0.5271H1.48079C2.01119 0.52695 2.46632 0.904941 2.56356 1.42635L3.07374 4.19015C3.10603 4.36673 3.2613 4.49405 3.44078 4.49112H7.35709C7.53657 4.49405 7.69184 4.36673 7.72413 4.19015L8.1866 1.69428C8.20641 1.58612 8.17667 1.47476 8.10558 1.39087C8.03448 1.30698 7.92951 1.25938 7.81956 1.26118H3.55824C3.35553 1.26118 3.1912 1.09685 3.1912 0.894139C3.1912 0.691429 3.35553 0.5271 3.55824 0.5271H7.81589C8.14332 0.527007 8.45381 0.672642 8.66308 0.924473C8.87235 1.1763 8.95868 1.50821 8.89865 1.83009L8.43619 4.32595C8.33895 4.84736 7.88381 5.22535 7.35342 5.2252ZM5.02645 6.69462C5.02645 6.08649 4.53347 5.59351 3.92534 5.59351C3.72263 5.59351 3.5583 5.75783 3.5583 5.96055C3.5583 6.16326 3.72263 6.32758 3.92534 6.32758C4.12805 6.32758 4.29238 6.49191 4.29238 6.69462C4.29238 6.89733 4.12805 7.06166 3.92534 7.06166C3.72263 7.06166 3.5583 6.89733 3.5583 6.69462C3.5583 6.49191 3.39397 6.32758 3.19126 6.32758C2.98855 6.32758 2.82422 6.49191 2.82422 6.69462C2.82422 7.30275 3.31721 7.79574 3.92534 7.79574C4.53347 7.79574 5.02645 7.30275 5.02645 6.69462ZM7.22865 7.4287C7.22865 7.22599 7.06433 7.06166 6.86162 7.06166C6.65891 7.06166 6.49458 6.89733 6.49458 6.69462C6.49458 6.49191 6.65891 6.32758 6.86162 6.32758C7.06433 6.32758 7.22865 6.49191 7.22865 6.69462C7.22865 6.89733 7.39298 7.06166 7.59569 7.06166C7.7984 7.06166 7.96273 6.89733 7.96273 6.69462C7.96273 6.08649 7.46975 5.59351 6.86162 5.59351C6.25349 5.59351 5.7605 6.08649 5.7605 6.69462C5.7605 7.30275 6.25349 7.79574 6.86162 7.79574C7.06433 7.79574 7.22865 7.63141 7.22865 7.4287Z" fill="white"></path>
-                                        </svg>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-card-itm product-card">
-                        <div class="product-card-inner">
-                            <div class="product-card-img">
-                                <a href="#" class="pro-img">
-                                    <img src="assets/images/pr2.png">
-                                </a>
-                                <a class="wishlist" href="#" title="Wishlist" tabindex="0"><svg><use xlink:href="#wish"></use></svg></a>
-                            </div>
-                            <div class="product-card-content">
-                                <h4><a href="#" tabindex="0">Trendmark  </a></h4>
-                                <p>Sneakers 2022 Limited Edition</p>
-                                <div class="price"> 
-                                    <ins>149.99<sub>USD</sub></ins>
-                                    <del>229.00 USD</del>
-                                </div>
-                                <a href="#" class="add-cart-btn" tabindex="0">
-                                    <span>ADD TO CART</span>
-                                    <span class="atc-ic">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="9" height="8" viewBox="0 0 9 8" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.35342 5.2252H3.43344C2.90305 5.22535 2.44792 4.84736 2.35068 4.32595L1.84049 1.56215C1.8082 1.38557 1.65294 1.25825 1.47345 1.26118H0.621922C0.419212 1.26118 0.254883 1.09685 0.254883 0.894139C0.254883 0.691429 0.419212 0.5271 0.621922 0.5271H1.48079C2.01119 0.52695 2.46632 0.904941 2.56356 1.42635L3.07374 4.19015C3.10603 4.36673 3.2613 4.49405 3.44078 4.49112H7.35709C7.53657 4.49405 7.69184 4.36673 7.72413 4.19015L8.1866 1.69428C8.20641 1.58612 8.17667 1.47476 8.10558 1.39087C8.03448 1.30698 7.92951 1.25938 7.81956 1.26118H3.55824C3.35553 1.26118 3.1912 1.09685 3.1912 0.894139C3.1912 0.691429 3.35553 0.5271 3.55824 0.5271H7.81589C8.14332 0.527007 8.45381 0.672642 8.66308 0.924473C8.87235 1.1763 8.95868 1.50821 8.89865 1.83009L8.43619 4.32595C8.33895 4.84736 7.88381 5.22535 7.35342 5.2252ZM5.02645 6.69462C5.02645 6.08649 4.53347 5.59351 3.92534 5.59351C3.72263 5.59351 3.5583 5.75783 3.5583 5.96055C3.5583 6.16326 3.72263 6.32758 3.92534 6.32758C4.12805 6.32758 4.29238 6.49191 4.29238 6.69462C4.29238 6.89733 4.12805 7.06166 3.92534 7.06166C3.72263 7.06166 3.5583 6.89733 3.5583 6.69462C3.5583 6.49191 3.39397 6.32758 3.19126 6.32758C2.98855 6.32758 2.82422 6.49191 2.82422 6.69462C2.82422 7.30275 3.31721 7.79574 3.92534 7.79574C4.53347 7.79574 5.02645 7.30275 5.02645 6.69462ZM7.22865 7.4287C7.22865 7.22599 7.06433 7.06166 6.86162 7.06166C6.65891 7.06166 6.49458 6.89733 6.49458 6.69462C6.49458 6.49191 6.65891 6.32758 6.86162 6.32758C7.06433 6.32758 7.22865 6.49191 7.22865 6.69462C7.22865 6.89733 7.39298 7.06166 7.59569 7.06166C7.7984 7.06166 7.96273 6.89733 7.96273 6.69462C7.96273 6.08649 7.46975 5.59351 6.86162 5.59351C6.25349 5.59351 5.7605 6.08649 5.7605 6.69462C5.7605 7.30275 6.25349 7.79574 6.86162 7.79574C7.06433 7.79574 7.22865 7.63141 7.22865 7.4287Z" fill="white"></path>
-                                        </svg>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-card-itm product-card">
-                        <div class="product-card-inner">
-                            <div class="product-card-img">
-                                <a href="#" class="pro-img">
-                                    <img src="assets/images/pr3.png">
-                                </a>
-                                <a class="wishlist" href="#" title="Wishlist" tabindex="0"><svg><use xlink:href="#wish"></use></svg></a>
-                            </div>
-                            <div class="product-card-content">
-                                <h4><a href="#" tabindex="0">Trendmark  </a></h4>
-                                <p>Sneakers 2022 Limited Edition</p>
-                                <div class="price"> 
-                                    <ins>149.99<sub>USD</sub></ins>
-                                    <del>229.00 USD</del>
-                                </div>
-                                <a href="#" class="add-cart-btn" tabindex="0">
-                                    <span>ADD TO CART</span>
-                                    <span class="atc-ic">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="9" height="8" viewBox="0 0 9 8" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.35342 5.2252H3.43344C2.90305 5.22535 2.44792 4.84736 2.35068 4.32595L1.84049 1.56215C1.8082 1.38557 1.65294 1.25825 1.47345 1.26118H0.621922C0.419212 1.26118 0.254883 1.09685 0.254883 0.894139C0.254883 0.691429 0.419212 0.5271 0.621922 0.5271H1.48079C2.01119 0.52695 2.46632 0.904941 2.56356 1.42635L3.07374 4.19015C3.10603 4.36673 3.2613 4.49405 3.44078 4.49112H7.35709C7.53657 4.49405 7.69184 4.36673 7.72413 4.19015L8.1866 1.69428C8.20641 1.58612 8.17667 1.47476 8.10558 1.39087C8.03448 1.30698 7.92951 1.25938 7.81956 1.26118H3.55824C3.35553 1.26118 3.1912 1.09685 3.1912 0.894139C3.1912 0.691429 3.35553 0.5271 3.55824 0.5271H7.81589C8.14332 0.527007 8.45381 0.672642 8.66308 0.924473C8.87235 1.1763 8.95868 1.50821 8.89865 1.83009L8.43619 4.32595C8.33895 4.84736 7.88381 5.22535 7.35342 5.2252ZM5.02645 6.69462C5.02645 6.08649 4.53347 5.59351 3.92534 5.59351C3.72263 5.59351 3.5583 5.75783 3.5583 5.96055C3.5583 6.16326 3.72263 6.32758 3.92534 6.32758C4.12805 6.32758 4.29238 6.49191 4.29238 6.69462C4.29238 6.89733 4.12805 7.06166 3.92534 7.06166C3.72263 7.06166 3.5583 6.89733 3.5583 6.69462C3.5583 6.49191 3.39397 6.32758 3.19126 6.32758C2.98855 6.32758 2.82422 6.49191 2.82422 6.69462C2.82422 7.30275 3.31721 7.79574 3.92534 7.79574C4.53347 7.79574 5.02645 7.30275 5.02645 6.69462ZM7.22865 7.4287C7.22865 7.22599 7.06433 7.06166 6.86162 7.06166C6.65891 7.06166 6.49458 6.89733 6.49458 6.69462C6.49458 6.49191 6.65891 6.32758 6.86162 6.32758C7.06433 6.32758 7.22865 6.49191 7.22865 6.69462C7.22865 6.89733 7.39298 7.06166 7.59569 7.06166C7.7984 7.06166 7.96273 6.89733 7.96273 6.69462C7.96273 6.08649 7.46975 5.59351 6.86162 5.59351C6.25349 5.59351 5.7605 6.08649 5.7605 6.69462C5.7605 7.30275 6.25349 7.79574 6.86162 7.79574C7.06433 7.79574 7.22865 7.63141 7.22865 7.4287Z" fill="white"></path>
-                                        </svg>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> 
         
         <section class="subscription-section padding-top padding-bottom">
             <img src="assets/images/sub-left.png" alt="" class="sub-left">
@@ -858,7 +622,7 @@
         <!--footer end here-->
         <div class="overlay "></div>
         <!--cart popup start here-->
-        <div class="cartDrawer">
+        <!-- <div class="cartDrawer">
             <div class="mini-cart-header">
                 <h4>My Cart</h4>
                 <div class="cart-tottl-itm">04 Items</div>
@@ -1144,7 +908,7 @@
                     <p class="emptyCart text-center" style="display: none;">You have no items in your shopping cart.</p>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!--cart popup ends here--> 
         <!-- Mobile menu start here -->
         <div class="mobile-menu-wrapper">
@@ -1464,6 +1228,10 @@
         <script src="/view/admin/test/js/js/jquery.min.js"></script>
         <script src="/view/admin/test/js/js/slick.min.js" defer="defer"></script>
         <script src="/view/admin/test/js/js/custom.js" defer="defer"></script>
+        <script src="/view/admin/test/js/js/cart.js"></script>
+        <script>
+            
+        </script>
         <!--scripts end here-->
     </body> 
     </html> 
