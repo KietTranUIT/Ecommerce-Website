@@ -50,7 +50,7 @@ func HandleLoginAdmin(control UserController) gin.HandlerFunc {
 		}
 
 		token, _ := util.CreateToken(data.Email)
-		c.SetCookie("bear", token, 3600, "/admin", "https://42d1-113-22-113-136.ngrok-free.app/", false, true)
+		c.SetCookie("bear", token, 3600, "/admin", "localhost", false, true)
 		c.AbortWithStatusJSON(200, res)
 	}
 }

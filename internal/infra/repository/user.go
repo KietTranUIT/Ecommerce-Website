@@ -412,6 +412,7 @@ func (repo userRepository) GetOrdersRecently() ([]dto.Order, error) {
 	if result.Error != nil {
 		return nil, result.Error
 	}
+
 	return orders, nil
 }
 

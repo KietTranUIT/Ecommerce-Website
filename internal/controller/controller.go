@@ -27,7 +27,7 @@ func (u UserController) InitRouter() {
 	u.router.Use(gin.Logger())
 
 	u.router.GET("/", func(c *gin.Context) {
-		c.HTML(200, "HomePage.html", nil)
+		c.HTML(200, "homeies.html", nil)
 	})
 
 	u.router.GET("/account/check", CheckAccount(u))
