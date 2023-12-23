@@ -1,0 +1,1402 @@
+/*================================================================================================*/
+/*=================[                                                            ]=================*/
+/*=================[    !!!!!!!!   CSS CREATED BY RAJODIYA INFOTECH  !!!!!!!!   ]=================*/
+/*=================[                                                            ]=================*/
+/*================================================================================================*/
+@media (min-width:768px) {
+    .header-style-one .main-navigationbar .menu-items-col .main-nav{
+      display: flex;
+      align-items: center;
+    } 
+    .desk-only {
+        display: block !important;
+    }
+    .mobile-only {
+        display: none !important;
+    }
+    /**  PRODUCT MAIN SECTION CSS start **/ 
+    .pdp-thumb-slider .slick-arrow {
+        opacity: 1;
+        left: auto !important;
+        right: -35px;
+        background: transparent;
+        height: 20px;
+        width: 20px;
+        padding: 0;
+        min-width: auto;
+        min-height: auto;
+    } 
+    .pdp-thumb-slider .slick-arrow.slick-prev {
+        top: 45%;
+    } 
+    .pdp-thumb-slider .slick-arrow svg {
+      fill: grey;
+      width: 20px;
+      height: 20px;
+    } 
+    .pdp-thumb-slider .slick-arrow.slick-next {
+        top: 60%;
+    }
+    .pdp-thumb-slider .slick-arrow:hover, 
+    .pdp-thumb-slider .slick-arrow:focus {
+        background-color: transparent;
+    }
+    .pdp-thumb-slider .slick-arrow:hover svg, 
+    .pdp-thumb-slider .slick-arrow:focus svg{
+        fill: var(--theme-color);
+    }
+    /**  PRODUCT MAIN SECTION CSS end **/ 
+}  
+@media screen and (min-width:1440px){ 
+  /*********  HOME BANNER SECTION CSS start ********/
+  .hiro-column-left-inner {
+    margin-left: -11%;
+  }
+  .playbutton-sec {
+    margin-left: -73px; 
+  }
+  /*********  HOME BANNER SECTION CSS end ********/
+  
+}
+@media screen and (max-width:1400px){ 
+  .product-content-bottom .price {
+    font-size: 20px;
+  } 
+  /*********  HOME BANNER SECTION CSS  start ********/
+  .ellipse-ring { 
+    left: -10px;
+  }
+  /*********  HOME BANNER SECTION CSS  end ********/
+  /********* BESTSEELLER SECTION CSS start **********/
+  .common-arrow .slick-next {
+    right: 0;
+  }
+  .common-arrow .slick-prev {
+    left: 0;
+  }
+  /********* BESTSEELLER SECTION CSS end **********/
+  /********* BLOG PAGE CSS start  **********/ 
+  .blog-grid-section .blog-cat li:not(:last-of-type) {
+    margin-right: 0;
+  } 
+  .blog-grid-section .blog-cat li {
+      padding: 10px 12px; 
+      font-size: 12px; 
+  }
+  /********* BLOG PAGE CSS end **********/
+}
+@media screen and (max-width:1260px){ 
+  .header-style-one .announcebar-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+  }
+  .header-style-one .announcebar #announceclose {
+      position: relative;
+      right: unset;
+      top: unset;
+      transform: unset;
+      margin-left: 15px;
+  }
+  .product-content-bottom .price { 
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .footer-col:not(:first-of-type) { 
+    padding-left: 30px;
+  }
+  .footer-bottom {
+    padding-top: 30px;
+  }
+  .footer-link .contactlink {
+    font-size: 18px;
+  }
+  .site-footer {
+    padding: 60px 0 40px;
+  }
+  .pro-swatch { 
+    font-size: 10px;
+  } 
+  .product-description {
+    padding: 10px 50px 0 0;
+  } 
+  .pdp-right-column-inner .section-title {
+    margin-bottom: 15px;
+  }
+  .product-detail-bttom-stuff { 
+    margin-top: 70px;
+  }
+  .product-description-gallery-section { 
+    padding-bottom: 80px;
+  }
+  .offset-left {
+    margin-left: 0; 
+    padding: 0 0 0 15px;
+  }
+  .offset-right {
+    margin-right: 0;  
+    padding-right: 15px;
+  }
+  /********* BESTSEELLER SECTION CSS start **********/ 
+  .bestseller-section .tab-content {
+    padding: 15px 0;
+  }  
+  .bstslr-tb { 
+    padding-left: 0;
+  }
+  .xl-text { 
+    font-size: 85px; 
+  }
+  .common-arrow .slick-next {
+    right: 15px;
+  }
+  .common-arrow .slick-prev {
+    left:15px;
+  }
+  /********* BESTSEELLER SECTION CSS end **********/
+  /********* TWO COL DARK SECTION CSS  start **********/
+  .twocol-dark .two-coll-content { 
+    padding: 50px 0 50px 20px;
+  }
+  /********* TWO COL DARK SECTION CSS end **********/
+}
+@media screen and (max-width:1199px){
+  .header-style-one .main-navigationbar .menu-items-col .main-nav { 
+    padding-left: 15px;
+  }
+  .header-style-one .menu-right li:last-of-type button,
+  .header-style-one .menu-right li>* {
+    padding: 26px 16px;
+  } 
+  .sub-left { 
+    bottom: -30px; 
+    max-width: 120px;
+  }
+  .sub-right { 
+    top: -40px;
+    max-width: 120px;
+  }
+  /*********  HOME BANNER SECTION CSS start ********/
+  .big-title-center { 
+    margin-left: 0;
+  }
+  .big-title-center h2 { 
+    font-size: 104px;
+  }
+  .big-title-center p { 
+    font-size: 18px;  
+    padding-right: 0;
+  }
+  .hiro-thumb-itm-inner p { 
+    flex: 0 0 100%;
+    margin-bottom: 8px;
+  }
+  .thumb-cntnt svg {
+    fill: var(--white);
+  }
+  .hiro-thumb-itm.slick-current.slick-active .hiro-thumb-itm-inner .thumb-cntnt svg {
+    fill: var(--black);
+  }
+  .hiro-thumb-itm-inner {
+    padding: 15px 12px;
+  }
+  .poster-button { 
+    margin-right: 10px;
+  }
+  .common-block .color-flex {
+    margin-bottom: 20px;
+  }
+  ins { 
+    font-size: 26px; 
+  }
+  .common-block .thumb-pro-li   span { 
+    bottom: -14px;
+    right: 18px;
+  }
+  .main-hiro-container { 
+    margin-top: 74px;
+    padding-top: 74px;
+  }
+  .hiro-side-item-inner{ 
+    padding: 15px 0 25px 15px;
+  } 
+  /*********  HOME BANNER SECTION CSS  end ********/
+  /********** TWO COLL LAYOUT SECTION CSS  start **********/ 
+  .two-coll-content {
+    padding: 50px 20px 50px 0;
+  }
+  /********** TWO COLL LAYOUT SECTION CSS  end **********/ 
+  /****** All the shoes section start  ******/
+  .all-shoes-itm-img {
+    max-width: 140px; 
+  }
+  .all-shoes-itm-content { 
+    padding: 14px 0 20px 10px;
+  }
+  .all-shoes-itm-content .add-cart-btn {
+    min-width: 124px;
+    font-size: 10px;
+    padding: 10px;
+  }
+  .all-shoes-itm-inner:before { 
+    height: calc(100% - 37px);
+    width: calc(100% - 50px); 
+  }
+  .all-shoes-itm-img .review-img { 
+    top: 12px;
+    right: 58px;
+  }
+  .all-shoes-itm-content h4 {
+    font-size: 12px; 
+  }
+  .all-shoes-itm-content ins {
+    font-size: 17px;
+  }
+  .all-shoes-itm-inner .price {
+    margin: 12px 0;
+  }
+  /****** All the shoes section end  ******/
+  /********* MEET CATEGORY SECTION CSS starts **********/ 
+  .meet-category-section { 
+    margin-bottom: -75px;
+  }
+  .shoes-during-testing .offset-row {
+    padding-top: 30px;
+  } 
+  /********* MEET CATEGORY SECTION CSS end **********/  
+  .common-arrow.dark-bg .slick-arrow:hover, .common-arrow.dark-bg .slick-arrow:focus {
+    background-color: var(--second-color);
+  }
+  /**  PRODUCT TWO COL LAYOUT CSS start **/
+  .product-two-col-layout .row-reverse .product-two-col-contnt .product-two-col-left {
+    padding: 40px 0 40px 15px;
+  }
+  .product-two-col-layout .product-two-col-contnt .product-two-col-left {
+    padding: 40px 15px 40px 0;
+  }
+  .related-product-section .section-title {
+    margin-bottom: 30px;
+  }
+  /**  PRODUCT TWO COL LAYOUT CSS end **/
+}
+@media screen and (max-width:991px){
+  :root { 
+    --h1: normal 600 32px/1.2 var(--first-font);
+    --h2: normal 600 26px/1.2 var(--first-font);
+    --h3: normal 600 20px/1.2 var(--first-font);
+    --h4: normal 600 18px/1.2 var(--first-font);
+    --h5: normal 600 16px/1.2 var(--first-font);
+    --h6: normal 600 14px/1.2 var(--first-font);
+  }
+  .header-style-one .main-navigationbar .menu-items-col .main-nav { 
+    padding-left: 15px;
+  }
+  .header-style-one .main-navigationbar .menu-items-col .main-nav>li:not(:last-of-type) {
+    padding-right: 15px;
+  } 
+  .header-style-one .announcebar p {
+    display: none;
+  }
+  .header-style-one .main-navigationbar .menu-items-col .main-nav>li {
+    padding: 15px 0;
+  }
+  .header-style-one .main-navigationbar .logo-col {
+    max-width: 60px; 
+  }
+  .header-style-one .main-navigationbar .menu-items-col .main-nav>li.has-item>a {
+    padding-right: 15px;
+  }
+  .header-style-one .menu-right li:last-of-type button,
+  .header-style-one .menu-right li>* {
+    padding: 20px 10px;
+  }
+  .header-style-one .menu-right li a span {  
+    margin: 0 0 0 4px;
+  }
+  .header-style-one .menu-right li a span { 
+    font-size: 11px;
+  } 
+  .header-style-one .menu-right li a svg {
+    width: 14px;
+    height: 14px;  
+  }  
+  .footer-col:not(:first-of-type) {
+    padding-left: 10px;
+  } 
+  .pro-swatch { 
+    font-size: 10px;
+  }
+  .footer-subscribe-col {
+    max-width: 260px;
+    flex: 0 0 260px; 
+  }
+  .footer-widget h4 {
+    font-size: 13px;
+  }
+  .padding-top{
+    padding-top: 40px;
+  } 
+  .padding-bottom{
+    padding-bottom:40px;
+  } 
+  .hiro-column-right { 
+    display: none;
+  }
+  .video-lbl {    
+    font-size: 11px;
+  }
+  .poster-button { 
+    width: 30px;
+    height: 30px;
+  }
+  .video-play-colum {
+    max-width: 112px;
+  }
+  .hiro-slider-thumb-column {
+    max-width: calc(100% - 112px);
+  }
+  .column-8, .hiro-column-left {
+    max-width: 100%;
+  }
+  /********** TWO COLL LAYOUT SECTION CSS  start **********/ 
+  .two-coll-content .common-block .thumb-pro-list {
+    padding: 10px 0 0;
+  }
+  .two-coll-content  .common-block .thumb-pro-li{
+    padding-bottom:  30px;
+  }
+  .two-coll-content {
+    padding: 35px 20px 35px 0;
+  }
+  /********** TWO COLL LAYOUT SECTION CSS  end **********/ 
+  /********* BESTSEELLER SECTION CSS start **********/ 
+  .bestsell-itm-inner {
+    padding: 0 0 20px 15px;
+  }
+  .bestsell-content-row .price ins {
+    font-size: 26px;
+  }
+  /********* BESTSEELLER SECTION CSS end **********/
+  /********* MEET CATEGORY SECTION CSS starts **********/ 
+  .meet-category-section {
+    margin-bottom: 40px;
+  }
+  /********* MEET CATEGORY SECTION CSS end **********/ 
+  /********* SHOES DURING TESTING CSS start ***********/
+  .shoes-during-testing .offset-row {
+    padding-top: 0;
+  }  
+  /********* SHOES DURING TESTING CSS end ***********/
+  /**  PRODUCT MAIN SECTION CSS start **/  
+  .product-main-right {
+    padding: 15px 0 15px 15px;
+  }
+  .sku-varialble span {  
+    font-size: 12px;
+  }
+  .pro-reivew-row,
+  .sku-varialble {
+    margin-bottom: 13px;
+  }
+  .product-main-right .price-wrap-flex {
+    margin-top: 16px;
+  } 
+  .product-main-right h4 { 
+    margin: 5px 0 13px;
+  }
+  /**  PRODUCT MAIN SECTION CSS end **/ 
+  /**  PRODUCT TWO COL LAYOUT CSS start **/ 
+  .product-two-col-layout .product-two-col-contnt .product-two-col-left .add-cart-btn {
+    margin-top: 20px;
+  }
+  .product-two-col-layout .section-title {
+    margin-bottom: 14px;
+  }
+  .product-two-col-layout .product-two-col-contnt p {
+    font-size: 12px;
+  }
+  /**  PRODUCT TWO COL LAYOUT CSS end **/
+  /********* BLOG PAGE CSS start  **********/ 
+  .blog-widget-inner { 
+    padding: 25px 15px;
+  }
+  .blog-widget-inner.big-blog-widget {
+    padding: 35px 15px 25px;
+  }
+  .blog-widget-inner p {
+    margin: 12px 0;
+  }
+  .blog-grid-section .blog-cat li {
+    padding: 10px 10px;
+    font-size: 10px;
+  }
+  /********* BLOG PAGE CSS end  **********/
+  .cart-summery .btn { 
+    max-width: 300px;
+    margin-left: auto;
+  }
+  .submit-btn { 
+    max-width: 200px;
+    margin: 20px 0 0;
+  }
+  .article-banner .blog-cat {
+    margin: 20px 0;
+  } 
+  .art-auther {
+    margin-bottom: 15px;
+  }
+  .quote-box { 
+    padding: 15px 0 25px 60px;
+  }
+  .quote-box h3 {  
+    font-size: 15px;
+  }
+  .latest-article-slider-section .section-title { 
+    padding-top: 40px;
+    margin-bottom: 26px;
+  }
+  .my-acc-right-content .qty-spinner input,
+  .my-acc-right-content table tr th,
+  .my-acc-right-content table tr td { 
+    font-size: 12px;
+  }
+  .order-history-tbl tr td {
+    padding: 15px 10px 15px;
+  }
+  .order-confirm-details .link {
+    font-size: 13px;
+  }
+  .order-confirm-details { 
+    padding: 20px 12px;
+  }
+  .acc-back-btn-wrp button { 
+    padding: 10px 20px;
+  } 
+  #tab-6 .order-confirmation-body {
+    padding: 20px 10px;
+  } 
+  #tab-6 .order-confirmation-body .order-history-tbl tr td {
+    padding: 15px 4px 15px;
+  }
+  .ttl-pric {
+    font-size: 20px; 
+  }
+  .checkout-page-right {
+    max-width: 300px;
+    width: 100%;
+  }
+  .checkout-page-left {
+    margin-bottom: 25px;
+  } 
+  .main-hiro-section:after{
+    display: none;
+  }  
+  .hiro-tab-bottom-inner:before { 
+    width: auto; 
+    right: -50vw;
+  } 
+  .common-block .price {
+    flex: 0 0 100%;
+    margin-bottom: 18px;
+  }
+  .two-coll-content .common-block .thumb-pro-li {
+    padding-right: 16px;
+  }
+  .two-coll-content .common-block .subtitle {
+    font-size: 14px; 
+    margin-top: 10px;
+  }
+  .hiro-image-item .shoe-img img { 
+    max-width: 100%;
+  }
+  .hiro-image-item  .shoe-img {
+    display: block;
+  }
+  .ellipse-ring { 
+    width: 100%;
+  }
+  /****** All the shoes section start  ******/ 
+  .all-shoes-itm-img {
+    max-width: 185px;
+  } 
+  .all-shoes-itm-content {
+    padding: 25px 0 25px 20px;
+  }  
+  .all-shoes-itm-inner:before {
+    height: 100%;
+    width: 100%;
+  }
+  .all-shoes-itm-img .review-img { 
+    right: 15px;
+  }
+  .all-shoes-itm-inner .price {
+    margin: 18px 0;
+  }
+  .all-shoes-itm-content h4 {
+    font-size: 15px;
+  } 
+  .all-shoes-itm-content ins {
+    font-size: 22px;
+  }
+  /****** All the shoes section end  ******/
+  /** ORDER SUMMERY PAGE  start **/
+  .order-summery-page .section-title p {
+    font-size: 15px;
+    margin: 0;
+  }
+  /** ORDER SUMMERY PAGE end  **/
+}
+@media screen and (max-width:767px){   
+  .header-style-one .main-navigationbar { 
+    padding: 10px 0; 
+    box-shadow: 0px 4px 55px rgba(24,58,64,0.12);
+  }
+  .header-style-one .announcebar{
+    display: none;
+  }
+  .header-style-one .main-navigationbar .menu-items-col { 
+    justify-content: flex-end; 
+  } 
+  .header-style-one .menu-right li a .icon-lable { 
+    display: none !important;
+  }
+  .header-style-one  .menu-right {
+    padding-left: 50px;
+    justify-content: flex-end;
+  }
+  .header-style-one .menu-right li {
+    flex: 0 0 45px;
+  }
+  .header-style-one .menu-right li a svg, .header-style-one .menu-right li.cart-header a svg {
+    height: 17px;
+    width: 17px;
+  }
+  .header-style-one .menu-right li:last-of-type button, .header-style-one .menu-right li>* {
+    padding: 10px 10px;
+  } 
+  .header-style-one .menu-right li:last-of-type svg {
+    width: 26px;
+  } 
+  .mobile-menu-bar {
+    padding: 0;
+  }
+  .mobile-menu-wrapper .mobile-menu-bar>ul>li a { 
+    color: var(--white);
+  }
+  .mobile-menu-wrapper .mobile-menu-bar>ul>li a svg path {
+    fill: var(--white);
+  }
+  .mobile-menu-wrapper .menu-close-icon svg {
+    width: 25px;
+    height: 25px;
+  } 
+  .mobile-menu-wrapper .menu-close-icon {
+    height: auto; 
+    position: relative;
+    right: 0;
+    top: 0;
+    justify-content: flex-start; 
+    text-align: right;
+    padding: 10px 20px;
+    background: var(--theme-color);
+    width: 100%;
+  }
+  .header-style-one .count { 
+    border: 0;
+    background: var(--second-color);
+    height: 16px;
+    width: 16px;
+    line-height: 16px;
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    border-radius: 30px;
+    color: var(--white);
+    font-size: 10px !important;
+  } 
+  /** MINI CART **/
+  .cartDrawer {
+    width: 100%;
+  }
+  .cartDrawer .mini-cart-body {
+    padding: 15px;
+  }
+  .cartDrawer .mini-cart-header {
+    padding: 16px 20px 16px 50px;
+  }
+  .mini-cart-footer .checkout-btn {
+    max-width: 100%;
+    padding: 12px 11px;
+  }
+  .mini-cart-footer {
+    padding: 15px;
+  }
+  .mini-cart-item:not(:last-of-type) {
+    margin-bottom: 15px;
+  }
+  .mini-cart-footer-total-row {
+    font-size: 18px;
+    line-height: 18px;
+    margin: 0 -10px 12px;
+  }
+  .cartDrawer .closecart {
+    left: 19px;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+  }
+  .cartDrawer .closecart svg path {
+    fill: var(--white);
+  }
+  .mini-cart-footer .u-save { 
+    font-size: 15px; 
+    margin-bottom: 15px;  
+  }
+  .search-popup { 
+    padding: 0 15px;
+  }
+  .search-popup .close-search { 
+    right: 15px;
+    top: 15px; 
+    width: 22px;
+    height: 22px;
+  }  
+  .checkbox-custom label { 
+    font-size: 12px;
+  }
+  .policy-links {
+    justify-content: flex-start;
+    margin-top: 16px;
+  }
+  .footer-col:not(:first-of-type){
+    padding:0;
+  }
+  .footer-subscribe-col,
+  .footer-col { 
+    flex: 0 0 100%; 
+    padding:0;
+    max-width:100%;
+    margin-bottom: 30px;
+  }
+  .footer-bottom {
+    padding-top: 0;
+  }
+  .site-footer {
+    padding: 60px 0 0;
+  }
+  .emaillink.contactlink {
+    margin: 0;
+  }
+  .slick-arrow {
+    width: 36px;
+    height: 36px;
+  } 
+  .section-title {
+    margin-bottom: 20px;
+  } 
+  .hiro-image-item-inner .tool-content {
+    display: none;
+  }
+  .big-title-center { 
+    position: relative;
+    top: auto;
+    margin-bottom: 30px;
+  }
+  .horizontal-ex {
+    bottom: 38px;
+  }
+  .hiro-image-item-inner { 
+    padding-top: 30px;
+  }
+  .popup-inner { 
+    max-width: 90%;
+  }
+  .hiro-thumb-itm-inner p b, .hiro-thumb-itm-inner p span { 
+    display: block;
+  }
+  .big-title-center h2 {
+    font-size: 64px;
+  } 
+  .main-hiro-container {
+    margin-top: 0;
+    padding-top: 45px;
+  } 
+  .slick-slider .slick-arrow {
+    opacity: 1;
+  }
+  /****** All the shoes section start  ******/ 
+  .all-the-shoes {
+    padding: 45px 0;
+  }
+  .left-shape {     
+    width: 50px;
+  }
+  .all-shoes-itm-content {
+    padding: 10px 20px 20px 20px;
+    flex: 0 0 100%;
+    order: 2;
+  }
+  .all-shoes-itm-img .all-shoe-img img {
+    width: 180px;
+    height: auto;
+    object-position: center;
+  }
+  .all-shoes-itm-img { 
+    order: 1;
+    margin: 0 auto;
+  } 
+  /****** All the shoes section end  ******/
+  /********* BESTSEELLER SECTION CSS start **********/ 
+  .xl-text {
+    font-size: 62px;
+  }
+  .bestsell-itm-inner:before { 
+    width: 100%; 
+  }
+  .bestsell-slider .slick-arrow:hover, .bestsell-slider .slick-arrow:focus {
+    background-color: var(--theme-color);
+  }
+  .bestsell-itm-inner {
+    padding: 0 15px 20px 15px;
+  }
+  .bstslr-tb li {
+    padding-right: 20px;
+  }
+  .bstslr-tb li a { 
+    letter-spacing: 0px; 
+    font-size: 12px;
+  }
+  .all-shes-second-slider .slick-arrow,
+  .bestsell-slider .slick-arrow { 
+    top: 50%;
+  } 
+  .bestsell-content-row { 
+    flex-wrap: wrap;
+  } 
+  .right-shape { 
+    max-width: 60px;
+  }
+  .all-shes-right, .all-shes-left {
+    width: 60px;
+  }
+  /********* BESTSEELLER SECTION CSS end **********/
+  /********* TWO COL DARK SECTION CSS  start **********/
+  .twocol-dark .two-coll-content { 
+    padding: 0 0 40px;
+  }
+  /********* TWO COL DARK SECTION CSS end **********/
+  /********* SHOES DURING TESTING CSS start ***********/ 
+  .offset-left-colum,
+  .offset-right-colum {
+    max-width: 100%;
+  }
+  .offset-left-colum-inner,
+  .shoes-during-testing .offset-row {
+    padding: 0 0px 40px 0;
+  }
+  .video-right-wrap .play-vid span { 
+    height: 55px;
+    width: 55px;
+  }
+  .offset-left-colum-inner p {
+    margin-bottom: 25px;
+  }
+  /********* SHOES DURING TESTING CSS end ***********/
+  /********* TWO COL BOTTOM SECTION start **********/
+  .two-col-bottom { 
+    padding-bottom: 40px;
+  }
+  /********* TWO COL BOTTOM SECTION CSS end **********/
+  /***********  TESTIMONIAL SECTION CSS start ***********/
+  .testimonial-section .section-title {
+    margin-bottom: 26px;
+  }
+  /***********  TESTIMONIAL SECTION CSS end ***********/
+  /********* ALL SHOES BOTTOM GRID SECTION CSS start **********/
+  .all-showes-bottom-grid .section-title {
+    margin-bottom: 25px;
+  }
+  /********* ALL SHOES BOTTOM GRID SECTION CSS end **********/
+  /**  PRODUCT MAIN SECTION CSS start **/ 
+  .product-page-main-section:before { 
+    width: 100%;
+  }
+  .product-main-left {
+    padding: 30px 0 0 0;
+  } 
+  .product-main-right {
+    padding: 10px 0 40px;
+  }
+  /**  PRODUCT MAIN SECTION CSS  end **/
+  /**  PRODUCT TWO COL LAYOUT CSS start **/
+  .product-two-col-layout .product-two-col-contnt .product-two-col-left,
+  .product-two-col-layout .row-reverse .product-two-col-contnt .product-two-col-left {
+    padding: 40px 0;
+  }
+  /**  PRODUCT TWO COL LAYOUT CSS end **/
+  /***  ABOUT US SECTION CSS start ***/
+  .about-us-section .about-us-box { 
+    margin-bottom: 20px;
+  }
+  .about-us-section .section-title  {
+    margin-bottom: 26px;
+  }
+  .abt-shp-column-left,
+  .about-us-page {
+    text-align: center;
+  }
+  /***  ABOUT US SECTION CSS end ***/
+  /********* BLOG PAGE CSS start  **********/ 
+  .blog-widget { 
+    flex: 0 0 100%;
+  }
+  .blog-widget-inner { 
+    margin-bottom: 15px;
+  }
+  /********* BLOG PAGE CSS end  **********/
+  .our-client-left .section-title,
+  .subscription-section .section-title {
+    margin: 0 0 30px;
+  }
+  .rating-box h3 { 
+    margin-top: 0;
+  } 
+  .right-fix-img svg {
+    display: none;
+  } 
+  .bestsell-cat-slider .slick-track, .bestsell-cat-slider .slick-list { 
+    display: flex;
+  }  
+  .blog-left-column-inner {
+    margin-bottom: 40px;
+  } 
+  .home-blog-section { 
+    padding-top: 0;
+  } 
+  .product-filter-column {
+    position: fixed;
+    top: 0;
+    background: var(--white);
+    left: 0;
+    max-width: 315px;
+    height: 100%;
+    z-index: 4;
+    overflow: hidden;
+    transition: all ease-in-out 0.5s;
+    -webkit-transform: translate(-100%, 0px);
+    -moz-transform: translate(100%, 0px);
+    -ms-transform: translate(100%, 0px);
+    -o-transform: translate(100%, 0px);
+    transform: translate(-100%, 0px);
+  }
+  .product-filter-body {
+    padding: 40px 15px;
+    overflow: auto;
+    height: 100%;
+  } 
+  .close-filter {
+    position: absolute;
+    top: 0;
+    background: var(--theme-color);
+    height: 30px;
+    width: 30px;
+    padding: 7px; 
+    right: 0;
+    cursor: pointer;
+  } 
+  .close-filter svg {
+    height: 100%;
+    width: 100%;
+  }
+  .filter-open .product-filter-column {
+    -moz-transform: translate(0);
+    -o-transform: translate(0);
+    -ms-transform: translate(0);
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+  .product-heading-right-column {
+    padding: 14px !important;
+    border-left: 0;
+  }
+  .icon-filter {
+    max-width: 32px;
+  }
+  .product-filter-right-column {
+    border-left: 0;
+    padding-left: 0 !important;
+  }
+  .filter-title div {
+    max-width: 40px;
+    border: 1px solid var(--theme-color);
+    padding: 2px;
+  }
+  .cart-page-section .section-title {
+    margin-bottom: 26px;
+  } 
+  .abt-shp-column-right,
+  .about-our-shop-section .row {
+    margin-top: 30px;
+  }
+  .contact-right-column {
+    margin-top: 0;
+  }
+  .contact-right-inner h2 {
+    color: var(--theme-color);
+  }
+  .blog-col-right .nice-select {
+    flex: 0 0 120px;
+  }
+  .blog-col-right {
+    width: 100%;
+    justify-content: center;
+    margin-top: 20px;
+  } 
+  .blog-col-left ul {
+    flex-direction: column;
+    align-items: center;
+  } 
+  .blog-head-row{
+    border: 0;
+  }
+  .blog-grid-section .section-title { 
+    text-align: center;
+  } 
+  .articlerightbar {
+    padding-top: 40px;
+  } 
+  .aticleleftbar h5 {
+    margin: 0 0 20px 0;
+  }
+  .articlerightbar .blog-grid .blog-widget:last-of-type {
+    margin-bottom: 0;
+  }
+  .latest-article-slider-section .section-title {
+    padding-top: 26px; 
+  }
+  .post-lbl {
+    margin: 0 0 0 10px; 
+    font-size: 12px;
+  }
+  .article-section .abt-user-img { 
+    margin-right: 5px;
+  }
+  .aticleleftbar p {
+    margin-bottom: 15px;
+  }
+  .quote-box svg { 
+    height: 20px;
+    width: 20px;
+  }
+  .quote-box {
+    padding: 15px 0 25px 35px;
+  }
+  .order-summery-page .section-title p {
+    font-size: 14px;
+  }
+  .order-summery-page .section-title h2 {
+    margin-bottom: 18px;
+  }
+  .register-page .section-title {
+    margin-bottom: 30px;
+  } 
+  .our-blog-section .section-title,
+  .my-acc-head {
+    margin-bottom: 26px;
+  }
+  .my-acc-rightbar {
+    margin-top: 40px;
+  }
+  #scroll {
+    background: var(--white); 
+    top: 56px;
+  }
+  #account-nav {
+    display: flex;
+    justify-content: space-between;
+  } 
+  #account-nav li a svg path {
+      fill: var(--white);
+  } 
+  #account-nav li a   svg { 
+    margin-right: 0;
+    height: 15px;
+    width: 15px; 
+  }
+  #account-nav li a span { 
+    display: none;
+  }
+  #account-nav li {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  .my-acc-leftbar li:not(:last-of-type) {
+    border-bottom: 0;
+  }
+  .my-acc-leftbar h4 {
+    padding: 15px 15px;
+  }
+  #account-nav li a {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 5px; 
+    width: 100%;
+    height: 40px;
+    justify-content: center;
+    background: var(--theme-color);
+  }
+  .order-history-tbl tr th:nth-child(5), .order-history-tbl tr td:nth-child(5) {
+    text-align: center;
+  } 
+  .my-acc-right-content {
+    padding-bottom: 30px;
+  }
+  #tab-6 .order-history-tbl tr th:nth-child(6), #tab-6 .order-history-tbl tr td:nth-child(6) {
+    text-align: center;
+  }
+  .my-acc-right-content .qty-spinner input, .my-acc-right-content table tr th, .my-acc-right-content table tr td {
+    font-size: 14px;
+  }
+  .order-payment-box {
+    max-width: 100%;
+    margin: 15px 0 0 auto;
+  }
+  .checkout-page .order-confirmation-body .row .col-12:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
+  .checkout-page-left .login-form {
+    margin-top: 30px;
+  }
+  .checkout-page .checkbox-custom {
+    margin-top: 0;
+  } 
+  .set {    
+    margin-bottom: 12px;
+  }
+  .checkout-page .set .acnav-list {
+    padding: 20px 15px;
+  } 
+  .order-history-tbl tr td[data-label="quantity"] { 
+    padding: 10px;
+  }
+  .header-style-one .main-navigationbar .logo-col {
+    max-width: 76px; 
+  }
+  .form-container,
+  .order-confirmation-body {
+    padding: 20px 15px;
+  } 
+  .hiro-thumb-itm-inner .desk-only-text {
+    display: none !important;
+  }
+  .hiro-thumb-itm  .hiro-thumb-itm-inner { 
+    justify-content: center !important;
+    width: 100%;
+    text-align: center;
+  }
+  .thumb-cntnt { 
+    justify-content: center;
+  }
+  .hiro-thumb-itm-inner p span {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .our-client-section {
+    padding-bottom: 70px;
+  }
+  .offset-container { 
+    padding: 0 15px;
+  }
+  /** CART PAAGE CSS start**/ 
+  .coupon-text {
+    flex: 0 0 100%; 
+    margin-bottom: 20px;
+  }
+  .coupon-table { 
+    margin: 20px 0;
+  } 
+  /** CART PAAGE CSS end **/
+  /****  COMMON BANNER SECTION CSS ****/
+  .common-banner-section {
+    padding: 40px 0;
+  }
+  .common-banner-content .back-btn {
+    margin-bottom: 15px;
+  }
+  .common-banner-content .section-title h2 span { 
+    font-size: 12px;
+  }
+}
+@media screen and (max-width:575px){ 
+  .checkout-page .payment-method-form .checkbox-custom {
+    margin: 0 15px 15px 0;
+    width: 100%;
+  }
+  .section-title-left {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .big-title-center h2 {
+    font-size: 48px;
+  }
+  .big-title-center p {
+    font-size: 14px;
+  }
+  .vertical-ex{
+    display: none !important;
+  }
+  .tool-ic {
+    width: 23px;
+    height: 23px; 
+    font-size: 17px;
+  }
+  .hiro-image-item-inner {
+    padding-bottom: 66px;
+    padding-right: 0; 
+  } 
+  .payment-method-form .radio-group label .radio-right {
+    flex: 0 0 32%
+  }
+  .payment-method-form .radio-group label .radio-right>* { 
+    text-align: right;
+  } 
+  .rating-box {
+    padding: 40px 12px 30px;
+  }
+  .rating-box svg {
+    height: 20px;
+    width: 20px;
+  }  
+  .bottom-wave-img { 
+    padding-top: 0;
+  }
+  .product-detail-bttom-stuff .addcart-btn {
+    max-width: 100%;
+  }
+  .product-detail-bttom-stuff .price { 
+    max-width: 100%;
+    margin-bottom: 20px;
+  } 
+  .wishbtn { 
+    top: 38px;
+  }
+  .social-sharing { 
+    writing-mode: unset;
+    float: unset;
+    margin: 20px 0;
+  }
+  .product-description {
+    padding: 0;
+  }
+  .pro-gallery:not(:last-of-type) {
+    margin-bottom: 30px;
+  }
+  .pro-two-column-content {
+    padding: 30px 0 0;
+  }
+  .pro-two-column { 
+    padding: 40px 0 0;
+  }
+  .produdt-filter-cat {
+    display: none;
+  } 
+  .blog-cat li:not(:last-of-type) {
+      margin-right: 0;
+  }
+  .blog-cat li a {
+    padding: 10px 11px; 
+    font-size: 10px; 
+  }
+  .reg-lbl { 
+    width: 100%;
+    margin: 0 0 10px;
+    text-align: center;
+  }
+  .login-form .submit-btn {
+    max-width: 170px;
+    margin: 15px 0 0 0;
+  }
+  .mobile-direction-column{
+    flex-direction: column;
+  }
+  .order-confirm-details {
+    margin-bottom: 20px;
+  }
+  .dated {
+    width: 100%;
+    margin-top: 12px;
+  }
+  .order-paymentcol:nth-child(3) {
+    max-width: 100%;
+  }
+  .order-paymentcol { 
+    max-width: 50%;
+    text-align: center;
+  }
+  .order-paycol-inner img {
+    margin: 0 auto;
+  }
+  .order-confirmation-body .col-sm-6:last-child .order-confirm-details {
+    margin: 0;
+  }
+  .checkout-page .order-confirmation-body .row .col-12 .order-confirm-details {
+    margin-bottom: 0;
+  }
+  .subtitle { 
+    margin-bottom: 6px; 
+    font-size: 12px;
+  }
+  .two-coll-media .tool-content {
+    display: none;
+  }
+  /********* BESTSEELLER SECTION CSS start **********/
+  .xl-text {
+    font-size: 48px;
+  }
+  .bestsell-content-left {
+      flex: 0 0 100%;
+      margin-bottom: 22px;
+  }
+  /********* BESTSEELLER SECTION CSS end **********/
+  /********* MEET CATEGORY SECTION CSS start **********/ 
+  .meet-cat-box-inner { 
+    padding: 30px 16px;
+  }
+  /********* MEET CATEGORY SECTION CSS end  **********/ 
+  /**  PRODUCT MAIN SECTION CSS start **/
+  .product-main-right .price-wrap-flex .price {
+    padding-right: 0;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  /**  PRODUCT MAIN SECTION CSS end **/
+  /** CART PAAGE CSS start **/
+  .coupon-text { 
+    flex-wrap: wrap;
+  }
+  .coupon-text p {
+    width: 100%;
+    font-size: 12px;
+    padding: 10px 0 0;
+  }
+  .coupon-code { 
+    flex-wrap: wrap;
+  }
+  .coupon-code-text {   
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  /** CART PAAGE CSS end **/
+  /********* BLOG PAGE CSS start  **********/ 
+  .blog-cat li {
+    padding: 10px 8px; 
+    font-size: 10px; 
+  }
+  .blog-widget-inner h3 {
+    max-width: 100%;
+    flex: 0 0 100%;
+    margin: 0 0 15px;
+    padding: 0;
+  }
+  .blog-widget-inner p {
+    margin: 12px 0 15px;
+  }
+  .blog-grid-section .blog-cat li {
+    padding: 10px 5px; 
+  }
+  .blog-cat { 
+    margin-bottom: 14px;
+  }
+  .blog-page-banner .common-banner-content p,
+  .blog-page-banner .section-title {
+    margin-bottom: 20px;
+  }
+  /********* BLOG PAGE CSS end  **********/
+  .input-wrapper input { 
+    padding: 11.5px 50px 11.5px 20px; 
+  }
+  .input-wrapper .btn-subscibe { 
+    height: 35px;
+    width: 35px;
+  }
+  .articlerightbar .blog-cat li{
+    padding: 10px 5px;
+  }
+} 
+@media screen and (max-width:370px){ 
+  :root {
+    --h1: normal 600 28px/1.2 var(--first-font);
+    --h2: normal 600 24px/1.2 var(--first-font);
+    --h3: normal 600 18px/1.2 var(--first-font);
+    --h4: normal 600 16px/1.2 var(--first-font);
+    --h5: normal 600 14px/1.2 var(--first-font);
+  } 
+  .stp-menu-widget { 
+    padding: 24px 0 0 0;
+    margin-top: 24px;
+  }
+  .mobile-menu-bar .stp-navlink:not(:last-of-type) {
+    margin-right: 15px;
+  } 
+  .fea-coll-contnt-left {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .column-positive-us-right .col-sm-4.col-4 { 
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .cat-tab li a { 
+    font-size: 10px; 
+  }
+  .post-lbl {
+    margin: 10px 0 0; 
+    width: 100%;
+  }
+  .acc-back-btn-wrp button {
+    padding: 10px 15px;
+    min-width: 108px;
+  } 
+  .checkout-page .forgot-pass { 
+    font-size: 11px;
+  }
+  .btn-flex a {
+    padding: 10px 14px !important;
+    min-width: 113px;
+  }
+  .center-descrp {
+    display: none;
+  }
+  .payment-method-form .radio-group label .radio-right {
+    flex: 1;
+  }
+  .payment-method-form .radio-group label span {
+    flex: 0 0 50%;
+    padding-right: 0;
+  }
+  .payment-method-form .radio-group label .radio-right>* {
+    padding-left: 5px;
+  }
+  .payment-method-form .radio-group label .radio-right b {
+    font-size: 13px;
+  }
+  .payment-method-form .radio-group label .radio-right img {
+    margin-left: 9px;
+    max-width: 35px;  
+  }
+  .sub-right {
+    top: -32px;
+    max-width: 80px;
+  }
+  .sub-left {
+    bottom: -30px;
+    max-width: 70px;
+  }
+}
