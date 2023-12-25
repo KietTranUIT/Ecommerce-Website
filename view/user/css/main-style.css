@@ -3878,6 +3878,10 @@ table tr td {
 .add-default .btn {
     padding: 12px 30px;
 } 
+/* ACCOUNT PAGE CSS */
+.acc-order-button {
+    column-gap: 15px;
+}
 /* !!!!       DESKTOP HOVER CSS             !!!! */
 @media (hover: hover) {
     a:hover,
