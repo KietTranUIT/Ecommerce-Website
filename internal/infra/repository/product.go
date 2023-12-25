@@ -1,12 +1,13 @@
 package repository
 
 import (
+	"log"
 	"user-service/internal/core/dto"
 )
 
 func (repo userRepository) GetProductForHomePage() ([]dto.Product, error) {
 	var products []dto.Product
-	sql := `SELECT product.id as id, category.name as category_name, product.image as image, product.name as name, product.price as price FROM product inner join category on product.category_id = category.id`
+	sql := `SELECT product.id as id, category.name as category_name, product.image as image, product.name as name, product.price as price FROM product inner join category on product.category_id = category.id LIMIT 50`
 
 	result := repo.db.GetDB().Raw(sql).Scan(&products)
 
@@ -25,6 +26,7 @@ func (repo userRepository) GetProductData(id int) []dto.ProductDTO {
 		Where("product.id = ?", id).
 		Scan(&products)
 
+	log.Println(len(products))
 	return products
 }
 

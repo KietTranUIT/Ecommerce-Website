@@ -70,4 +70,9 @@ type UserService interface {
 	GetOrdersRecently() *response.Response
 	GetTopProducts() *response.Response
 	GetProductsWithCategoryIdV1(id int) []dto.Product
+
+	GetUserAddress(user_email string) ([]dto.UserAddress, error)
+	GetPaymentMethod() []dto.PaymentMethod
+	GetOrderWithEmail(user_email string) []dto.Order
+	HandleAdmin() (*dto.DataSales, []dto.Product, []dto.Order)
 }

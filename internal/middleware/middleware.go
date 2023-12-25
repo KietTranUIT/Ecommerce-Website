@@ -11,8 +11,7 @@ import (
 
 func AuthenticateAdmin() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		log.Println("Hello")
-		token, err := c.Cookie("bear")
+		token, err := c.Cookie("admin-token")
 
 		if err != nil {
 			if strings.Contains(err.Error(), "http: named cookie not present") {
@@ -32,11 +31,41 @@ func AuthenticateAdmin() gin.HandlerFunc {
 			return
 		}
 
-		result, _ := util.VerifyToken(token)
-
+		result, _, username := util.VerifyToken(token)
+		c.Set("userId", username)
 		if !result {
-			log.Println("1")
 			c.Redirect(302, "/admin/login")
+			c.Abort()
+			return
+		}
+		c.Next()
+	}
+}
+
+func AuthenticateUser() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		token, err := c.Cookie("user-token")
+
+		if err != nil {
+			if strings.Contains(err.Error(), "http: named cookie not present") {
+				c.Redirect(302, "/login")
+				c.Abort()
+			}
+			c.JSON(http.StatusInternalServerError, gin.H{"Message": "Server Error"})
+			c.Abort()
+			return
+		}
+
+		if token == "" {
+			c.Redirect(302, "/login")
+			c.Abort()
+			return
+		}
+
+		result, _, username := util.VerifyToken(token)
+		c.Set("userId", username)
+		if !result {
+			c.Redirect(302, "/login")
 			c.Abort()
 			return
 		}

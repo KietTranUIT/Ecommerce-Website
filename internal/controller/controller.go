@@ -2,6 +2,7 @@ package controller
 
 import (
 	"user-service/internal/core/port/service"
+	"user-service/internal/middleware"
 
 	"github.com/gin-gonic/gin"
 )
@@ -20,7 +21,6 @@ func NewUserController(router *gin.Engine, service service.UserService) UserCont
 
 func (u UserController) InitRouter() {
 	u.router.LoadHTMLGlob("view/*.html")
-	u.router.LoadHTMLGlob("view/admin/*.html")
 
 	u.router.Static("/view/", "view")
 
@@ -100,9 +100,28 @@ func (u UserController) InitRouter() {
 	u.router.GET("/products/:id", GetProductDetail(u))
 
 	u.router.GET("/products", GetProducts(u))
-	u.router.POST("/checkout", HandleCheckout(u))
 
 	u.router.GET("/categories/:id", GetProductsOfCategory(u))
 
 	u.router.GET("/cart", GetCart(u))
+
+	// u.router.GET("/user/address", GetUserAddress(u))
+	// u.router.POST("/user/address", HandleCreateUserAddress(u))
+	// u.router.DELETE("/user/address/:id", HandleDeleteUserAddress(u))
+	// u.router.PUT("/user/address/:id", HandleUpdateUserAddress(u))
+	// u.router.GET("/user", GetProfileUser(u))
+
+	u.router.GET("/checkout", middleware.AuthenticateUser(), GetCheckout(u))
+	u.router.POST("/checkout", middleware.AuthenticateUser(), HandleCheckout(u))
+
+	users_group := u.router.Group("/user", middleware.AuthenticateUser())
+	{
+		users_group.GET("/address", GetUserAddress(u))
+		users_group.POST("/address", HandleCreateUserAddress(u))
+		users_group.DELETE("/address/:id", HandleDeleteUserAddress(u))
+		users_group.PUT("/address/:id", HandleUpdateUserAddress(u))
+		users_group.GET("/", GetProfileUser(u))
+	}
+
+	u.router.DELETE("/logout", Logout(u))
 }

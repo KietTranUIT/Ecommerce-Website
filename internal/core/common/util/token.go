@@ -1,6 +1,7 @@
 package util
 
 import (
+	"log"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
@@ -23,18 +24,21 @@ func CreateToken(username string) (string, error) {
 	return tokenString, nil
 }
 
-func VerifyToken(tokenString string) (bool, error) {
+func VerifyToken(tokenString string) (bool, error, string) {
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		return secretKey, nil
 	})
 
 	if err != nil {
-		return false, err
+		return false, err, ""
 	}
 
-	if !token.Valid {
-		return false, nil
+	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
+		// Trích xuất thông tin từ JWT
+		username := claims["username"].(string)
+		log.Println("JWT: ", username)
+		return true, nil, username
 	}
 
-	return true, nil
+	return false, nil, ""
 }

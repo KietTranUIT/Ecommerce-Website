@@ -17,14 +17,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/* REST API for admin
----------------------------------------------------
-*/
-
 //xu li yeu cau truy cap trang admin
 func HandleAdmin(control UserController) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.HTML(http.StatusOK, "AdminPage.html", nil)
+		summary, products, orders := control.service.HandleAdmin()
+
+		c.HTML(http.StatusOK, "AdminPage.html", struct {
+			Summary  *dto.DataSales
+			Products []dto.Product
+			Orders   []dto.Order
+		}{summary, products, orders})
 	}
 }
 
@@ -50,7 +52,7 @@ func HandleLoginAdmin(control UserController) gin.HandlerFunc {
 		}
 
 		token, _ := util.CreateToken(data.Email)
-		c.SetCookie("bear", token, 3600, "/admin", "localhost", false, true)
+		c.SetCookie("admin-token", token, 3600, "/admin", "localhost", false, true)
 		c.AbortWithStatusJSON(200, res)
 	}
 }
@@ -321,7 +323,7 @@ func GetOrderDetailAdminPage(control UserController) gin.HandlerFunc {
 
 func HandleLogoutAdmin(control UserController) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.SetCookie("bear", "", -1, "/admin", "https://42d1-113-22-113-136.ngrok-free.app/", false, true)
+		c.SetCookie("admin-token", "", -1, "/admin", "localhost", false, true)
 		c.String(200, "")
 	}
 }

@@ -21,9 +21,10 @@ $(document).ready(function() {
             body: datajs
         })
         .then(response => {
-            $('.success').show()
             if(response.status === 200) {
                 alert("Insert product version successfull")
+                $('#size').val("")
+                $('#quantity').val("")
             } else {
                 alert("Insert product version failed")
             }

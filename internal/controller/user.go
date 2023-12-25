@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"log"
+	"user-service/internal/core/common/util"
+	"user-service/internal/core/dto"
 	"user-service/internal/core/entity/error_code"
 	"user-service/internal/core/model/request"
 	"user-service/internal/core/model/response"
@@ -13,13 +15,13 @@ import (
 
 func HomePage(control UserController) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.HTML(200, "HomePage_v1.html", nil)
+		c.HTML(200, "HomePage.html", nil)
 	}
 }
 
 func GetLoginPage(control UserController) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.HTML(200, "signin.html", nil)
+		c.HTML(200, "Login.html", nil)
 	}
 }
 
@@ -38,14 +40,13 @@ func CheckAccount(control UserController) gin.HandlerFunc {
 
 func GETVerifyPage(control UserController) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.HTML(200, "verify_signup.html", nil)
+		c.HTML(200, "VerifySignUp.html", nil)
 	}
 }
 
 func GETSignupPage(control UserController) gin.HandlerFunc {
-	log.Println("Loi da xay ra")
 	return func(c *gin.Context) {
-		c.HTML(200, "signup.html", nil)
+		c.HTML(200, "SignUp.html", nil)
 	}
 }
 
@@ -60,6 +61,9 @@ func Login(control UserController) gin.HandlerFunc {
 			c.AbortWithStatusJSON(422, res)
 			return
 		}
+		token, _ := util.CreateToken(data.Email)
+		c.SetCookie("user-token", token, 3600, "/", "https://377c-42-115-60-125.ngrok-free.app", false, true)
+		log.Println(res)
 		c.AbortWithStatusJSON(200, res)
 	}
 }
@@ -130,16 +134,15 @@ func HandleHomePage(control UserController) gin.HandlerFunc {
 
 func HandleCheckout(control UserController) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		//user_email, err := c.Get("user_email")
+		user_email, _ := c.Get("userId")
 
 		// if !err {
 		// 	c.AbortWithStatus(401)
 		// }
-		log.Println("OK")
 		reqBody, _ := ioutil.ReadAll(c.Request.Body)
 		var req request.CreateOrderRequest
 		json.Unmarshal(reqBody, &req)
-		req.User_email = "kiettranuit@gmail.com"
+		req.User_email = user_email.(string)
 
 		response := control.service.CreateOrder(req)
 
@@ -154,5 +157,40 @@ func HandleCheckout(control UserController) gin.HandlerFunc {
 func GetCart(control UserController) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		c.HTML(200, "Cart.html", nil)
+	}
+}
+
+func GetCheckout(control UserController) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		user_email, _ := c.Get("userId")
+
+		address, _ := control.service.GetUserAddress(user_email.(string))
+
+		payment_method := control.service.GetPaymentMethod()
+
+		c.HTML(200, "Checkout.html", struct {
+			Address       []dto.UserAddress
+			PaymentMethod []dto.PaymentMethod
+		}{address, payment_method})
+	}
+}
+
+func GetProfileUser(control UserController) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		user_email, err := c.Get("userId")
+
+		if !err {
+			return
+		}
+		orders := control.service.GetOrderWithEmail(user_email.(string))
+
+		c.HTML(200, "Profile.html", orders)
+	}
+}
+
+func Logout(control UserController) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.SetCookie("user-token", "", -1, "/", "https://377c-42-115-60-125.ngrok-free.app", false, true)
+		c.String(200, "")
 	}
 }

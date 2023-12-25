@@ -35,3 +35,14 @@ func (repo userRepository) UpdateUserAddress(userAddress *dto.UserAddress) error
 	}
 	return nil
 }
+
+func (repo userRepository) GetUserAddress(user_email string) ([]dto.UserAddress, error) {
+	var addresses []dto.UserAddress
+
+	result := repo.db.GetDB().Table("user_address").Where("user_email = ?", user_email).Find(&addresses)
+
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return addresses, nil
+}

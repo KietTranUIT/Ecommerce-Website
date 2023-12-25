@@ -47,3 +47,7 @@ func (service userService) CreateOrder(req request.CreateOrderRequest) *response
 
 	return CreateSuccessResponse(error_code.Success, "")
 }
+
+func (service userService) GetOrderWithEmail(user_email string) []dto.Order {
+	return service.repo.GetOrderWithEmail(user_email)
+}

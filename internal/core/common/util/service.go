@@ -1,6 +1,8 @@
 package util
 
 import (
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -35,4 +37,16 @@ func RandomCode() string {
 func ExpireAt() time.Time {
 	now := time.Now()
 	return now.Add(time.Minute * 5)
+}
+
+func HashPassword(password string) string {
+	hasher := sha256.New()
+
+	hasher.Write([]byte(password))
+
+	hashBytes := hasher.Sum(nil)
+
+	hashString := hex.EncodeToString(hashBytes)
+
+	return hashString
 }
