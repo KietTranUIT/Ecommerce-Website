@@ -3234,7 +3234,7 @@ h6 b {
 .pdp-thumb-img svg, 
 .pdp-thumb-img video, 
 .pdp-thumb-img iframe,
- .pdp-thumb-img img {
+.pdp-thumb-img img {
     position: absolute;
     top: 0;
     left: 0;
@@ -3564,9 +3564,6 @@ table tr td {
 .back-toshop {
     margin-bottom: 10px;
 }
-.register-page .back-toshop {
-    margin-bottom:15px;
-}
 .form-wrapper h4 {
     font-weight: 400;
     font-size: 18px;
@@ -3593,9 +3590,6 @@ table tr td {
 .form-container:last-child {
     border-bottom: 0;
 }
-.register-page .section-title {
-    margin-bottom: 50px;
-}
 /****************  LOGIN PAGE CSS ***************/
 .login-form .submit-btn {
     max-width: 170px;
@@ -3613,10 +3607,6 @@ table tr td {
 .login-form p {
     margin-bottom: 15px;
 } 
-.reg-lbl {
-    font-size: 14px;
-    margin-right: 10px;
-}
 .login-form .form-heading h4 {
     margin-bottom: 0;
     font-weight: 600;
