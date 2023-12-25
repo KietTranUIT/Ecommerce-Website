@@ -45,3 +45,8 @@ type DataSales struct {
 func (v *VerificationEmail) TableName() string {
 	return "Email_verification"
 }
+
+type PaymentMethod struct {
+	Id   int    `json:"id"`
+	Name string `json:"name"`
+}

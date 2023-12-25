@@ -46,17 +46,18 @@ func (service userService) CheckAccount(email string) *response.Response {
 
 func (service userService) Login(req request.LoginRequest) *response.Response {
 	user := service.repo.GetUserWithEmail(req.Email)
-	log.Println(user)
 
 	if user == nil {
 		return CreateFailResponse(error_code.LoginError, error_code.NotExistUser_msg)
 	}
 
-	if user.Password != req.Password {
+	if user.Password != util.HashPassword(req.Password) {
 		return CreateFailResponse(error_code.LoginError, error_code.WrongPassword)
 	}
 
-	return CreateSuccessResponse(error_code.LoginSuccess, error_code.LoginSuccess_msg, user)
+	user_data := user.First_name + " " + user.Last_name
+
+	return CreateSuccessResponse(error_code.LoginSuccess, error_code.LoginSuccess_msg, user_data)
 }
 
 // Send code to email user
@@ -137,7 +138,7 @@ func (service userService) SignUp(req request.SignUpRequest) *response.Response 
 	// Create a user object
 	user := dto.UserDTO{
 		Email:       req.Email,
-		Password:    req.Password,
+		Password:    util.HashPassword(req.Password),
 		First_name:  req.FirstName,
 		Last_name:   req.LastName,
 		Gender:      req.Gender,
@@ -154,19 +155,19 @@ func (service userService) SignUp(req request.SignUpRequest) *response.Response 
 		return CreateFailResponse(error_code.InternalError_code, error_code.InternalError_msg)
 	}
 
-	//Create a user address object
-	// user_address := dto.UserAddress{
-	// 	User_id:   user.Id,
-	// 	Telephone: req.Telephone,
-	// 	Address:   req.Address,
-	// }
+	user_address := dto.UserAddress{
+		User_email: user.Email,
+		Phone:      req.Phone,
+		Address:    req.Address,
+		City:       req.City,
+	}
 
-	// if err := service.repo.CreateUserAddress(&user_address); err != nil {
-	// 	if strings.Contains(err.Error(), duplicateEntry) {
-	// 		return CreateFailResponse(error_code.Duplicate_code, error_code.DuplicateUserTelephone_msg)
-	// 	}
-	// 	return CreateFailResponse(error_code.InternalError_code, error_code.InternalError_msg)
-	// }
+	if err := service.repo.CreateUserAddress(&user_address); err != nil {
+		if strings.Contains(err.Error(), duplicateEntry) {
+			return CreateFailResponse(error_code.Duplicate_code, error_code.DuplicateUserTelephone_msg)
+		}
+		return CreateFailResponse(error_code.InternalError_code, error_code.InternalError_msg)
+	}
 
 	return CreateSuccessResponse(error_code.Signup_success, "success")
 }
@@ -411,4 +412,24 @@ func (service userService) GetTopProducts() *response.Response {
 		return CreateFailResponse(error_code.GetTopProductsFail, err.Error())
 	}
 	return CreateSuccessResponse(error_code.Success, "", products)
+}
+
+func (service userService) GetPaymentMethod() []dto.PaymentMethod {
+	return service.repo.GetPaymentMethod()
+}
+
+func (service userService) HandleAdmin() (*dto.DataSales, []dto.Product, []dto.Order) {
+	sales, _ := service.repo.GetTotalSalesDayNow()
+	revenue, _ := service.repo.GetTotalRevenueDayNow()
+
+	summary := &dto.DataSales{
+		Sales:   sales,
+		Revenue: revenue,
+	}
+
+	products, _ := service.repo.GetTopProducts()
+
+	orders, _ := service.repo.GetOrdersRecently()
+
+	return summary, products, orders
 }

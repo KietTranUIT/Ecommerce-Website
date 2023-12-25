@@ -7,7 +7,7 @@ import (
 
 func (repo userRepository) GetProductForHomePage() ([]dto.Product, error) {
 	var products []dto.Product
-	sql := `SELECT product.id as id, category.name as category_name, product.image as image, product.name as name, product.price as price FROM product inner join category on product.category_id = category.id`
+	sql := `SELECT product.id as id, category.name as category_name, product.image as image, product.name as name, product.price as price FROM product inner join category on product.category_id = category.id LIMIT 50`
 
 	result := repo.db.GetDB().Raw(sql).Scan(&products)
 
@@ -20,13 +20,13 @@ func (repo userRepository) GetProductForHomePage() ([]dto.Product, error) {
 func (repo userRepository) GetProductData(id int) []dto.ProductDTO {
 	var products []dto.ProductDTO
 	repo.db.GetDB().Table("product").
-		Select("product.name as name, product_version.id as id, category.name as category_name, product.description as description, product_version.size_product as size_product, product.price as price, product.image as image, product.image1 as image1, product.image2 as image2").
+		Select("product.name as name, product_version.id as id, category.name as category_name, category.id as category_id, product.description as description, product_version.size_product as size_product, product.price as price, product.image as image, product.image1 as image1, product.image2 as image2").
 		Joins("inner join category on category.id = product.category_id").
 		Joins("inner join product_version on product.id = product_version.p_id").
 		Where("product.id = ?", id).
 		Scan(&products)
 
-	log.Println(products)
+	log.Println(len(products))
 	return products
 }
 

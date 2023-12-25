@@ -18,7 +18,7 @@ func GetProductDetail(control UserController) gin.HandlerFunc {
 
 		products := control.service.GetProductData(id)
 
-		c.AbortWithStatusJSON(200, products)
+		c.HTML(200, "Product.html", products)
 	}
 }
 

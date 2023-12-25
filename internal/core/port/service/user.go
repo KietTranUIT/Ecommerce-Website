@@ -53,7 +53,7 @@ type UserService interface {
 	EditUserAddress(request.EditUserAddressRequest) *response.Response
 	CreateOrder(request.CreateOrderRequest) *response.Response
 	GetProductForHomePage() *response.Response
-	GetProductData(int) []dto.ProductDTO
+	GetProductData(int) *dto.Item
 
 	// Category
 	GetCategories() ([]dto.Category, error)
@@ -70,4 +70,9 @@ type UserService interface {
 	GetOrdersRecently() *response.Response
 	GetTopProducts() *response.Response
 	GetProductsWithCategoryIdV1(id int) []dto.Product
+
+	GetUserAddress(user_email string) ([]dto.UserAddress, error)
+	GetPaymentMethod() []dto.PaymentMethod
+	GetOrderWithEmail(user_email string) []dto.Order
+	HandleAdmin() (*dto.DataSales, []dto.Product, []dto.Order)
 }

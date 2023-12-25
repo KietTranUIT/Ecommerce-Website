@@ -81,4 +81,8 @@ type UserRepository interface {
 	GetTotalRevenueMonthNow() (int, error)
 	GetOrdersRecently() ([]dto.Order, error)
 	GetTopProducts() ([]dto.Product, error)
+
+	GetUserAddress(user_email string) ([]dto.UserAddress, error)
+	GetPaymentMethod() []dto.PaymentMethod
+	GetOrderWithEmail(user_email string) []dto.Order
 }

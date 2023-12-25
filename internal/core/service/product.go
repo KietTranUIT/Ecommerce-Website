@@ -15,8 +15,24 @@ func (service userService) GetProductForHomePage() *response.Response {
 	return CreateSuccessResponse(error_code.Success, "", products)
 }
 
-func (service userService) GetProductData(id int) []dto.ProductDTO {
-	return service.repo.GetProductData(id)
+func (service userService) GetProductData(id int) *dto.Item {
+	product_version := service.repo.GetProductData(id)
+
+	var product dto.Item
+	product.Name = product_version[0].Name
+	product.Image = product_version[0].Image
+	product.Image1 = product_version[0].Image1
+	product.Image2 = product_version[0].Image2
+	product.Price = product_version[0].Price
+	product.Description = product_version[0].Description
+	product.Category_name = product_version[0].Category_name
+	product.Category_id = product_version[0].Category_id
+
+	for _, p := range product_version {
+		product.Value = append(product.Value, dto.Item_value{Id: p.Id, Size_product: p.Size_product})
+	}
+
+	return &product
 }
 
 func (service userService) GetProductsWithCategoryId(id int) *response.Response {

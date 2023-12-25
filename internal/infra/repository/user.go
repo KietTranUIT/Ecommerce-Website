@@ -33,7 +33,7 @@ func (repo userRepository) GetUserWithEmail(email string) *dto.UserDTO {
 }
 
 func (repo userRepository) CreateUser(user *dto.UserDTO) error {
-	result := repo.db.GetDB().Create(user)
+	result := repo.db.GetDB().Table("Users").Select("email", "password", "first_name", "last_name", "gender", "created_at", "modified_at", "active").Create(&user)
 
 	if result.Error != nil {
 		return result.Error
@@ -344,7 +344,7 @@ func (repo userRepository) GetTotalSalesDayNow() (int, error) {
 	result := repo.db.GetDB().Raw(sql).Scan(&total)
 
 	if result.Error != nil {
-		return -1, result.Error
+		return 0, result.Error
 	}
 	return total, nil
 }
@@ -355,7 +355,7 @@ func (repo userRepository) GetTotalRevenueDayNow() (int, error) {
 	result := repo.db.GetDB().Raw(sql).Scan(&total)
 
 	if result.Error != nil {
-		return -1, result.Error
+		return 0, result.Error
 	}
 	return total, nil
 }
@@ -366,7 +366,7 @@ func (repo userRepository) GetTotalSalesWeekNow() (int, error) {
 	result := repo.db.GetDB().Raw(sql).Scan(&total)
 
 	if result.Error != nil {
-		return -1, result.Error
+		return 0, result.Error
 	}
 	return total, nil
 }
@@ -377,7 +377,7 @@ func (repo userRepository) GetTotalRevenueWeekNow() (int, error) {
 	result := repo.db.GetDB().Raw(sql).Scan(&total)
 
 	if result.Error != nil {
-		return -1, result.Error
+		return 0, result.Error
 	}
 	return total, nil
 }
@@ -388,7 +388,7 @@ func (repo userRepository) GetTotalSalesMonthNow() (int, error) {
 	result := repo.db.GetDB().Raw(sql).Scan(&total)
 
 	if result.Error != nil {
-		return -1, result.Error
+		return 0, result.Error
 	}
 	return total, nil
 }
@@ -399,14 +399,14 @@ func (repo userRepository) GetTotalRevenueMonthNow() (int, error) {
 	result := repo.db.GetDB().Raw(sql).Scan(&total)
 
 	if result.Error != nil {
-		return -1, result.Error
+		return 0, result.Error
 	}
 	return total, nil
 }
 
 func (repo userRepository) GetOrdersRecently() ([]dto.Order, error) {
 	var orders []dto.Order
-	sql := "SELECT orders.id as id, orders.user_email as email, orders.total as total, ( SELECT SUM(quantity) FROM order_detail WHERE order_detail.order_id = orders.id) as items FROM orders ORDER BY orders.created_at desc LIMIT 10;"
+	sql := "SELECT orders.id as id, orders.user_email as user_email, orders.total as total, ( SELECT SUM(quantity) FROM order_detail WHERE order_detail.order_id = orders.id) as items FROM orders ORDER BY orders.created_at desc LIMIT 10;"
 	result := repo.db.GetDB().Raw(sql).Scan(&orders)
 
 	if result.Error != nil {
@@ -419,11 +419,18 @@ func (repo userRepository) GetOrdersRecently() ([]dto.Order, error) {
 func (repo userRepository) GetTopProducts() ([]dto.Product, error) {
 	var products []dto.Product
 
-	sql := "SELECT product.name as name, category.name as category_name, product.price as price  FROM product inner join category on category.id = product.category_id inner join (SELECT product_version.p_id as p_id, SUM(quantity) as quantity FROM product_version inner join order_detail on product_version.id = order_detail.product_id GROUP BY product_version.p_id ORDER BY quantity DESC LIMIT 10) as A on A.p_id = product.id"
+	sql := "SELECT product.image as image, product.name as name, category.name as category_name, product.price as price  FROM product inner join category on category.id = product.category_id inner join (SELECT product_version.p_id as p_id, SUM(quantity) as quantity FROM product_version inner join order_detail on product_version.id = order_detail.product_id GROUP BY product_version.p_id ORDER BY quantity DESC LIMIT 10) as A on A.p_id = product.id"
 	result := repo.db.GetDB().Raw(sql).Scan(&products)
 
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return products, nil
+}
+
+func (repo userRepository) GetPaymentMethod() []dto.PaymentMethod {
+	var payment []dto.PaymentMethod
+
+	repo.db.GetDB().Table("payment_method").Find(&payment)
+	return payment
 }

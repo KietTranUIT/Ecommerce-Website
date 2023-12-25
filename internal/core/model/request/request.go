@@ -6,8 +6,9 @@ type SignUpRequest struct {
 	FirstName string `json:"first_name"`
 	LastName  string `json:"last_name"`
 	Gender    string `json:"gender"`
-	Telephone string `json:"telephone"`
+	Phone     string `json:"phone"`
 	Address   string `json:"address"`
+	City      string `json:"city"`
 	Code      string `json:"code"`
 }
 

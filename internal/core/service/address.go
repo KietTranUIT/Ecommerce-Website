@@ -44,3 +44,7 @@ func (service userService) EditUserAddress(req request.EditUserAddressRequest) *
 	}
 	return CreateSuccessResponse(error_code.Success, "")
 }
+
+func (service userService) GetUserAddress(user_email string) ([]dto.UserAddress, error) {
+	return service.repo.GetUserAddress(user_email)
+}
