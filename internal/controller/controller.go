@@ -20,39 +20,76 @@ func NewUserController(router *gin.Engine, service service.UserService) UserCont
 }
 
 func (u UserController) InitRouter() {
-	u.router.LoadHTMLGlob("view/*.html")
 
+	// Load nhung file html, css, js
+	u.router.LoadHTMLGlob("view/*.html")
 	u.router.Static("/view/", "view")
 
+	// Su dung middleware hien thi ra man hinh request http
 	u.router.Use(gin.Logger())
 
+	/*--------------User routes------------------*/
+	// route truy cap trang chu
 	u.router.GET("/", HomePage(u))
 
+	// route kiem tra account co ton tai hay khong
 	u.router.GET("/account/check", CheckAccount(u))
 
+	// route dung dang ki
 	signup_group := u.router.Group("/signup")
 	{
 		signup_group.GET("/", GETSignupPage(u))
 		signup_group.POST("/", SignUp(u))
 	}
 
+	// route dung xac thuc code gui ve email
 	verify_group := u.router.Group("/verify")
 	{
 		verify_group.GET("/", GETVerifyPage(u))
 		verify_group.POST("/", SendVerificationCode(u))
 	}
-
 	u.router.POST("/auth", AuthenticateCode(u))
+
+	// route dung de dang nhap
 	u.router.GET("/login", GetLoginPage(u))
 	u.router.POST("/login", Login(u))
 
-	// For Admin API
+	u.router.POST("/orders", HandleOrder(u))
+	u.router.GET("/home", HandleHomePage(u))
+	u.router.GET("/products/:id", GetProductDetail(u))
+
+	u.router.GET("/products", GetProducts(u))
+
+	u.router.GET("/categories/:id", GetProductsOfCategory(u))
+
+	u.router.GET("/cart", GetCart(u))
+
+	u.router.GET("/checkout", middleware.AuthenticateUser(), GetCheckout(u))
+	u.router.POST("/checkout", middleware.AuthenticateUser(), HandleCheckout(u))
+
+	users_group := u.router.Group("/user", middleware.AuthenticateUser())
+	{
+		users_group.GET("/address", GetUserAddress(u))
+		users_group.POST("/address", HandleCreateUserAddress(u))
+		users_group.DELETE("/address/:id", HandleDeleteUserAddress(u))
+		users_group.PUT("/address/:id", HandleUpdateUserAddress(u))
+		users_group.GET("/", GetProfileUser(u))
+	}
+
+	u.router.DELETE("/logout", Logout(u))
+
+	/*--------------Admin routes------------------*/
 	admin_group := u.router.Group("/admin")
 	{
+		// route truy cap trang chu Admin
 		admin_group.GET("/", HandleAdmin(u))
+
+		// route tra ve doanh so luong don hang
 		admin_group.GET("/sales/filter", GetTotalSales(u))
-		admin_group.GET("/ordersrecently", GetOrdersRecently(u))
-		admin_group.GET("/topproducts", GetTopProducts(u))
+
+		// // rout
+		// admin_group.GET("/ordersrecently", GetOrdersRecently(u))
+		// admin_group.GET("/topproducts", GetTopProducts(u))
 
 		// route category
 		admin_group.GET("/categories", GetCategories(u))
@@ -62,12 +99,10 @@ func (u UserController) InitRouter() {
 		admin_group.PUT("/categories/:id", UpdateCategory(u))
 		admin_group.DELETE("/categories/:id", DeleteCategoryAdmin(u))
 		admin_group.GET("/categories/:id/products", GetProductsCategory(u))
+
 		admin_group.GET("/products/new", GetNewProduct(u))
 		admin_group.GET("/products/update/:id", GetUpdateProductAdminPage(u))
 		admin_group.PUT("/products/update/:id", UpdateProductAdmin(u))
-
-		//admin_group.GET("/categories/update/:id", GetUpdateCategoryAdminPage(u))
-		//admin_group.PUT("/categories/update/:id", UpdateCategoryAdmin(u))
 
 		// route product
 		admin_group.GET("/products", GetProductAdminPage(u))
@@ -95,33 +130,4 @@ func (u UserController) InitRouter() {
 		user_group.PUT("/addresses/:id", HandleUpdateUserAddress(u))
 	}
 
-	u.router.POST("/orders", HandleOrder(u))
-	u.router.GET("/home", HandleHomePage(u))
-	u.router.GET("/products/:id", GetProductDetail(u))
-
-	u.router.GET("/products", GetProducts(u))
-
-	u.router.GET("/categories/:id", GetProductsOfCategory(u))
-
-	u.router.GET("/cart", GetCart(u))
-
-	// u.router.GET("/user/address", GetUserAddress(u))
-	// u.router.POST("/user/address", HandleCreateUserAddress(u))
-	// u.router.DELETE("/user/address/:id", HandleDeleteUserAddress(u))
-	// u.router.PUT("/user/address/:id", HandleUpdateUserAddress(u))
-	// u.router.GET("/user", GetProfileUser(u))
-
-	u.router.GET("/checkout", middleware.AuthenticateUser(), GetCheckout(u))
-	u.router.POST("/checkout", middleware.AuthenticateUser(), HandleCheckout(u))
-
-	users_group := u.router.Group("/user", middleware.AuthenticateUser())
-	{
-		users_group.GET("/address", GetUserAddress(u))
-		users_group.POST("/address", HandleCreateUserAddress(u))
-		users_group.DELETE("/address/:id", HandleDeleteUserAddress(u))
-		users_group.PUT("/address/:id", HandleUpdateUserAddress(u))
-		users_group.GET("/", GetProfileUser(u))
-	}
-
-	u.router.DELETE("/logout", Logout(u))
 }
