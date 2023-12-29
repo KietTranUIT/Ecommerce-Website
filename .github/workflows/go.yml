@@ -20,6 +20,21 @@ jobs:
 
     - name: Copy static view files
       run: xcopy /i view build\views
+    
+    - name: Copy static css user
+      run: xcopy /i view\user\css build\views\user\css
+
+    - name: Copy static js user
+      run: xcopy /i view\user\js build\views\user\js
+
+    - name: Copy static css admin
+      run: xcopy /i view\admin\css build\views\admin\css
+
+    - name: Copy static js admin
+      run: xcopy /i view\admin\js build\views\admin\js
+
+    - name: Copy static image
+      run: xcopy /i view\assets\image\products build\views\assets\image\products
 
     - name: Build
       run: go build .\cmd -o build/go-app.exe -v
