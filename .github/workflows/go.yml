@@ -9,7 +9,7 @@ on:
 jobs:
 
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
 
@@ -18,26 +18,40 @@ jobs:
       with:
         go-version: 1.18
 
-    - name: Copy static view files
-      run: xcopy /i view build\view
+    # - name: Copy static view files
+    #   run: xcopy /i view build\view
     
+    # - name: Copy static css user
+    #   run: xcopy /i view\user\css build\view\user\css
+
+    # - name: Copy static js user
+    #   run: xcopy /i view\user\js build\view\user\js
+
+    # - name: Copy static css admin
+    #   run: xcopy /i view\admin\css build\view\admin\css
+
+    # - name: Copy static js admin
+    #   run: xcopy /i view\admin\js build\view\admin\js
+
+    # - name: Copy static image
+    #   run: xcopy /i view\assets\image\products build\view\assets\image\products
+    - name: Copy static view files
+      run: cp view build/view
+
     - name: Copy static css user
-      run: xcopy /i view\user\css build\view\user\css
+      run: cp view/user/css build/view/user/css
 
     - name: Copy static js user
-      run: xcopy /i view\user\js build\view\user\js
+      run: cp view/user/js build/view/user/js
 
     - name: Copy static css admin
-      run: xcopy /i view\admin\css build\view\admin\css
+      run: cp view/admin/css build/view/admin/css
 
     - name: Copy static js admin
-      run: xcopy /i view\admin\js build\view\admin\js
-
-    - name: Copy static image
-      run: xcopy /i view\assets\image\products build\view\assets\image\products
+      run: cp view/admin/js build/view/admin/js
 
     - name: Build
-      run: go build -o build/go-app.exe -v
+      run: go build -o build/go-app
 
     - name: Test
       run: go test
@@ -45,6 +59,6 @@ jobs:
     - name: Deploy to Azure
       uses: Azure/webapps-deploy@v2
       with:
-        app-name: Shoes-Website
+        app-name: ecommerce-nhom20
         package: build/
         publish-profile: ${{ secrets.AZURE }}
