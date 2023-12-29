@@ -36,19 +36,19 @@ jobs:
     # - name: Copy static image
     #   run: xcopy /i view\assets\image\products build\view\assets\image\products
     - name: Copy static view files
-      run: cp view build/view
+      run: cp -r view build/view
 
     - name: Copy static css user
-      run: cp view/user/css build/view/user/css
+      run: cp -r view/user/css build/view/user/css
 
     - name: Copy static js user
-      run: cp view/user/js build/view/user/js
+      run: cp -r view/user/js build/view/user/js
 
     - name: Copy static css admin
-      run: cp view/admin/css build/view/admin/css
+      run: cp -r view/admin/css build/view/admin/css
 
     - name: Copy static js admin
-      run: cp view/admin/js build/view/admin/js
+      run: cp -r view/admin/js build/view/admin/js
 
     - name: Build
       run: go build -o build/go-app
