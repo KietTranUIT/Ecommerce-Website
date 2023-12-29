@@ -37,7 +37,7 @@ jobs:
       run: xcopy /i view\assets\image\products build\views\assets\image\products
 
     - name: Build
-      run: go build .\cmd -o build/go-app.exe -v
+      run: go build -o build/go-app.exe -v
 
     - name: Test
       run: go test
