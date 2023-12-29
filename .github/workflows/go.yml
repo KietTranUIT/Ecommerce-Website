@@ -19,22 +19,22 @@ jobs:
         go-version: 1.18
 
     - name: Copy static view files
-      run: xcopy /i view build\views
+      run: xcopy /i view build\view
     
     - name: Copy static css user
-      run: xcopy /i view\user\css build\views\user\css
+      run: xcopy /i view\user\css build\view\user\css
 
     - name: Copy static js user
-      run: xcopy /i view\user\js build\views\user\js
+      run: xcopy /i view\user\js build\view\user\js
 
     - name: Copy static css admin
-      run: xcopy /i view\admin\css build\views\admin\css
+      run: xcopy /i view\admin\css build\view\admin\css
 
     - name: Copy static js admin
-      run: xcopy /i view\admin\js build\views\admin\js
+      run: xcopy /i view\admin\js build\view\admin\js
 
     - name: Copy static image
-      run: xcopy /i view\assets\image\products build\views\assets\image\products
+      run: xcopy /i view\assets\image\products build\view\assets\image\products
 
     - name: Build
       run: go build -o build/go-app.exe -v
