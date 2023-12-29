@@ -62,7 +62,7 @@ func Login(control UserController) gin.HandlerFunc {
 			return
 		}
 		token, _ := util.CreateToken(data.Email)
-		c.SetCookie("user-token", token, 3600, "/", "https://377c-42-115-60-125.ngrok-free.app", false, true)
+		c.SetCookie("user-token", token, 3600, "/", "https://6ea8-203-205-32-65.ngrok-free.app", false, true)
 		log.Println(res)
 		c.AbortWithStatusJSON(200, res)
 	}
@@ -190,7 +190,7 @@ func GetProfileUser(control UserController) gin.HandlerFunc {
 
 func Logout(control UserController) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.SetCookie("user-token", "", -1, "/", "https://377c-42-115-60-125.ngrok-free.app", false, true)
+		c.SetCookie("user-token", "", -1, "/", "https://6ea8-203-205-32-65.ngrok-free.app", false, true)
 		c.String(200, "")
 	}
 }

@@ -100,7 +100,7 @@
                                             <td>
                                                 <p style="width:500px;overflow:hidden;text-overflow:ellipsis">{{ .Description }}</p></td>
                                             <td>{{ .Category_name}} </td>
-                                            <td>{{ .Price }}</td>
+                                            <td class="format-money">{{ .Price }}</td>
                                             <td>
                                                 <button type="button" data-product-id="{{ .Id }}" class="btn btn-primary btn-edit">Edit</button>
                                                 <button type="button" data-product-id="{{ .Id }}" class="btn btn-outline-secondary btn-detail">Details</button>
@@ -116,5 +116,18 @@
                 </div>
             </section>
         </div>
+        <script>
+            $(document).ready(function() {
+                let money = $('.format-money')
+
+                money.each(function() {
+                    let value = parseInt($(this).text())
+
+                    let format = value.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})
+
+                    $(this).text(format)
+                })
+            })
+        </script>
     </body>
 </html>

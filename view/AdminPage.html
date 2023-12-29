@@ -66,16 +66,16 @@
                     <div class="dashboard-top row">
                         <div class="total col-6">
                             <div class="summary row gap-5">
-                                <div class="total-sale col-5">
+                                <div class="total-sale col-3">
                                     <div class="total-sale-content">
                                         <span class="total-title">Total sales:</span> <br>
                                         <span class="total-value" id="total-sales">{{ .Summary.Sales }}</span>
                                     </div>
                                 </div>
-                                <div class="total-revenue col-5">
+                                <div class="total-revenue col-7">
                                     <div class="total-sale-content">
                                         <span class="total-title">Totoal revenue:</span> <br>
-                                        <span class="total-value" id="total-revenue">{{ .Summary.Revenue }}</span>
+                                        <span class="total-value format-money" id="total-revenue">{{ .Summary.Revenue }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +101,7 @@
                     <div class="dashboard-bottom row">
                         <div class="top-products col-6">
                             <h4>Top products selling</h4>
-                            <table style="overflow-y: auto;height: 500px;">
+                            <table style="overflow-y: auto;height: 700px;">
                                 <thead>
                                     <th>No</th>
                                     <th>Name</th>
@@ -114,7 +114,7 @@
                                         <td>{{ $index }}</td>
                                         <td>{{ $item.Name }}</td>
                                         <td>{{ $item.Category_name }}</td>
-                                        <td>{{ $item.Price }}</td>
+                                        <td class="format-money">{{ $item.Price }}</td>
                                     </tr>
                                     {{ end }}
                                 </tbody>
@@ -137,7 +137,7 @@
                                         <td>{{ .Id }}</td>
                                         <td>{{ .User_email }}</td>
                                         <td>{{ .Items }}</td>
-                                        <td>{{ .Total }}</td>
+                                        <td class="format-money">{{ .Total }}</td>
                                     </tr>
                                     {{ end }}
                                 </tbody>
@@ -149,6 +149,17 @@
         </div>
         <script>
             $(document).ready(function() {
+                let money = $('.format-money')
+                let fix = $('#total-revenue')
+
+                money.each(function() {
+                    let value = parseInt($(this).text())
+
+                    let format = value.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})
+
+                    $(this).text(format)
+                })
+
                 $('#filter-day').click(function() {
                     fetch('/admin/sales/filter?type=day', {
                         method: 'GET'
@@ -160,6 +171,13 @@
 
                         $('#total-sales').text(sales)
                         $('#total-revenue').text(revenue)
+                        fix.each(function() {
+                    let value = parseInt($(this).text())
+
+                    let format = value.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})
+
+                    $(this).text(format)
+                })
                     })
                 })
 
@@ -174,6 +192,13 @@
 
                         $('#total-sales').text(sales)
                         $('#total-revenue').text(revenue)
+                        fix.each(function() {
+                    let value = parseInt($(this).text())
+
+                    let format = value.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})
+
+                    $(this).text(format)
+                })
                     })
                 })
 
@@ -188,6 +213,13 @@
 
                         $('#total-sales').text(sales)
                         $('#total-revenue').text(revenue)
+                        fix.each(function() {
+                    let value = parseInt($(this).text())
+
+                    let format = value.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})
+
+                    $(this).text(format)
+                })
                     })
                 })
             })

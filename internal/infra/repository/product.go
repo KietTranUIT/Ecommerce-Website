@@ -26,7 +26,7 @@ func (repo userRepository) GetProductData(id int) []dto.ProductDTO {
 		Where("product.id = ?", id).
 		Scan(&products)
 
-	log.Println(len(products))
+	log.Println(products)
 	return products
 }
 

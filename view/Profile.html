@@ -266,11 +266,11 @@
                                                 d="M13.3699 21.0448H4.60183C4.11758 21.0448 3.72502 20.6522 3.72502 20.168C3.72502 19.6837 4.11758 19.2912 4.60183 19.2912H13.3699C13.8542 19.2912 14.2468 18.8986 14.2468 18.4143V14.7756C14.2026 14.2836 13.9075 13.8492 13.4664 13.627C10.0296 12.2394 6.18853 12.2394 2.75176 13.627C2.31062 13.8492 2.01554 14.2836 1.9714 14.7756V20.168C1.9714 20.6522 1.57883 21.0448 1.09459 21.0448C0.610335 21.0448 0.217773 20.6522 0.217773 20.168V14.7756C0.256548 13.5653 0.986136 12.4845 2.09415 11.9961C5.95255 10.4369 10.2656 10.4369 14.124 11.9961C15.232 12.4845 15.9616 13.5653 16.0004 14.7756V18.4143C16.0004 19.8671 14.8227 21.0448 13.3699 21.0448ZM12.493 4.38406C12.493 1.96281 10.5302 0 8.10892 0C5.68767 0 3.72486 1.96281 3.72486 4.38406C3.72486 6.80531 5.68767 8.76812 8.10892 8.76812C10.5302 8.76812 12.493 6.80531 12.493 4.38406ZM10.7393 4.38483C10.7393 5.83758 9.56159 7.01526 8.10884 7.01526C6.6561 7.01526 5.47841 5.83758 5.47841 4.38483C5.47841 2.93208 6.6561 1.75439 8.10884 1.75439C9.56159 1.75439 10.7393 2.93208 10.7393 4.38483Z"
                                                 fill="#183A40" />
                                         </svg>
-                                        <span class="desk-only icon-lable">My profile</span>
+                                        <span class="desk-only icon-lable" id="profile-name">My profile</span>
                                     </a>
                                 </li>
                                 <li class="cart-header">
-                                    <a href="giohang.html">
+                                    <a href="/cart">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="19" height="17" viewBox="0 0 19 17"
                                             fill="none">
                                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -348,10 +348,10 @@
                                     <td data-label="Status"> 
                                         {{ .Status }}
                                     </td>
-                                    <td data-label="Total"> 
+                                    <td data-label="Total" class="format-money"> 
                                         {{ .Total }}
                                     </td> 
-                                    <td data-label="Date Added">
+                                    <td data-label="Date Added" class="format-time">
                                         {{ .Created_at }}
                                     </td>
                                     <td data-label="Action">
@@ -527,10 +527,20 @@
     <script src='/view/user/js/custom.js' defer="defer"></script>
     <script>
         $(document).ready(function() {
+
             let user = localStorage.getItem('user')
             if(user !== null) {
                 $('#profile-name').text(user)
             }
+            let money = $('.format-money')
+
+                money.each(function() {
+                    let value = parseInt($(this).text())
+
+                    let format = value.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})
+
+                    $(this).text(format)
+                })
 
             let cart = localStorage.getItem('cart')
                 if (cart === null) {
@@ -553,6 +563,22 @@
                         alert('Log out Failed!')
                     }
                 })
+
+            })
+            let time = $('.format-time')
+            time.each(function() {
+                var date = new Date($(this).text());
+
+                var dd = date.getDate();
+                var mm = date.getMonth() + 1;
+                var yyyy = date.getFullYear();
+
+                if (dd < 10) dd = '0' + dd;
+                if (mm < 10) mm = '0' + mm;
+
+                const formattedToday = dd + '/' + mm + '/' + yyyy;
+
+                $(this).text(formattedToday)
 
             })
         })

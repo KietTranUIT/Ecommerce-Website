@@ -1111,7 +1111,12 @@
 <script src="/view/user/js/slick.min.js" defer="defer"></script>
 <script src='/view/user/js/custom.js' defer="defer"></script>
 <script>
-    $(document).ready(function() {            
+    $(document).ready(function() {      
+        let user = localStorage.getItem('user')
+            if(user !== null) {
+                $('#profile-name').text(user)
+            }
+                  
             let cart = localStorage.getItem('cart')
             let product = JSON.parse(cart)
                 if (cart === null) {

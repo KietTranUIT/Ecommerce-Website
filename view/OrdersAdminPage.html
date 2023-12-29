@@ -88,8 +88,8 @@
                                                 {{ .Payment_name }}
                                             </td>
                                             <td>
-                                                <p style="width:200px;overflow:hidden;text-overflow:ellipsis">{{ .Total }}</p></td>
-                                            <td>{{ .Created_at }} </td>
+                                                <p style="width:200px;overflow:hidden;text-overflow:ellipsis" class="format-money">{{ .Total }}</p></td>
+                                            <td class="format-time">{{ .Created_at }} </td>
                                             <td>{{ .Status }}</td>
                                             <td>
                                                 <button type="button" data-order-id="{{ .Id }}" class="btn btn-outline-secondary btn-detail">Details</button>
@@ -104,5 +104,35 @@
                 </div>
             </section>
         </div>
+        <script>
+            $(document).ready(function() {
+                let money = $('.format-money')
+
+                money.each(function() {
+                    let value = parseInt($(this).text())
+
+                    let format = value.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})
+
+                    $(this).text(format)
+                })
+
+                let time = $('.format-time')
+                time.each(function() {
+                var date = new Date($(this).text());
+
+                var dd = date.getDate();
+                var mm = date.getMonth() + 1;
+                var yyyy = date.getFullYear();
+
+                if (dd < 10) dd = '0' + dd;
+                if (mm < 10) mm = '0' + mm;
+
+                const formattedToday = dd + '/' + mm + '/' + yyyy;
+
+                $(this).text(formattedToday)
+
+            })
+            })
+        </script>
     </body>
 </html>

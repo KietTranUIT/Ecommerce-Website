@@ -79,7 +79,7 @@ func (u UserController) InitRouter() {
 	u.router.DELETE("/logout", Logout(u))
 
 	/*--------------Admin routes------------------*/
-	admin_group := u.router.Group("/admin")
+	admin_group := u.router.Group("/admin", middleware.AuthenticateAdmin())
 	{
 		// route truy cap trang chu Admin
 		admin_group.GET("/", HandleAdmin(u))

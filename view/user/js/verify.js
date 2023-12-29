@@ -8,6 +8,7 @@ function SendVerificationEmail(user) {
         } else if(response_data['error_code'] = 'DUPLICATE_ENTRY') {
             showAlert('#code-duplicate')
         } else {
+            alert('Send verification email successfully')
             showAlert('#sendcode-success')
         }
     })

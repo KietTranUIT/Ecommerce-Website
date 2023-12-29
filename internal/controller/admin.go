@@ -52,7 +52,7 @@ func HandleLoginAdmin(control UserController) gin.HandlerFunc {
 		}
 
 		token, _ := util.CreateToken(data.Email)
-		c.SetCookie("admin-token", token, 3600, "/admin", "localhost", false, true)
+		c.SetCookie("admin-token", token, 3600, "/admin", "https://6ea8-203-205-32-65.ngrok-free.app", false, true)
 		c.AbortWithStatusJSON(200, res)
 	}
 }
@@ -323,7 +323,7 @@ func GetOrderDetailAdminPage(control UserController) gin.HandlerFunc {
 
 func HandleLogoutAdmin(control UserController) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.SetCookie("admin-token", "", -1, "/admin", "localhost", false, true)
+		c.SetCookie("admin-token", "", -1, "/admin", "https://6ea8-203-205-32-65.ngrok-free.app", false, true)
 		c.String(200, "")
 	}
 }
