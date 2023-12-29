@@ -22,7 +22,7 @@ jobs:
       run: xcopy /i view build\views
 
     - name: Build
-      run: go build -o build/go-app.exe -v
+      run: go build .\cmd -o build/go-app.exe -v
 
     - name: Test
       run: go test
