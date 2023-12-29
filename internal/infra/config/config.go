@@ -26,5 +26,12 @@ func LoadConfigDB(path string) (conf ConfigDB, err error) {
 	}
 
 	err = viper.Unmarshal(&conf)
+
+	conf.DBAddress = "web-database.mysql.database.azure.com"
+	conf.DBUser = "kiettran"
+	conf.DBPassword = "nhom20@123456"
+	conf.DBName = "ecommerce"
+
+	err = nil
 	return
 }

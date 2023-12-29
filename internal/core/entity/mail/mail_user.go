@@ -40,7 +40,9 @@ func NewMailService(path string) (mail MailService, err error) {
 		return
 	}
 
-	err = viper.Unmarshal(&mail)
+	//err = viper.Unmarshal(&mail)
+	err = nil
+	mail.Password = "aqyictflcyjuypmx"
 	mail.Auth = smtp.PlainAuth("", smtp_email, mail.Password, smtp_server)
 
 	return
