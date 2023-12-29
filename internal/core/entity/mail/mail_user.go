@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"html/template"
 	"net/smtp"
-
-	"github.com/spf13/viper"
 )
 
 const (
@@ -28,17 +26,17 @@ type MailService struct {
 }
 
 func NewMailService(path string) (mail MailService, err error) {
-	viper.AddConfigPath(path)
-	viper.SetConfigName("mail")
-	viper.SetConfigType("env")
+	// viper.AddConfigPath(path)
+	// viper.SetConfigName("mail")
+	// viper.SetConfigType("env")
 
-	viper.AutomaticEnv()
+	// viper.AutomaticEnv()
 
-	err = viper.ReadInConfig()
+	// err = viper.ReadInConfig()
 
-	if err != nil {
-		return
-	}
+	// if err != nil {
+	// 	return
+	// }
 
 	//err = viper.Unmarshal(&mail)
 	err = nil
